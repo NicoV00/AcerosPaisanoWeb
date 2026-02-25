@@ -142,8 +142,8 @@ const ProductServicePage = ({ serviceSlug, onClose }) => {
         {/* Product Title */}
         <Box sx={{
           paddingTop: "70px",
-          paddingLeft: "16px",
-          paddingRight: "16px",
+          paddingLeft: "12px",
+          paddingRight: "12px",
           paddingBottom: "20px"
         }}>
           <Typography sx={{
@@ -161,7 +161,7 @@ const ProductServicePage = ({ serviceSlug, onClose }) => {
           {productInfo.items.map((item, index) => (
             <Box key={index} sx={{ marginBottom: "32px", width: "100%" }}>
               {/* Image */}
-              <Box sx={{ paddingLeft: "16px", paddingRight: "16px", width: "100%", boxSizing: "border-box" }}>
+              <Box sx={{ paddingLeft: "12px", paddingRight: "12px", width: "100%", boxSizing: "border-box" }}>
                 <Box
                   component="img"
                   src={item.image}
@@ -179,7 +179,7 @@ const ProductServicePage = ({ serviceSlug, onClose }) => {
               </Box>
 
               {/* Número y texto principal */}
-              <Box sx={{ paddingLeft: "16px", paddingRight: "16px", width: "100%", boxSizing: "border-box" }}>
+              <Box sx={{ paddingLeft: "12px", paddingRight: "12px", width: "100%", boxSizing: "border-box" }}>
                 <Typography sx={{
                   fontSize: "1.4rem",
                   color: "#fff",
@@ -194,8 +194,8 @@ const ProductServicePage = ({ serviceSlug, onClose }) => {
 
           {/* Go to Product Button at the end */}
           <Box sx={{
-            paddingLeft: "16px",
-            paddingRight: "16px",
+            paddingLeft: "12px",
+            paddingRight: "12px",
             paddingTop: "20px",
             paddingBottom: "40px"
           }}>

@@ -440,10 +440,10 @@ export const Home = () => {
                   fetchpriority="high"
                   sx={{
                     width: "auto",
-                    height: { xs: "12vh", md: "10vh", xl: "20vh" },
+                    height: { xs: "9vh", md: "10vh", xl: "20vh" },
                     marginTop: { xs: "0", md: "60px" },
-                    paddingLeft: { xs: "20px", md: "0" },
-                    paddingRight: { xs: "20px", md: "0" }
+                    paddingLeft: { xs: "24px", md: "3.5vw" },
+                    paddingRight: { xs: "24px", md: "3.5vw" }
                   }}
                 />
               </Box>
@@ -477,7 +477,7 @@ export const Home = () => {
             <Typography sx={{ lineHeight: "1.3", marginBottom: "20px" }} className="catalogue-description">
               Desde 2011 apoyando a la industria nacional
             </Typography>
-            <Box className="catalogue-button-wrapper" sx={{ paddingRight: "20px" }}>
+            <Box className="catalogue-button-wrapper" sx={{ paddingRight: { xs: "12px", md: "20px" } }}>
               <Link to={"/productos"}>
                 <ButtonHoverBg label="Explorar Productos" buttonStyles={"catalogue-button"} />
               </Link>
@@ -494,26 +494,32 @@ export const Home = () => {
         </div>
 
         {/* Bottom Row - Text Animation */}
-        <div
+        <Box
           className="home-bottom-row"
-          style={{
+          sx={{
+            position: "relative",
+            display: "flex",
+            alignItems: "flex-start",
+            justifyContent: "flex-start",
             // ✅ MÁS ESPACIO antes del slider
             paddingBottom: isMobile
               ? HERO_BEFORE_SLIDER_SPACING_MOBILE
               : HERO_BEFORE_SLIDER_SPACING_DESKTOP,
+            paddingLeft: { xs: "24px", md: "3.5vw" },
+            paddingRight: { xs: "24px", md: "3.5vw" },
+            width: "100%",
           }}
         >
-          <div
+          <Box
             className="about-intro"
-            style={{
+            sx={{
               width: "100%",
               textAlign: "left",
               display: "flex",
               flexDirection: "column",
               alignItems: "flex-start",
               justifyContent: "flex-start",
-              paddingLeft: "3vw",
-              paddingRight: "3vw",
+              // Los márgenes ya están en el padre (home-bottom-row)
             }}
           >
             {textParts.map((part, index) => (
@@ -554,11 +560,13 @@ export const Home = () => {
               </div>
             ))}
 
-            <Link to={"/sobre-nosotros"} style={{ textDecoration: "none" }}>
-              <ButtonHoverBg label="Sobre Nosotros" buttonStyles={"about-link-button"} />
-            </Link>
-          </div>
-        </div>
+            <Box sx={{ marginTop: { xs: "40px", md: "60px" } }}>
+              <Link to={"/sobre-nosotros"} style={{ textDecoration: "none" }}>
+                <ButtonHoverBg label="Sobre Nosotros" buttonStyles={"about-link-button"} />
+              </Link>
+            </Box>
+          </Box>
+        </Box>
 
         {/* Products Slider */}
         <div className="home-products-slider">
@@ -585,7 +593,7 @@ export const Home = () => {
             gap: { xs: "12px", md: "18px" },
 
             /* ✅ MENOS márgenes laterales (mobile y web) */
-            px: { xs: "12px", md: "16px" },
+            px: { xs: "16px", md: "16px" },
             py: { xs: "32px", md: "64px" },
 
             justifyContent: "center",
@@ -790,19 +798,90 @@ export const Home = () => {
         </Box>
       </Box>
 
-      <Suspense fallback={<div style={{ height: "75vh", backgroundColor: "#000" }} />}>
-        <ParallaxVideoBox videoSrc="/videos/19.mp4" />
-      </Suspense>
+      {/* Last Video Section - Phrase + Corner Video */}
+      <Box
+        sx={{
+          backgroundColor: "#000",
+          minHeight: { xs: "70vh", md: "110vh" },
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          position: "relative",
+          // Reforzamos el padding lateral para asegurar el margen
+          px: { xs: "24px", md: "3.5vw" },
+          py: { xs: "80px", md: "120px" },
+          justifyContent: "space-between",
+          boxSizing: "border-box"
+        }}
+      >
+        <Typography
+          sx={{
+            color: "#fff",
+            fontSize: { xs: "2.5rem", md: "5rem" },
+            fontWeight: 400,
+            fontFamily: "Inter, sans-serif",
+            lineHeight: 1.0,
+            maxWidth: { xs: "100%", md: "1100px" },
+            textAlign: "left",
+            zIndex: 2,
+            letterSpacing: "-0.05em",
+            opacity: 0.95,
+            // Subimos la frase en móvil para quitar espacio negro, y mantenemos elevación en web
+            marginTop: { xs: "-40px", md: "-60px" }
+          }}
+        >
+          Flexibles y receptivos a las demandas del mercado
+        </Typography>
+
+        <Box
+          sx={{
+            alignSelf: "stretch",
+            width: "100%",
+            display: "flex",
+            // En móvil lo mandamos a la derecha pero con un ancho menor para que deje margen izquierdo
+            justifyContent: { xs: "flex-end", md: "flex-end" },
+            marginTop: { xs: "100px", md: "0" },
+            zIndex: 1,
+          }}
+        >
+          <Box
+            sx={{
+              width: { xs: "80%", md: "350px", lg: "450px" },
+              // Altura más pronunciada en móvil
+              aspectRatio: { xs: "1/1.1", md: "1.2/1" },
+              borderRadius: "4px",
+              overflow: "hidden",
+              boxShadow: "0 40px 80px rgba(0,0,0,0.9)",
+              transition: "transform 0.6s cubic-bezier(0.2, 1, 0.3, 1)",
+              "&:hover": {
+                transform: { md: "translateY(-10px) scale(1.03)" }
+              }
+            }}
+          >
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            >
+              <source src="/videos/19.mp4" type="video/mp4" />
+            </video>
+          </Box>
+        </Box>
+      </Box>
 
       {/* Modal and Suspense removed - now using routes */}
-      {selectedService && (
-        <ProductServicePage
-          serviceSlug={selectedService}
-          onClose={() => setSelectedService(null)}
-        />
-      )}
+      {
+        selectedService && (
+          <ProductServicePage
+            serviceSlug={selectedService}
+            onClose={() => setSelectedService(null)}
+          />
+        )
+      }
 
       <Footer />
-    </section>
+    </section >
   );
 };
