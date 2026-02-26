@@ -39,8 +39,8 @@ const AnimatedMenuIcon = ({ isOpen, isDark = false }) => (
         backgroundColor: isOpen
           ? "#FFFFFF"
           : isDark
-          ? "rgba(11, 11, 11, 0.85)"
-          : "rgba(255, 255, 255, 0.9)",
+            ? "rgba(11, 11, 11, 0.85)"
+            : "rgba(255, 255, 255, 0.9)",
         position: "absolute",
         transition: "all 0.3s ease",
         transform: isOpen ? "rotate(45deg)" : "translateY(-6px)",
@@ -54,8 +54,8 @@ const AnimatedMenuIcon = ({ isOpen, isDark = false }) => (
         backgroundColor: isOpen
           ? "#FFFFFF"
           : isDark
-          ? "rgba(11, 11, 11, 0.85)"
-          : "rgba(255, 255, 255, 0.9)",
+            ? "rgba(11, 11, 11, 0.85)"
+            : "rgba(255, 255, 255, 0.9)",
         position: "absolute",
         transition: "all 0.3s ease",
         transform: isOpen ? "rotate(-45deg)" : "translateY(6px)",
@@ -225,8 +225,8 @@ export const NavBar = ({ whiteBackground = false }) => {
             backgroundColor: menuOpen
               ? "#000000"
               : whiteBackground
-              ? "rgba(255, 255, 255, 0.96)"
-              : "transparent",
+                ? "rgba(255, 255, 255, 0.96)"
+                : "transparent",
 
             /* ✅ blur solo para fondos blancos */
             backdropFilter: menuOpen ? "none" : whiteBackground ? "blur(10px)" : "none",
@@ -250,7 +250,7 @@ export const NavBar = ({ whiteBackground = false }) => {
               to="/"
               onClick={() => window.scrollTo(0, 0)}
               color="inherit"
-              sx={{ padding: isMobile ? "4px" : "8px", minWidth: "auto" }}
+              sx={{ padding: { xs: "0px", md: "0px", lg: "0px", xl: "12px" }, minWidth: "auto" }}
             >
               <Box
                 component="img"

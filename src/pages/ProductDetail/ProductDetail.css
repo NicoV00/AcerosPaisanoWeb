@@ -57,7 +57,10 @@
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
 }
-.breadcrumbs::-webkit-scrollbar { display: none; }
+
+.breadcrumbs::-webkit-scrollbar {
+  display: none;
+}
 
 .breadcrumbs a,
 .breadcrumbs .separator,
@@ -168,7 +171,7 @@
   overflow: hidden;
 }
 
-.gallery-section > * {
+.gallery-section>* {
   min-width: 0;
   max-width: 100%;
 }
@@ -268,8 +271,15 @@
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
 }
 
 .availability-text {
@@ -354,9 +364,17 @@
   background: rgba(11, 11, 11, 0.22);
 }
 
-.datasheet-right-lines span:nth-child(1) { width: 10px; }
-.datasheet-right-lines span:nth-child(2) { width: 16px; }
-.datasheet-right-lines span:nth-child(3) { width: 26px; }
+.datasheet-right-lines span:nth-child(1) {
+  width: 10px;
+}
+
+.datasheet-right-lines span:nth-child(2) {
+  width: 16px;
+}
+
+.datasheet-right-lines span:nth-child(3) {
+  width: 26px;
+}
 
 /* ============================================
    CTA BUTTON (split red/black style)
@@ -369,7 +387,7 @@
 
   width: 100%;
   padding: 8px;
-  background: #0b0b0b;
+  background: #000000;
   border: none;
   border-radius: 0;
   color: #ffffff;
@@ -399,6 +417,28 @@
   letter-spacing: 0.01em;
   line-height: 1;
   white-space: nowrap;
+}
+
+
+.cta-detail-button {
+  font-size: 0.7rem;
+  width: 100%;
+  padding: 5px;
+  color: #ffffff !important;
+  background-color: #e00000;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.cta-detail-button p {
+  font-size: 1rem;
+}
+
+.cta-detail-button:hover {
+  background-color: #00000000;
+  border: 1px solid white;
+  transition-delay: 0.3s;
 }
 
 .cta-button .cta-arrow {
@@ -509,8 +549,13 @@
   background: rgba(11, 11, 11, 0.02);
 }
 
-.spec-index { display: none; }
-.spec-separator { display: none; }
+.spec-index {
+  display: none;
+}
+
+.spec-separator {
+  display: none;
+}
 
 .spec-label {
   font-size: 13px;
@@ -563,7 +608,8 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 40px;
-  align-items: stretch; /* misma altura visual */
+  align-items: stretch;
+  /* misma altura visual */
   min-width: 0;
 }
 
@@ -782,6 +828,7 @@
 }
 
 @media (max-width: 768px) {
+
   /* ✅ 16px reales en toda la vista */
   .product-detail-wrapper .MuiContainer-root {
     padding-left: 16px !important;
@@ -888,9 +935,17 @@
     height: 8px;
   }
 
-  .datasheet-right-lines span:nth-child(1) { width: 8px; }
-  .datasheet-right-lines span:nth-child(2) { width: 12px; }
-  .datasheet-right-lines span:nth-child(3) { width: 20px; }
+  .datasheet-right-lines span:nth-child(1) {
+    width: 8px;
+  }
+
+  .datasheet-right-lines span:nth-child(2) {
+    width: 12px;
+  }
+
+  .datasheet-right-lines span:nth-child(3) {
+    width: 20px;
+  }
 
   /* CTA mobile */
   .cta-button {

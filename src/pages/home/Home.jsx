@@ -60,6 +60,9 @@ export const Home = () => {
   const imageTitleRef = useRef();
   const welcomeRef = useRef();
   const heroVideoRef = useRef();
+  const benefitsTitleLeftRef = useRef();
+  const benefitsTitleRightRef = useRef();
+  const benefitItemsRef = useRef([]);
 
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -118,10 +121,10 @@ export const Home = () => {
   const heroLineSx = useMemo(
     () => ({
       // ✅ Tamaño más grande en móvil
-      fontSize: { xs: "clamp(28px, 31px, 96px)", sm: "42px", md: "60px", lg: "96px" },
+      fontSize: { xs: "clamp(36px, 32px, 96px)", sm: "42px", md: "54px", lg: "96px" },
 
       // ✅ Line-height aumentado para evitar cortes en letras como "g"
-      lineHeight: { xs: 1.1, sm: 1.15, md: 1.2, lg: 1.15 },
+      lineHeight: { xs: 1.1, sm: 1.15, md: 1.2, lg: 1.2 },
 
       textAlign: "left",
       fontFamily: "Inter, sans-serif",
@@ -233,6 +236,46 @@ export const Home = () => {
         }
       );
     }
+
+    // ✅ Benefits Section Animations (Innovaciones en Acero)
+    if (benefitsTitleLeftRef.current && benefitsTitleRightRef.current) {
+      await yieldToMain();
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: benefitsTitleLeftRef.current,
+          start: "top 85%",
+          end: "top 45%",
+          scrub: 1.5,
+        }
+      });
+
+      tl.fromTo(benefitsTitleLeftRef.current,
+        { x: isMobile ? -30 : -80, opacity: 0 },
+        { x: isMobile ? 10 : 40, opacity: 1, duration: 1, ease: "power2.out" }
+      ).fromTo(benefitsTitleRightRef.current,
+        { x: isMobile ? 30 : 80, opacity: 0 },
+        { x: isMobile ? -10 : -40, opacity: 1, duration: 1, ease: "power2.out" },
+        "-=0.8"
+      );
+    }
+
+    benefitItemsRef.current.forEach((item, index) => {
+      if (!item) return;
+      gsap.fromTo(item,
+        { opacity: 0, y: 60, scale: 0.8 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          scrollTrigger: {
+            trigger: item,
+            start: "top 95%",
+            end: "top 75%",
+            scrub: 1.5,
+          }
+        }
+      );
+    });
 
     setAnimationsInitialized(true);
   }, [animationsInitialized, prefersReducedMotion, textParts.length]);
@@ -361,7 +404,12 @@ export const Home = () => {
       { rootMargin: "100px" }
     );
 
-    const elementsToObserve = [descubrirRef.current, ...lineWrapperRef.current].filter(Boolean);
+    const elementsToObserve = [
+      descubrirRef.current,
+      ...lineWrapperRef.current,
+      benefitsTitleLeftRef.current,
+      ...benefitItemsRef.current
+    ].filter(Boolean);
     elementsToObserve.forEach((el) => el && observer.observe(el));
 
     window.addEventListener("scroll", handleScroll, { passive: true, once: true });
@@ -429,7 +477,7 @@ export const Home = () => {
                 display: "flex",
                 justifyContent: { xs: "center", md: "flex-start" },
                 alignItems: "center",
-                width: "100%",
+                width: { xs: "95%", md: "100%" },
                 position: { xs: "absolute", md: "relative" },
                 top: { xs: "12vh", md: "auto" }
               }}>
@@ -543,28 +591,13 @@ export const Home = () => {
                   className="line"
                   sx={{
                     ...heroLineSx,
-                    color: "#3a3a3a",
+                    color: "#fff", // Fijo en blanco
                   }}
-                >
-                  {part}
-                </Typography>
-
-                <Typography
-                  component="p"
-                  variant="inherit"
-                  className="line-overlay"
-                  sx={heroOverlaySx}
                 >
                   {part}
                 </Typography>
               </div>
             ))}
-
-            <Box sx={{ marginTop: { xs: "40px", md: "60px" } }}>
-              <Link to={"/sobre-nosotros"} style={{ textDecoration: "none" }}>
-                <ButtonHoverBg label="Sobre Nosotros" buttonStyles={"about-link-button"} />
-              </Link>
-            </Box>
           </Box>
         </Box>
 
@@ -590,7 +623,7 @@ export const Home = () => {
             display: "flex",
 
             /* ✅ MENOS separación entre imágenes */
-            gap: { xs: "12px", md: "18px" },
+            gap: { xs: "20px", md: "18px" },
 
             /* ✅ MENOS márgenes laterales (mobile y web) */
             px: { xs: "16px", md: "16px" },
@@ -830,7 +863,7 @@ export const Home = () => {
             marginTop: { xs: "-40px", md: "-60px" }
           }}
         >
-          Flexibles y receptivos a las demandas del mercado
+          Soluciones en acero para proyectos que exigen precisión
         </Typography>
 
         <Box
@@ -867,6 +900,168 @@ export const Home = () => {
             >
               <source src="/videos/19.mp4" type="video/mp4" />
             </video>
+          </Box>
+        </Box>
+      </Box>
+
+      {/* Animated Benefits Section - INNOVACIONES (Mismo ancho que card Footer) */}
+      <Box
+        sx={{
+          backgroundColor: "#000",
+          py: { xs: "80px", md: "140px" },
+          px: { xs: 2, sm: 3, md: 4 },
+          display: "flex",
+          justifyContent: "center",
+          overflow: "hidden"
+        }}
+      >
+        <Box
+          sx={{
+            backgroundColor: "#fff",
+            borderRadius: { xs: "28px", md: "40px" },
+            width: "100%",
+            padding: { xs: "60px 24px", md: "120px 100px" },
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: { xs: "80px", md: "120px" },
+            boxSizing: "border-box",
+            position: "relative"
+          }}
+        >
+          {/* Titles: Meeting towards the center */}
+          <Box sx={{ width: "100%", display: "flex", flexDirection: "column", gap: "10px" }}>
+            <Box sx={{ width: "100%", display: "flex", justifyContent: "flex-start" }}>
+              <Typography
+                ref={benefitsTitleLeftRef}
+                sx={{
+                  fontSize: { xs: "2.2rem", md: "7rem" },
+                  fontWeight: 400,
+                  color: "#999",
+                  fontFamily: "Inter, sans-serif",
+                  lineHeight: 0.85,
+                  letterSpacing: "-0.05em"
+                }}
+              >
+                Innovaciones
+              </Typography>
+            </Box>
+            <Box sx={{ width: "100%", display: "flex", justifyContent: "flex-end" }}>
+              <Typography
+                ref={benefitsTitleRightRef}
+                sx={{
+                  fontSize: { xs: "2.2rem", md: "7rem" },
+                  fontWeight: 400,
+                  color: "#111",
+                  fontFamily: "Inter, sans-serif",
+                  lineHeight: 0.85,
+                  letterSpacing: "-0.05em"
+                }}
+              >
+                en acero industrial
+              </Typography>
+            </Box>
+          </Box>
+
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "60px",
+              width: "100%",
+              maxWidth: "600px", // Even narrower to force centering and neatness
+              alignItems: "stretch",
+              mx: "auto", // Absolute centering
+              transform: { md: "translateX(40px)" } // Offset slightly right for visual balance
+            }}
+          >
+            {[
+              {
+                num: "1",
+                title: "Calidad certificada",
+                desc: "Barras y mallas certificadas bajo normas UNIT, asegurando la máxima seguridad estructural y resistencia en cada proyecto."
+              },
+              {
+                num: "2",
+                title: "Velocidad y eficiencia",
+                desc: "Entrega inmediata y procesos automatizados que optimizan los tiempos de obra y la rentabilidad de su inversión."
+              },
+              {
+                num: "3",
+                title: "Flexibilidad y servicio",
+                desc: "Soluciones a medida que se adaptan a las demandas técnicas y arquitectónicas más exigentes de la industria nacional."
+              },
+              {
+                num: "4",
+                title: "Innovación tecnológica",
+                desc: "Incorporamos maquinaria de última generación para garantizar cortes precisos y una optimización total del acero."
+              },
+              {
+                num: "5",
+                title: "Soporte especializado",
+                desc: "Décadas de trayectoria brindando asesoramiento experto para maximizar los resultados técnicos en sus construcciones."
+              }
+            ].map((benefit, idx) => (
+              <Box
+                key={idx}
+                ref={(el) => (benefitItemsRef.current[idx] = el)}
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center", // Mejor alineación vertical con el círculo más grande
+                  gap: { xs: "30px", md: "40px" },
+                  opacity: 0,
+                  paddingBottom: "40px",
+                  position: "relative"
+                }}
+              >
+                <Box
+                  sx={{
+                    minWidth: { xs: "45px", md: "60px" },
+                    height: { xs: "45px", md: "60px" },
+                    borderRadius: "50%",
+                    border: "1px solid #e0e0e0",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontFamily: '"Geist Mono", monospace',
+                    fontSize: { xs: "15px", md: "18px" },
+                    fontWeight: 500,
+                    color: "#000",
+                    backgroundColor: "#f9f9f9",
+                    flexShrink: 0
+                  }}
+                >
+                  {benefit.num}
+                </Box>
+                <Box sx={{ textAlign: "left" }}>
+                  <Typography
+                    sx={{
+                      fontSize: { xs: "1.3rem", md: "1.7rem" },
+                      fontWeight: 600,
+                      color: "#1a1a1a",
+                      fontFamily: "Inter, sans-serif",
+                      marginBottom: "6px",
+                      letterSpacing: "-0.01em"
+                    }}
+                  >
+                    {benefit.title}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontSize: { xs: "0.85rem", md: "0.96rem" },
+                      color: "#666",
+                      fontFamily: "Inter, sans-serif",
+                      lineHeight: 1.4,
+                      maxWidth: { xs: "100%", md: "460px" },
+                      fontWeight: 400
+                    }}
+                  >
+                    {benefit.desc}
+                  </Typography>
+                </Box>
+              </Box>
+            ))}
           </Box>
         </Box>
       </Box>

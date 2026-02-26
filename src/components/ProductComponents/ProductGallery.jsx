@@ -243,18 +243,10 @@ const ProductGallery = ({ images = [], productTitle }) => {
     setIsPaused(false);
   };
 
-  // Auto-scroll thumbnails to show active
+  // Auto-scroll thumbnails to show active (removed scrollIntoView to prevent page jump)
   useEffect(() => {
-    if (thumbnailsRef.current && galleryImages.length > 1) {
-      const thumbnails = thumbnailsRef.current.querySelectorAll('.thumbnail-item');
-      if (thumbnails[activeIndex]) {
-        thumbnails[activeIndex].scrollIntoView({
-          behavior: 'smooth',
-          inline: 'center',
-          block: 'nearest'
-        });
-      }
-    }
+    // Intentionally left empty or removed the scrollIntoView logic
+    // since we only show max 4 thumbnails and it causes page jumps.
   }, [activeIndex, galleryImages.length]);
 
   // Show only first 4 thumbnails

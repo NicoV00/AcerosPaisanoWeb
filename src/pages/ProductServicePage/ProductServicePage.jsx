@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
 import '../../components/homeComponents/HomeModal.css';
+import ButtonHoverBg from '../../components/CustomButton/ButtonHoverBg';
 
 const modalInfo = {
   "hierro-cortado-y-doblado": {
@@ -122,17 +123,16 @@ const ProductServicePage = ({ serviceSlug, onClose }) => {
           onClick={handleClose}
           sx={{
             position: "fixed",
-            top: "16px",
-            left: "16px",
+            top: "20px",
+            left: "20px",
             cursor: "pointer",
-            color: "#999",
-            fontSize: "2.5rem",
-            fontWeight: "100",
+            color: "#fff",
+            fontSize: "2.2rem",
+            fontWeight: "200",
             zIndex: 10001,
             transition: "all 0.3s ease",
             "&:hover": {
               transform: "rotate(90deg)",
-              color: "#fff",
             }
           }}
         >
@@ -141,16 +141,17 @@ const ProductServicePage = ({ serviceSlug, onClose }) => {
 
         {/* Product Title */}
         <Box sx={{
-          paddingTop: "70px",
-          paddingLeft: "12px",
-          paddingRight: "12px",
+          paddingTop: "120px", // Más margen para evitar que la X se pise con el título
+          paddingLeft: "24px",
+          paddingRight: "24px",
           paddingBottom: "20px"
         }}>
           <Typography sx={{
-            fontSize: "2rem",
-            fontWeight: 500,
+            fontSize: "2.2rem",
+            fontWeight: 400, // Menos bold
             color: "#fff",
-            lineHeight: 1.2
+            lineHeight: 1.1,
+            letterSpacing: "-0.03em"
           }}>
             {productInfo.name}
           </Typography>
@@ -179,14 +180,18 @@ const ProductServicePage = ({ serviceSlug, onClose }) => {
               </Box>
 
               {/* Número y texto principal */}
-              <Box sx={{ paddingLeft: "12px", paddingRight: "12px", width: "100%", boxSizing: "border-box" }}>
+              <Box sx={{ paddingLeft: "24px", paddingRight: "24px", width: "100%", boxSizing: "border-box" }}>
                 <Typography sx={{
-                  fontSize: "1.4rem",
+                  fontSize: "1.4rem", // Un poco más chica
                   color: "#fff",
-                  lineHeight: 1.4,
-                  fontWeight: 500
+                  lineHeight: 1.3,
+                  fontWeight: 300, // Ligera
+                  opacity: 0.8
                 }}>
-                  {`0${index + 1}. ${item.content}`}
+                  <span style={{ fontFamily: '"Geist Mono", monospace', fontSize: "0.9rem", marginRight: "10px", color: "#666" }}>
+                    0{index + 1}
+                  </span>
+                  {item.content}
                 </Typography>
               </Box>
             </Box>
@@ -199,26 +204,18 @@ const ProductServicePage = ({ serviceSlug, onClose }) => {
             paddingTop: "20px",
             paddingBottom: "40px"
           }}>
-            <Box
-              sx={{
-                width: "100%",
-                padding: "14px",
-                backgroundColor: "#EE2737",
-                color: "#fff",
-                textAlign: "center",
-                borderRadius: "6px",
-                fontSize: "0.95rem",
-                fontWeight: 500,
-                cursor: "pointer",
-                transition: "background-color 0.3s ease",
-                "&:hover": {
-                  backgroundColor: "#d61f1f",
-                }
-              }}
-              onClick={() => navigate(`/${effectiveSlug}`)}
-            >
-              Ir al Producto
-            </Box>
+            <Link to={`/${effectiveSlug}`} style={{ textDecoration: "none", width: "100%" }} >
+              <ButtonHoverBg
+                label="Ir al Producto"
+                buttonStyles={"cta-detail-button"}
+                sx={{
+                  fontFamily: '"Geist Mono", monospace',
+                  fontSize: "12px",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.1em"
+                }}
+              />
+            </Link>
           </Box>
         </Box>
       </Box>
@@ -234,17 +231,16 @@ const ProductServicePage = ({ serviceSlug, onClose }) => {
           onClick={handleClose}
           sx={{
             position: "fixed",
-            top: "40px",
-            left: "40px",
+            top: "30px", // Posición limpia en la esquina
+            left: "30px",
             cursor: "pointer",
-            color: "#999",
-            fontSize: "3rem",
+            color: "#fff",
+            fontSize: "2.5rem",
             fontWeight: "100",
             zIndex: 1001,
             transition: "all 0.3s ease",
             "&:hover": {
               transform: "rotate(90deg)",
-              color: "#fff",
             }
           }}
         >
@@ -255,16 +251,21 @@ const ProductServicePage = ({ serviceSlug, onClose }) => {
           onClick={() => navigate(`/${effectiveSlug}`, window.scrollTo(0, 0))}
           sx={{
             position: "fixed",
-            top: "40px",
-            right: "40px",
+            top: { md: "40px", xl: "60px" },
+            right: { md: "60px", xl: "100px" }, // Alineado con la zona de imagen
             cursor: "pointer",
             color: "#999",
-            fontSize: "3rem",
-            fontWeight: "100",
+            fontSize: "12px", // Letra achicada
+            fontFamily: '"Geist Mono", monospace', // Geist Mono
+            textTransform: "uppercase",
+            letterSpacing: "0.15em",
             zIndex: 1001,
             transition: "color 0.3s ease",
+            borderBottom: "1px solid transparent",
+            paddingBottom: "4px",
             "&:hover": {
               color: "#fff",
+              borderBottom: "1px solid #fff"
             }
           }}
         >
@@ -318,37 +319,27 @@ const ProductServicePage = ({ serviceSlug, onClose }) => {
                 <Typography
                   className="number"
                   sx={{
-                    fontSize: { xs: '0.9rem', md: '1rem' },
-                    color: index === activeIndex ? '#fff' : '#666',
-                    marginRight: '40px',
-                    minWidth: '30px',
-                    transition: 'color 0.3s ease',
+                    fontSize: { md: '0.8rem', xl: '0.9rem' },
+                    fontFamily: '"Geist Mono", monospace',
+                    color: index === activeIndex ? '#fff' : '#222', // Muy apagado si no es activo
+                    marginRight: '60px',
+                    minWidth: '35px',
+                    transition: 'color 0.4s ease',
                   }}
                 >
-                  0{index + 1}.
+                  0{index + 1}
                 </Typography>
                 <Box sx={{ flex: 1 }}>
                   <Typography
-                    variant="h2"
-                    className="modal-title"
-                    sx={{
-                      fontSize: { xs: '1.4rem', sm: '1.6rem', md: '1.8rem' },
-                      fontWeight: 500,
-                      marginBottom: '8px',
-                      color: index === activeIndex ? '#fff' : '#999',
-                      transition: 'color 0.3s ease',
-                    }}
-                  >
-                    {item.title}
-                  </Typography>
-                  <Typography
                     className="modal-description"
                     sx={{
-                      fontSize: { xs: '0.9rem', sm: '0.95rem', md: '1rem' },
-                      lineHeight: 1.5,
-                      color: index === activeIndex ? '#ccc' : '#666',
-                      maxWidth: '450px',
-                      transition: 'color 0.3s ease',
+                      fontSize: { md: '1.6rem', xl: '2rem' }, // Más chica y elegante
+                      lineHeight: 0.95,
+                      fontWeight: 300, // Extra light look
+                      color: index === activeIndex ? '#fff' : '#111',
+                      maxWidth: '800px',
+                      transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
+                      letterSpacing: '-0.04em'
                     }}
                   >
                     {item.content}
@@ -369,21 +360,22 @@ const ProductServicePage = ({ serviceSlug, onClose }) => {
             className='images-container'
           >
             {productInfo.items.map((item, index) => (
-              <Box key={index} className={`images image-${index}`} sx={{ opacity: index === 0 ? 1 : 0, position: 'absolute', width: '100%', height: '100%', transition: 'opacity 0.5s ease-in-out' }}>
+              <Box key={index} className={`images image-${index}`} sx={{ opacity: index === 0 ? 1 : 0, position: 'absolute', width: '100%', height: '100%', transition: 'opacity 0.6s ease-in-out' }}>
                 <Box
                   component="img"
                   src={item.image}
                   alt={item.alt}
                   sx={{
                     position: "absolute",
-                    top: "50%",
-                    left: "0",
+                    top: "60%", // Bajada (estaba en 50%)
+                    right: { md: "60px", xl: "100px" },
                     transform: "translateY(-50%)",
                     width: "auto",
-                    height: "60%",
-                    maxWidth: "90%",
+                    height: "60%", // Un poco más pequeña para dar aire
+                    maxWidth: "85%",
                     objectFit: "cover",
-                    borderRadius: "8px",
+                    borderRadius: "4px",
+                    boxShadow: "0 20px 80px rgba(0,0,0,0.5)"
                   }}
                 />
               </Box>

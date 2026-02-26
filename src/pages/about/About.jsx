@@ -102,9 +102,10 @@ export const About = () => {
         trigger: sectionEl,
         start: "top top",
         pin: true,
-        pinSpacing: false,
+        // Si es la última, damos espacio para que el footer no se solape
+        pinSpacing: isLast,
         end: () =>
-          "+=" + Math.round(window.innerHeight * (isLast ? 1.25 : 1)),
+          "+=" + Math.round(window.innerHeight * (isLast ? 1.0 : 1)),
         invalidateOnRefresh: true,
       });
 
@@ -119,35 +120,8 @@ export const About = () => {
     };
   }, []);
 
-  // Reveal overlay líneas
   useEffect(() => {
-    lineTriggersRef.current.forEach((t) => t?.kill?.());
-    lineTriggersRef.current = [];
-
-    const lineWrappers = document.querySelectorAll(".line-wrapper");
-
-    lineWrappers.forEach((wrapper) => {
-      const overlay = wrapper.querySelector(".line-overlay");
-      if (!overlay) return;
-
-      const tween = gsap.to(overlay, {
-        scrollTrigger: {
-          trigger: wrapper,
-          start: "top 100%",
-          end: "bottom 80%",
-          scrub: 5,
-        },
-        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-        ease: "none",
-      });
-
-      if (tween.scrollTrigger) lineTriggersRef.current.push(tween.scrollTrigger);
-    });
-
-    return () => {
-      lineTriggersRef.current.forEach((t) => t?.kill?.());
-      lineTriggersRef.current = [];
-    };
+    // Reveal overlay líneas eliminado a pedido del usuario (texto fijo blanco)
   }, []);
 
   return (
@@ -231,25 +205,22 @@ export const About = () => {
                     {section.content.title}
                   </Typography>
 
-                  <Box>
+                  <Box sx={{ mt: 3 }}>
                     {section.content.paragraphs.map((item, i) => (
-                      <div key={i} className="line-wrapper">
-                        <Typography
-                          component="p"
-                          fontSize={{ xs: "20px", md: "25px", xl: "30px" }}
-                          className="line"
-                          style={{ color: "#3a3a3a" }}
-                        >
-                          {item}
-                        </Typography>
-                        <Typography
-                          component="p"
-                          fontSize={{ xs: "20px", md: "25px", xl: "30px" }}
-                          className="line-overlay"
-                        >
-                          {item}
-                        </Typography>
-                      </div>
+                      <Typography
+                        key={i}
+                        component="p"
+                        fontSize={{ xs: "18px", md: "24px", xl: "28px" }}
+                        sx={{
+                          color: "#fff",
+                          lineHeight: 1.2,
+                          marginBottom: "16px",
+                          fontWeight: 300,
+                          opacity: 0.9
+                        }}
+                      >
+                        {item}
+                      </Typography>
                     ))}
                   </Box>
                 </Box>
@@ -290,25 +261,22 @@ export const About = () => {
                     {section.content.title}
                   </Typography>
 
-                  <Box>
+                  <Box sx={{ mt: 3 }}>
                     {section.content.paragraphs.map((item, i) => (
-                      <div key={i} className="line-wrapper">
-                        <Typography
-                          component="p"
-                          fontSize={{ xs: "20px", md: "25px", xl: "30px" }}
-                          className="line"
-                          style={{ color: "#3a3a3a" }}
-                        >
-                          {item}
-                        </Typography>
-                        <Typography
-                          component="p"
-                          fontSize={{ xs: "20px", md: "25px", xl: "30px" }}
-                          className="line-overlay"
-                        >
-                          {item}
-                        </Typography>
-                      </div>
+                      <Typography
+                        key={i}
+                        component="p"
+                        fontSize={{ xs: "18px", md: "24px", xl: "28px" }}
+                        sx={{
+                          color: "#fff",
+                          lineHeight: 1.2,
+                          marginBottom: "16px",
+                          fontWeight: 300,
+                          opacity: 0.9
+                        }}
+                      >
+                        {item}
+                      </Typography>
                     ))}
                   </Box>
                 </Box>

@@ -53,7 +53,7 @@
 }
 
 .sliderItem:hover {
-    background-color: #991923;
+    background-color: #EE2737;
 }
 
 .sliderItem div {
@@ -67,7 +67,7 @@
     font-size: 1.4rem;
     line-height: 1.75rem;
     font-weight: 600;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.2rem;
     letter-spacing: -0.01em;
     text-transform: uppercase;
 }
@@ -103,6 +103,11 @@
 }
 
 @media (max-width: 768px) {
+    .sliderContainer {
+        /* CSS animation faster in mobiles */
+        animation: slider-scroll 5s linear infinite;
+    }
+
     .sliderItem {
         width: 80%;
         min-width: 280px;

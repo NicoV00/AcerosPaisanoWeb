@@ -1,28 +1,30 @@
 .buttonHoverBg {
-    position: relative;
-    overflow: hidden;
-  }
-  .buttonHoverBg p {
-    position: relative;
-    line-height: 0;
-    padding: 0px;
-    z-index: 1000;
-  }
-  
-  .buttonHoverBg::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 0;
-    height: 0;
-    background-color: #0000004b;
-    transition: all 1.5s ease;
-    z-index: 0;
-  }
-  
-  .buttonHoverBg:hover::after {
-    width: 300%;
-    height: 300%;
-  }
+  position: relative;
+  overflow: hidden;
+}
+
+.buttonHoverBg p {
+  position: relative;
+  line-height: 0;
+  padding: 0px;
+  z-index: 1000;
+}
+
+.buttonHoverBg::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  background-color: #0000004b;
+  transition: all 0.5s ease;
+  z-index: 0;
+}
+
+.buttonHoverBg:hover::after {
+  width: 300%;
+  height: 300%;
+  transition: all 1.5s ease;
+}

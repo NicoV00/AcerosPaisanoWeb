@@ -272,7 +272,8 @@ body[data-nav-tone="dark"] .nav-bar {
 }
 
 .products-container.grid .product-title {
-  font-size: 16px; /* grid fix */
+  font-size: 16px;
+  /* grid fix */
 }
 
 /* Description */
@@ -321,17 +322,52 @@ body[data-nav-tone="dark"] .nav-bar {
   text-align: left;
   background: transparent;
   border: none;
-  padding: 0;
+  padding: 4px 0;
   cursor: pointer;
 }
 
-/* + / X custom GRANDE que NO se mueve */
+.row-action.toggle {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+}
+
+.row-action.datasheet {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+}
+
+.row-icon-btn {
+  background: transparent;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+  opacity: 0.8;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.row-icon-btn:hover {
+  opacity: 1;
+}
+
+.row-icon-btn.toggle {
+  padding: 0;
+}
+
+
+/* + / X custom que GIRA como una sola pieza */
 .toggle-x {
-  width: 34px;
-  height: 34px;
+  width: 24px;
+  height: 24px;
   position: relative;
   display: inline-block;
-  flex: 0 0 34px;
+  flex: 0 0 24px;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .toggle-x::before,
@@ -340,27 +376,24 @@ body[data-nav-tone="dark"] .nav-bar {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 18px;
+  width: 16px;
   height: 2px;
-  background: rgba(11, 11, 11, 0.85);
+  background: currentColor;
   transform-origin: center;
   border-radius: 2px;
-  transform: translate(-50%, -50%) rotate(0deg);
-  transition: transform 0.18s ease;
+  transform: translate(-50%, -50%);
 }
 
-/* cerrado = + */
+/* línea vertical del + */
 .toggle-x::after {
   transform: translate(-50%, -50%) rotate(90deg);
 }
 
-/* abierto = X */
-.row-action.is-open .toggle-x::before {
-  transform: translate(-50%, -50%) rotate(45deg);
+/* El giro de 45 grados (o 135 para más drama) lo hace el contenedor */
+.is-open .toggle-x {
+  transform: rotate(45deg);
 }
-.row-action.is-open .toggle-x::after {
-  transform: translate(-50%, -50%) rotate(-45deg);
-}
+
 
 /* Extended */
 .extended-panel {
@@ -455,12 +488,14 @@ body[data-nav-tone="dark"] .nav-bar {
   .products-container.grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .products-container.list .product-item {
     grid-template-columns: 320px 1fr;
   }
 }
 
 @media (max-width: 768px) {
+
   /* Fuerza 16px laterales en todo el layout de esta vista (header + contenido) */
   .catalogue-header .MuiContainer-root,
   .catalogue-container.MuiContainer-root {

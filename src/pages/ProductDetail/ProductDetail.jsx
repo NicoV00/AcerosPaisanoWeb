@@ -8,6 +8,7 @@ import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { Helmet } from 'react-helmet';
 import './ProductDetail.css';
+import ButtonHoverBg from '../../components/CustomButton/ButtonHoverBg.jsx';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -410,8 +411,8 @@ const ProductDetail = ({ serviceSlug }) => {
 
                   {/* Single CTA Button */}
                   <button className="cta-button primary" onClick={() => navigate('/contacto')}>
-                    <span className="cta-text">SOLICITAR INFORMACIÓN</span>
-                    <span className="cta-arrow">→</span>
+                    <ButtonHoverBg label="solicitar información" buttonStyles={"cta-detail-button"} />
+                    <ButtonHoverBg label="→" buttonStyles={"cta-detail-button"} />
                   </button>
                 </div>
               </div>
@@ -514,10 +515,12 @@ const ProductDetail = ({ serviceSlug }) => {
               <p className="cta-description">
                 Nuestro equipo técnico está disponible para asesorarlo sobre este producto
               </p>
-              <button className="cta-button primary large" onClick={() => navigate('/contacto')}>
-                <span className="cta-text">SOLICITAR INFORMACIÓN</span>
-                <span className="cta-arrow">→</span>
-              </button>
+              <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <button className="cta-button primary" style={{ maxWidth: '25%' }} onClick={() => navigate('/contacto')}>
+                  <ButtonHoverBg label="solicitar información" buttonStyles={"cta-detail-button"} />
+                  <ButtonHoverBg label="→" buttonStyles={"cta-detail-button"} />
+                </button>
+              </div>
             </div>
           </section>
         </Container>
