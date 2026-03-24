@@ -250,7 +250,7 @@ const ProductGallery = ({ images = [], productTitle }) => {
   }, [activeIndex, galleryImages.length]);
 
   // Show only first 4 thumbnails
-  const displayThumbnails = galleryImages.slice(0, 4);
+  const displayThumbnails = galleryImages;
 
   return (
     <GalleryContainer ref={containerRef}>

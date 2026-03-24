@@ -359,18 +359,18 @@ export function CatalogueNew() {
                       )}
                     </div>
 
-                    {/* Stock + Ver detalles SIEMPRE MISMA FILA (también mobile) */}
-                    <div className="product-bottom">
-                      <span className="availability-badge">{p.availability}</span>
+                  </div>
+                  {/* Stock + Ver detalles SIEMPRE MISMA FILA (también mobile) */}
+                  <div className="product-bottom">
+                    <span className="availability-badge">{p.availability}</span>
 
-                      <button
-                        type="button"
-                        className="view-details-btn"
-                        onClick={(e) => onViewDetailsClick(e, p.slug)}
-                      >
-                        Ver detalles <span className="arrow" aria-hidden="true">→</span>
-                      </button>
-                    </div>
+                    <button
+                      type="button"
+                      className="view-details-btn"
+                      onClick={(e) => onViewDetailsClick(e, p.slug)}
+                    >
+                      Ver detalles <span className="arrow" aria-hidden="true">→</span>
+                    </button>
                   </div>
                 </div>
               </article>

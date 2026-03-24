@@ -219,8 +219,9 @@ body[data-nav-tone="dark"] .nav-bar {
   padding: 16px 16px 14px;
   display: flex;
   flex-direction: column;
+  flex: 1;
   justify-content: space-between;
-  min-height: 30vh;
+  min-height: 35vh;
 }
 
 .products-container.list .product-content {
