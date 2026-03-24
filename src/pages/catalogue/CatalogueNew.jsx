@@ -114,31 +114,33 @@ export function CatalogueNew() {
         category: "Servicios",
         title: "Hierro cortado y doblado",
         description: "Corte y doblado industrial de varillas de acero con precisión garantizada.",
+        extended: "Optimización total del acero con desperdicio cero. Cada pieza se entrega identificada y lista para armar, reduciendo los tiempos de obra.",
         specs: "Diámetros: 6–32mm",
         availability: "Servicio disponible",
         image: "/images/cortadoYdoblado.webp",
+        isPrimary: true,
       },
       {
         id: 5,
-        slug: "barras-conformadas",
-        code: "BC-005",
-        category: "Barras",
-        title: "Barras conformadas",
-        description: "Barras de acero con superficie nervurada para máxima adherencia al hormigón.",
-        specs: "Calidad: ADN 500 S",
-        availability: "Stock permanente",
-        image: "/images/barras.webp",
-      },
-      {
-        id: 6,
         slug: "barras-lisas",
-        code: "BL-006",
+        code: "BL-004",
         category: "Barras",
         title: "Barras lisas",
         description: "Barras de acero de alta calidad con superficie lisa, certificadas bajo normas UNIT.",
         specs: "Calidad: AL-220",
         availability: "Stock permanente",
         image: "/images/barrasLisas.webp",
+      },
+      {
+        id: 6,
+        slug: "barras-conformadas",
+        code: "BC-005",
+        category: "Barras",
+        title: "Barras conformadas",
+        description: "Barras de acero con superficie corrugada para máxima adherencia al hormigón.",
+        specs: "Calidad: ADN-420",
+        availability: "Stock permanente",
+        image: "/images/barras.webp",
       },
       {
         id: 7,
@@ -305,18 +307,24 @@ export function CatalogueNew() {
                         <span className="row-value">{p.specs}</span>
                       </div>
 
+                      {p.datasheet && (
+                        <div className="row row-action datasheet" onClick={(e) => onDatasheetClick(e, p.datasheet)}>
+                          <span className="row-label">Ficha técnica</span>
+                          <span className="row-icon-btn pdf">
+                            <PdfIcon />
+                          </span>
+                        </div>
+                      )}
+
                       {p.isPrimary && (
                         <>
-                          <button
-                            type="button"
-                            className={`row row-action ${isOpen ? "is-open" : ""}`}
+                          <div
+                            className={`row row-action toggle ${isOpen ? "is-open" : ""}`}
                             onClick={(e) => toggleExtended(e, p.id)}
-                            aria-expanded={isOpen}
-                            aria-controls={`extended-${p.id}`}
                           >
                             <span className="row-label">Descripción extendida</span>
                             <span className="toggle-x" aria-hidden="true" />
-                          </button>
+                          </div>
 
                           <div
                             id={`extended-${p.id}`}
@@ -325,38 +333,22 @@ export function CatalogueNew() {
                           >
                             <p className="extended-text">{p.extended}</p>
                           </div>
-
-
-                          {p.datasheet && (
-                            <button
-                              type="button"
-                              className="row row-action pdf"
-                              onClick={(e) => onDatasheetClick(e, p.datasheet)}
-                              aria-label="Ficha técnica PDF"
-                            >
-                              <span className="row-label">Ficha técnica</span>
-                              <span className="row-icon" aria-hidden="true">
-                                <PdfIcon />
-                              </span>
-                            </button>
-                          )}
                         </>
                       )}
                     </div>
 
-                  </div>
+                    {/* Stock + Ver detalles SIEMPRE MISMA FILA (también mobile) */}
+                    <div className="product-bottom">
+                      <span className="availability-badge">{p.availability}</span>
 
-                  {/* Stock + Ver detalles SIEMPRE MISMA FILA (también mobile) */}
-                  <div className="product-bottom">
-                    <span className="availability-badge">{p.availability}</span>
-
-                    <button
-                      type="button"
-                      className="view-details-btn"
-                      onClick={(e) => onViewDetailsClick(e, p.slug)}
-                    >
-                      Ver detalles <span className="arrow" aria-hidden="true">→</span>
-                    </button>
+                      <button
+                        type="button"
+                        className="view-details-btn"
+                        onClick={(e) => onViewDetailsClick(e, p.slug)}
+                      >
+                        Ver detalles <span className="arrow" aria-hidden="true">→</span>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </article>

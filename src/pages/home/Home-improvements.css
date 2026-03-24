@@ -89,7 +89,7 @@
   .home-middle-row {
     flex-direction: column;
     gap: 16px;
-    padding: 20px;
+    padding: 20px 12px;
     top: auto;
     bottom: 400px;
     margin-top: 0;
@@ -130,7 +130,7 @@
   }
 
   .home-bottom-row {
-    padding: 40px 20px;
+    padding: 40px 12px;
   }
 
   .about-intro {
@@ -147,7 +147,7 @@
   }
 
   .interact-item {
-    padding: 30px 20px !important;
+    padding: 30px 12px !important;
   }
 
   .interact-item p:first-child {
@@ -204,6 +204,7 @@
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);

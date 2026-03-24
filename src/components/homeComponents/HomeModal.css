@@ -2,7 +2,7 @@
 
 .homeModal {
   /* ✅ más margen en desktop, mismo a ambos lados */
-  --pad: 18px;
+  --pad: 12px;
 
   position: fixed;
   inset: 0;
@@ -23,7 +23,8 @@
 /* ✅ En desktop querés más margen */
 @media (min-width: 900px) {
   .homeModal {
-    --pad: 56px; /* más aire a ambos lados */
+    --pad: 56px;
+    /* más aire a ambos lados */
   }
 }
 
@@ -165,6 +166,7 @@
   color: rgba(255, 255, 255, 0.92);
 
   display: -webkit-box;
+  line-clamp: 4;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
@@ -179,7 +181,7 @@
 
 @media (max-width: 600px) {
   .homeModal {
-    --pad: 18px;
+    --pad: 12px;
   }
 
   .homeModalProductName {
@@ -188,6 +190,7 @@
 
   .mobileContent {
     font-size: 24px;
+    line-clamp: 5;
     -webkit-line-clamp: 5;
   }
 }
@@ -258,6 +261,7 @@
   .desktopEntry:hover .desktopNumber {
     color: rgba(255, 255, 255, 0.9);
   }
+
   .desktopEntry:hover .desktopPhrase {
     color: #fff;
   }
@@ -272,7 +276,8 @@
 /* ✅ Imagen alineada con el margen derecho del modal (y por ende con la X) */
 .desktopImageCard {
   position: absolute;
-  right: 0;   /* 0 dentro del content-box; el padding del modal ya da el margen */
+  right: 0;
+  /* 0 dentro del content-box; el padding del modal ya da el margen */
   bottom: 0;
 
   width: min(92%, 560px);
