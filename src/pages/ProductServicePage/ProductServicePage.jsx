@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
 import '../../components/homeComponents/HomeModal.css';
@@ -18,21 +18,21 @@ const modalInfo = {
   "mallas-electrosoldadas": {
     name: "Mallas Electrosoldadas",
     items: [
-      { "title": "Certificación", "content": " Certificadas bajo norma UNIT 845:1995.", "image": "/images/certificado1.jpg", "alt": "Construcción y Arquitectura" },
-      { "title": "Garantía de calidad", "content": "Producción validada por ensayos en laboratorio.", "image": "/images/mallas3.jpg", "alt": "Industria Energética" },
-      { "title": "Medidas estándar", "content": "Todos los diámetros encontrados en plaza.", "image": "/images/mallas4.jpg", "alt": "Manufactura Industrial" },
-      { "title": "Presentación", "content": "Adapatable a las necesidades del proyecto civíl.", "image": "/images/mallas2.jpg", "alt": "Industria Agropecuaria" },
+      { "title": "Certificación", "content": "Certificadas bajo Norma UNIT 845:95.", "image": "/images/certificado1.jpg", "alt": "Construcción y Arquitectura" },
+      { "title": "Garantía de calidad", "content": "Producción validada por ensayos de laboratorio.", "image": "/images/mallas3.jpg", "alt": "Industria Energética" },
+      { "title": "Medidas estándar", "content": "Amplia gama de diámetros.", "image": "/images/mallas4.jpg", "alt": "Manufactura Industrial" },
+      { "title": "Presentación", "content": "Adaptable a las necesidades del proyecto civil.", "image": "/images/mallas2.jpg", "alt": "Industria Agropecuaria" },
       { "title": "Diseño Especial", "content": "Soluciones a medida, personalizadas para proyectos específicos.", "image": "/images/mallas6.jpg", "alt": "Industria Agropecuaria" }
     ]
   },
   "barras-conformadas": {
     name: "Barras lisas y Conformadas",
     items: [
-      { "title": "Certificación", "content": "Certificadas bajo normas UNIT 34:1995 Y UNIT 845:1995.", "image": "/images/barras.jpg", "alt": "Construcción y Arquitectura" },
+      { "title": "Certificación", "content": "Producidas bajo los estándares de las normas UNIT 843:95 y UNIT 34:95.", "image": "/images/barras.jpg", "alt": "Construcción y Arquitectura" },
       { "title": "Rendimiento y calidad", "content": "Procesos de calidad garantizada.", "image": "/images/barras1.jpg", "alt": "Industria Energética" },
-      { "title": "Cero desperdicio", "content": "Barras cortadas a medida.", "image": "/images/barras2.jpg", "alt": "Manufactura Industrial" },
-      { "title": "Maximización de recursos", "content": "Optimización de recursos en obra.", "image": "/images/barras3.jpg", "alt": "Ahorro" },
-      { "title": "Logística optimizada", "content": "Traslado sencillo y seguro.", "image": "/images/barras5.jpg", "alt": "Industria Agropecuaria" }
+      { "title": "Cero desperdicio", "content": "Superficie nervurada y soldable en todos los diámetros.", "image": "/images/barras2.jpg", "alt": "Manufactura Industrial" },
+      { "title": "Maximización de recursos", "content": "Barras cortadas a medida.", "image": "/images/barras3.jpg", "alt": "Ahorro" },
+      { "title": "Logística optimizada", "content": "Barras rectas en diámetros de 6.0mm hasta 32mm.", "image": "/images/barras5.jpg", "alt": "Industria Agropecuaria" }
     ]
   },
   "mallas-plegadas": {
@@ -53,6 +53,37 @@ const ProductServicePage = ({ serviceSlug, onClose }) => {
   const navigate = useNavigate();
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const imageContainerRef = useRef(null);
+  const cursorLabelRef = useRef(null);
+  const rafRef = useRef(null);
+
+  const handleImageMouseMove = useCallback((e) => {
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    rafRef.current = requestAnimationFrame(() => {
+      const label = cursorLabelRef.current;
+      const container = imageContainerRef.current;
+      if (!label || !container) return;
+      const rect = container.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      label.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
+    });
+  }, []);
+
+  const handleImageMouseEnter = useCallback(() => {
+    const label = cursorLabelRef.current;
+    if (label) label.style.opacity = '1';
+  }, []);
+
+  const handleImageMouseLeave = useCallback(() => {
+    const label = cursorLabelRef.current;
+    if (label) label.style.opacity = '0';
+  }, []);
+
+  const handleImageClick = useCallback(() => {
+    navigate(`/${effectiveSlug}`);
+    window.scrollTo(0, 0);
+  }, [navigate, effectiveSlug]);
 
   const productInfo = modalInfo[effectiveSlug];
 
@@ -224,15 +255,18 @@ const ProductServicePage = ({ serviceSlug, onClose }) => {
 
   // Desktop version
   return (
-    <Box width={"100%"} height={"100vh"} sx={{ overflow: 'hidden', backgroundColor: 'rgba(0, 0, 0, 0.98)', position: 'fixed', top: 0, left: 0, zIndex: 9999 }}>
+    <Box width={"100%"} height={"100vh"} sx={{ overflow: 'hidden', backgroundColor: 'rgba(0, 0, 0, 1)', position: 'fixed', top: 0, left: 0, zIndex: 9999 }}>
       <div style={{ zIndex: 1000, position: 'relative', height: '100%' }}>
+
+
+
         {/* X Close Button */}
         <Box
           onClick={handleClose}
           sx={{
             position: "fixed",
             top: "30px", // Posición limpia en la esquina
-            left: "30px",
+            right: "100px",
             cursor: "pointer",
             color: "#fff",
             fontSize: "2.5rem",
@@ -247,31 +281,6 @@ const ProductServicePage = ({ serviceSlug, onClose }) => {
           ×
         </Box>
 
-        <Box
-          onClick={() => navigate(`/${effectiveSlug}`, window.scrollTo(0, 0))}
-          sx={{
-            position: "fixed",
-            top: { md: "40px", xl: "60px" },
-            right: { md: "60px", xl: "100px" }, // Alineado con la zona de imagen
-            cursor: "pointer",
-            color: "#999",
-            fontSize: "12px", // Letra achicada
-            fontFamily: '"Geist Mono", monospace', // Geist Mono
-            textTransform: "uppercase",
-            letterSpacing: "0.15em",
-            zIndex: 1001,
-            transition: "color 0.3s ease",
-            borderBottom: "1px solid transparent",
-            paddingBottom: "4px",
-            "&:hover": {
-              color: "#fff",
-              borderBottom: "1px solid #fff"
-            }
-          }}
-        >
-          Ir al producto
-        </Box>
-
         <Box display={"flex"} flexDirection={"row"} sx={{ height: '100%' }}>
           {/* Left Side - Text Content */}
           <Box
@@ -281,7 +290,8 @@ const ProductServicePage = ({ serviceSlug, onClose }) => {
               width: { xs: '100%', md: '55%', xl: '50%' },
               display: 'flex',
               flexDirection: 'column',
-              justifyContent: 'center',
+              justifyContent: 'start',
+              marginTop: { xs: '20px', md: '25px', xl: '35px' },
               paddingLeft: { xs: '40px', md: '100px', xl: '120px' },
               paddingRight: { xs: '40px', md: '40px', xl: '60px' },
               color: '#999',
@@ -305,7 +315,7 @@ const ProductServicePage = ({ serviceSlug, onClose }) => {
                 sx={{
                   display: 'flex',
                   alignItems: 'flex-start',
-                  paddingBlock: { xs: "15px", md: "20px", xl: "25px" },
+                  paddingBlock: { xs: "15px", md: "20px", xl: "20px" },
                   width: "100%",
                   cursor: 'pointer',
                   transition: "all 0.3s ease-in-out",
@@ -322,7 +332,7 @@ const ProductServicePage = ({ serviceSlug, onClose }) => {
                     fontSize: { md: '0.8rem', xl: '0.9rem' },
                     fontFamily: '"Geist Mono", monospace',
                     color: index === activeIndex ? '#fff' : '#222', // Muy apagado si no es activo
-                    marginRight: '60px',
+                    marginRight: '0px',
                     minWidth: '35px',
                     transition: 'color 0.4s ease',
                   }}
@@ -333,10 +343,10 @@ const ProductServicePage = ({ serviceSlug, onClose }) => {
                   <Typography
                     className="modal-description"
                     sx={{
-                      fontSize: { md: '1.6rem', xl: '2rem' }, // Más chica y elegante
+                      fontSize: { md: '1.6rem', xl: '3.15rem' }, // Más chica y elegante
                       lineHeight: 0.95,
-                      fontWeight: 300, // Extra light look
-                      color: index === activeIndex ? '#fff' : '#111',
+                      fontWeight: 400, // Extra light look
+                      color: index === activeIndex ? '#fff' : '#303030ff',
                       maxWidth: '800px',
                       transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
                       letterSpacing: '-0.04em'
@@ -351,14 +361,49 @@ const ProductServicePage = ({ serviceSlug, onClose }) => {
 
           {/* Right Side - Images Container */}
           <Box
+            ref={imageContainerRef}
+            onMouseMove={handleImageMouseMove}
+            onMouseEnter={handleImageMouseEnter}
+            onMouseLeave={handleImageMouseLeave}
+            onClick={handleImageClick}
             sx={{
               position: "relative",
               width: { xs: "0%", md: "45%", xl: "50%" },
               height: "100%",
-              display: { xs: "none", md: "block" }
+              display: { xs: "none", md: "block" },
+              cursor: "none"
             }}
             className='images-container'
           >
+            {/* Cursor-following label */}
+            <Box
+              ref={cursorLabelRef}
+              sx={{
+                position: "absolute",
+                left: 0,
+                top: 0,
+                transform: "translate(0px, 0px) translate(-50%, -50%)",
+                willChange: "transform",
+                pointerEvents: "none",
+                zIndex: 1002,
+                opacity: 0,
+                transition: "opacity 0.25s ease",
+                color: "#fff",
+                fontSize: "11px",
+                fontFamily: '"Geist Mono", monospace',
+                textTransform: "uppercase",
+                letterSpacing: "0.15em",
+                backgroundColor: "rgba(255,255,255,0.1)",
+                backdropFilter: "blur(8px)",
+                padding: "8px 16px",
+                borderRadius: "20px",
+                border: "1px solid rgba(255,255,255,0.2)",
+                whiteSpace: "nowrap"
+              }}
+            >
+              Ir al producto
+            </Box>
+
             {productInfo.items.map((item, index) => (
               <Box key={index} className={`images image-${index}`} sx={{ opacity: index === 0 ? 1 : 0, position: 'absolute', width: '100%', height: '100%', transition: 'opacity 0.6s ease-in-out' }}>
                 <Box
@@ -367,15 +412,16 @@ const ProductServicePage = ({ serviceSlug, onClose }) => {
                   alt={item.alt}
                   sx={{
                     position: "absolute",
-                    top: "60%", // Bajada (estaba en 50%)
+                    top: "60%",
                     right: { md: "60px", xl: "100px" },
                     transform: "translateY(-50%)",
                     width: "auto",
-                    height: "60%", // Un poco más pequeña para dar aire
+                    height: "60%",
                     maxWidth: "85%",
                     objectFit: "cover",
                     borderRadius: "4px",
-                    boxShadow: "0 20px 80px rgba(0,0,0,0.5)"
+                    boxShadow: "0 20px 80px rgba(0,0,0,0.5)",
+                    pointerEvents: "none"
                   }}
                 />
               </Box>

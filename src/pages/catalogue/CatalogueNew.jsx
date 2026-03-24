@@ -78,6 +78,7 @@ export function CatalogueNew() {
         image: "/images/mallaElectrosoldada.webp",
         isPrimary: true,
         datasheet: "/pdf/mallas-electrosoldadas.pdf",
+        isClickable: true,
       },
       {
         id: 2,
@@ -93,6 +94,7 @@ export function CatalogueNew() {
         image: "/images/plegada.webp",
         isPrimary: true,
         datasheet: "/pdf/mallas-plegadas.pdf",
+        isClickable: true,
       },
       {
         id: 3,
@@ -104,8 +106,9 @@ export function CatalogueNew() {
         extended: "Su proceso de galvanizado garantiza mayor durabilidad y resistencia a la corrosión, siendo ideales para aplicaciones en exteriores y ambientes húmedos.",
         specs: "Calibres: 1.8mm, 2.0mm, 2.5mm, 4.0mm",
         availability: "Stock permanente",
-        image: "/images/mallasGalvanizadas.webp",
-        isPrimary: false,
+        image: "/images/mallas2.webp",
+        isPrimary: true,
+        isClickable: true,
       },
       {
         id: 4,
@@ -117,22 +120,12 @@ export function CatalogueNew() {
         extended: "Optimización total del acero con desperdicio cero. Cada pieza se entrega identificada y lista para armar, reduciendo los tiempos de obra.",
         specs: "Diámetros: 6–32mm",
         availability: "Servicio disponible",
-        image: "/images/cortadoYdoblado.webp",
+        image: "/images/doblado4.webp",
         isPrimary: true,
+        isClickable: true,
       },
       {
         id: 5,
-        slug: "barras-lisas",
-        code: "BL-004",
-        category: "Barras",
-        title: "Barras lisas",
-        description: "Barras de acero de alta calidad con superficie lisa, certificadas bajo normas UNIT.",
-        specs: "Calidad: AL-220",
-        availability: "Stock permanente",
-        image: "/images/barrasLisas.webp",
-      },
-      {
-        id: 6,
         slug: "barras-conformadas",
         code: "BC-005",
         category: "Barras",
@@ -141,9 +134,36 @@ export function CatalogueNew() {
         specs: "Calidad: ADN-420",
         availability: "Stock permanente",
         image: "/images/barras.webp",
+        isClickable: true,
+      },
+      {
+        id: 6,
+        slug: "barras-lisas",
+        code: "BL-004",
+        category: "Barras",
+        title: "Barras lisas",
+        description: "Barras de acero de alta calidad con superficie lisa, certificadas bajo normas UNIT.",
+        specs: "Calidad: AL-220",
+        availability: "Stock permanente",
+        image: "/images/barrasLisas.webp",
+        isClickable: true,
       },
       {
         id: 7,
+        slug: "par",
+        code: "PAR-007",
+        category: "Aceros",
+        title: "Barras de Acero Paisano de Alta Resistencia",
+        description: "El acero PAR es conocido por su alta resistencia proporcionando estructuras de hormigón armado más ligero.",
+        extended: "Utilizado en armaduras premoldeadas, industria y estructuras livianas de hormigón armado de casas y viviendas en altura, entre otras aplicaciones.",
+        specs: 'Calidad: 600 Mpa',
+        availability: "Stock permanente",
+        image: "/images/ACEROSPAISANO-126.webp",
+        isPrimary: true,
+        isClickable: false,
+      },
+      {
+        id: 8,
         slug: "clavos",
         code: "CL-006",
         category: "Clavos",
@@ -153,10 +173,11 @@ export function CatalogueNew() {
         specs: 'Medidas: 2" y 2 1/2". Presentación en cajas de 20kg con bolsas de 1kg.',
         availability: "Stock permanente",
         image: "/images/clavos.webp",
-        isPrimary: false,
+        isPrimary: true,
+        isClickable: false,
       },
       {
-        id: 8,
+        id: 9,
         slug: "alambre-recocido",
         code: "AR-007",
         category: "Alambres",
@@ -166,7 +187,8 @@ export function CatalogueNew() {
         specs: "Calibres: ISWG 14, 16, 18",
         availability: "Stock permanente",
         image: "/images/alambrerecocido2.webp",
-        isPrimary: false,
+        isPrimary: true,
+        isClickable: false,
       },
     ],
     []
@@ -283,7 +305,7 @@ export function CatalogueNew() {
                 role="link"
                 tabIndex={0}
                 aria-label={`Ver ${p.title}`}
-                onClick={() => goToProduct(p.slug)}
+                onClick={() => p.isClickable && goToProduct(p.slug)}
                 onKeyDown={(e) => onCardKeyDown(e, p.slug)}
               >
                 <div className="product-image-container">

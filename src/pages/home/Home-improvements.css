@@ -32,10 +32,6 @@
   letter-spacing: -0.02em;
 }
 
-/* Descripción de productos */
-.interact-item p:last-child {
-  max-width: 500px;
-}
 
 /* Mejoras para móvil */
 @media (max-width: 768px) {
@@ -158,7 +154,6 @@
   .interact-item p:last-child {
     font-size: 0.9rem !important;
     line-height: 1.4 !important;
-    max-width: 100% !important;
   }
 
   /* Espaciado entre secciones */

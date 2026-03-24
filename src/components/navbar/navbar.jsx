@@ -87,7 +87,7 @@ export const NavBar = ({ whiteBackground = false }) => {
   );
 
   // tamaños
-  const webNavFontSize = useMemo(() => (isTablet ? "0.8rem" : "1.1rem"), [isTablet]);
+  const webNavFontSize = useMemo(() => (isTablet ? "0.8rem" : "1rem"), [isTablet]);
   const mobileDrawerFontSize = useMemo(() => "clamp(20px, 6.2vw, 26px)", []);
 
   useEffect(() => {

@@ -27,13 +27,13 @@ div[style*="cursor: pointer"] {
 }
 
 /* Eliminar CUALQUIER borde en productos de la segunda fila */
-.Home + div > div {
+.Home+div>div {
   border: none !important;
   outline: none !important;
 }
 
 /* Fix específico para el contenedor flex de productos */
-div[style*="display: flex"] > div[style*="cursor: pointer"] {
+div[style*="display: flex"]>div[style*="cursor: pointer"] {
   border: none !important;
   outline: none !important;
   box-shadow: none !important;
@@ -46,12 +46,12 @@ div[style*="display: flex"] > div[style*="cursor: pointer"] {
 }
 
 /* Eliminar cualquier borde residual */
-.home-container > div:last-child {
+.home-container>div:last-child {
   border: none !important;
 }
 
 /* Específicamente para las secciones de productos */
-.home-container + * .interact,
+.home-container+* .interact,
 .home-container .interact {
   border: none !important;
   outline: none !important;
@@ -69,7 +69,7 @@ div[style*="display: flex"] > div[style*="cursor: pointer"] {
 }
 
 /* Asegurar que el contenedor del slider esté bien */
-.home-bottom-row + .home-products-slider {
+.home-bottom-row+.home-products-slider {
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
@@ -93,7 +93,7 @@ div[style*="display: flex"] > div[style*="cursor: pointer"] {
 .interact-item p:last-child {
   margin-top: auto !important;
   text-align: left !important;
-  max-width: 400px !important;
+  max-width: 690px !important;
 }
 
 @media (max-width: 768px) {

@@ -36,17 +36,17 @@ const productsData = {
       'Solución industrial que ofrece rapidez y economía. Garantiza la calidad de su obra mediante una soldadura controlada, uniformidad dimensional y proporcionar mejor control de las fisuras. Disponible en stock en medidas estándar.',
     disclaimerCTA: '*Consulte por nuestras mallas especiales.',
     datasheetPdf: '/pdf/mallas-electrosoldadas.pdf',
-    specifications: [
-      'Certificadas bajo norma UNIT 845:1995',
-      'Medidas estándar de 600x240cm en stock permanente',
-      'Medidas especiales fabricadas a pedido',
-      '3.5mm en 15x15cm en rollos de 50m',
-      '3.5mm en 20x20cm en rollos de 50m',
-      '4.2mm en 15x15cm en paños de 600x245cm',
-      '4.2mm en 15x15cm en rollos de 25m y 50m',
-      '5.5mm en 15x15cm en paños de 600x245cm',
-      'Todos los diámetros, combinados de hasta 12+12 mm',
-    ],
+    // specifications: [
+    //   'Certificadas bajo norma UNIT 845:1995',
+    //   'Medidas estándar de 600x240cm en stock permanente',
+    //   'Medidas especiales fabricadas a pedido',
+    //   '3.5mm en 15x15cm en rollos de 50m',
+    //   '3.5mm en 20x20cm en rollos de 50m',
+    //   '4.2mm en 15x15cm en paños de 600x245cm',
+    //   '4.2mm en 15x15cm en rollos de 25m y 50m',
+    //   '5.5mm en 15x15cm en paños de 600x245cm',
+    //   'Todos los diámetros, combinados de hasta 12+12 mm',
+    // ],
     features: [
       'Presentación en paños y rollos',
       'Fabricación en diámetros desde 3,0mm hasta 12mm',
@@ -69,10 +69,11 @@ const productsData = {
     availability: 'Entregas a todo el país',
     images: [
       { src: '/images/mallaElectrosoldada.jpg', alt: 'Mallas Electrosoldadas' },
-      { src: '/images/mallas2.jpg', alt: 'Mallas Electrosoldadas detalle' },
       { src: '/images/mallas3.jpg', alt: 'Mallas Electrosoldadas proceso' },
-      { src: '/images/mallas4.jpg', alt: 'Mallas Electrosoldadas medidas' },
-      { src: '/images/mallas6.jpg', alt: 'Mallas Electrosoldadas aplicación' },
+      { src: '/images/mallas2.webp', alt: 'Mallas Electrosoldadas en rollo' },
+      { src: '/images/mallas6.jpg', alt: 'Soldadura controlada' },
+      { src: '/images/ACEROSPAISANO-081.jpg', alt: 'Mallas Electrosoldadas en rollo' },
+      { src: '/images/ACEROSPAISANO-035.jpg', alt: 'Mallas Electrosoldadas en rollos' },
     ],
     // ✅ sin 3D acá
     threeDImage: null,
@@ -152,7 +153,9 @@ const productsData = {
     },
     availability: 'Entregas a todo el país',
     images: [
-      { src: '/images/mallasGalvanizadas.webp', alt: 'Mallas Galvanizadas' },
+      { src: '/images/mallas2.jpg', alt: 'Mallas Galvanizadas detalle' },
+      { src: '/images/mallas4.jpg', alt: 'Mallas Galvanizadas medidas' },
+      { src: '/images/mallas7.jpg', alt: 'Mallas Electrosoldadas en rollos' },
     ],
     threeDImage: null,
   },
@@ -165,13 +168,13 @@ const productsData = {
       //'Sistema industrial de corte y doblado de varillas de acero que permite cumplir con las especificaciones exactas del proyecto.',
       'Sistema Industrializado de corte y doblado de varillas que garantiza la precisión de sus armaduras y el cero desperdicio.',
     datasheetPdf: null,
-    specifications: [
-      'Procesos de calidad garantizada ISO 9001',
-      'Pedidos diseñados y validados en software especializado',
-      'Pedidos identificados con colores por elemento estructural',
-      'Entrega en paquetes con doble etiquetado',
-      'Todos los diámetros disponibles 6mm a 32mm',
-    ],
+    // specifications: [
+    //   'Procesos de calidad garantizada ISO 9001',
+    //   'Pedidos diseñados y validados en software especializado',
+    //   'Pedidos identificados con colores por elemento estructural',
+    //   'Entrega en paquetes con doble etiquetado',
+    //   'Todos los diámetros disponibles 6mm a 32mm',
+    // ],
     features: [
       'Cero desperdicio de acero',
       'Economía de tiempo y mano de obra',
@@ -193,8 +196,7 @@ const productsData = {
     images: [
       { src: '/images/cortadoYdoblado.jpg', alt: 'Hierro Cortado y Doblado' },
       { src: '/images/doblado2.jpg', alt: 'Proceso de doblado' },
-      { src: '/images/doblado4.jpg', alt: 'Cero desperdicio' },
-      { src: '/images/doblado5.jpg', alt: 'Asistencia técnica' },
+      { src: '/images/ACEROSPAISANO-192.jpg', alt: 'Cero desperdicio' },
       { src: '/images/doblado6.jpg', alt: 'Control de calidad' },
       { src: '/images/doblado7.jpg', alt: 'Economía de tiempo' },
     ],
@@ -234,10 +236,9 @@ const productsData = {
     availability: 'Entregas a todo el país',
     images: [
       { src: '/images/barras.jpg', alt: 'Barras Conformadas' },
-      { src: '/images/barras1.jpg', alt: 'Alta adherencia' },
       { src: '/images/barras2.jpg', alt: 'Certificación garantizada' },
-      { src: '/images/barras3.jpg', alt: 'Optimización en obra' },
-      { src: '/images/barras5.jpg', alt: 'Logística optimizada' },
+      { src: '/images/ACEROSPAISANO-003.jpg', alt: 'Optimización en obra' },
+      { src: '/images/ACEROSPAISANO-115.webp', alt: 'Optimización en obra' },
     ],
     threeDImage: null,
   },
@@ -273,10 +274,9 @@ const productsData = {
     },
     availability: 'Entregas a todo el país',
     images: [
-      { src: '/images/barrasLisas.jpg', alt: 'Barras Lisas' },
       { src: '/images/barras1.jpg', alt: 'Barras de calidad' },
-      { src: '/images/barras2.jpg', alt: 'Medidas precisas' },
-      { src: '/images/barras3.jpg', alt: 'Optimización de recursos' },
+      { src: '/images/barras5.jpg', alt: 'Medidas precisas' },
+      { src: '/images/ACEROSPAISANO-119.webp', alt: 'Optimización de recursos' },
     ],
     threeDImage: null,
   },
@@ -539,7 +539,7 @@ const ProductDetail = ({ serviceSlug }) => {
           )}
 
           {/* Specifications Section */}
-          {/* {product.specifications && (
+          {product.specifications && (
             <section className="specifications-section product-content-section">
               <div className="section-header">
                 <h2 className="section-title">Especificaciones</h2>
@@ -555,7 +555,7 @@ const ProductDetail = ({ serviceSlug }) => {
                 ))}
               </div>
             </section>
-          )} */}
+          )}
 
           {/* CTA Section */}
           <section className="cta-section">

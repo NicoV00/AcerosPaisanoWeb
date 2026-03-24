@@ -522,7 +522,7 @@ export const Home = () => {
             }}
             className="catalogue-section"
           >
-            <Typography variant="h1" sx={{ fontSize: { xs: "14px", md: "16px" }, lineHeight: "1.3", marginBottom: "20px" }} className="catalogue-description">
+            <Typography variant="h1" sx={{ maxWidth: "100%", fontSize: { xs: "14px", md: "18px" }, fontWeight: "300", lineHeight: "1.3", marginBottom: "20px" }} className="catalogue-description">
               Desde 2011 apoyando a la industria nacional
             </Typography>
             <Box className="catalogue-button-wrapper" sx={{ paddingRight: { xs: "12px", md: "20px" } }}>
@@ -538,7 +538,7 @@ export const Home = () => {
             className="scroll-indicator"
             variant="h6"
           >
-            Desliza para descubrir
+            Scroll para descubrir
           </Box>
         </div>
 
@@ -700,7 +700,7 @@ export const Home = () => {
             <Box
               className="interact"
               sx={{
-                height: { xs: "40vh", sm: "70vh", md: "100vh", lg: "100vh", xl: "100vh" },
+                height: { xs: "40vh", sm: "70vh", md: "75vh", lg: "75vh", xl: "75vh" },
                 zIndex: 0,
                 backgroundColor: "#000",
                 position: "relative",
@@ -722,6 +722,7 @@ export const Home = () => {
                   paddingBottom: isMobile ? "30px" : "60px",
                   paddingRight: isMobile ? "30px" : "60px",
                   height: "100%",
+                  width: "100%",
                   boxSizing: "border-box",
                 }}
               >
@@ -734,7 +735,7 @@ export const Home = () => {
                     opacity: 0.7,
                     fontFamily: "Inter, sans-serif",
                     fontWeight: 300,
-                    maxWidth: isMobile ? "100%" : "450px",
+                    maxWidth: isMobile ? "100%" : "100%",
                     lineHeight: "1.6",
                     color: "white",
                     margin: 0,
@@ -754,7 +755,7 @@ export const Home = () => {
             <Box
               className="interact"
               sx={{
-                height: { xs: "40vh", sm: "70vh", md: "100vh", lg: "100vh", xl: "100vh" },
+                height: { xs: "40vh", sm: "70vh", md: "75vh", lg: "75vh", xl: "75vh" },
                 zIndex: 0,
                 backgroundColor: "#000",
                 position: "relative",
@@ -787,7 +788,7 @@ export const Home = () => {
                     opacity: 0.7,
                     fontFamily: "Inter, sans-serif",
                     fontWeight: 300,
-                    maxWidth: isMobile ? "100%" : "450px",
+                    maxWidth: isMobile ? "100%" : "100%",
                     lineHeight: "1.6",
                     color: "white",
                     margin: 0,
@@ -816,10 +817,10 @@ export const Home = () => {
       <Box display="flex" flexDirection={{ xs: "column", sm: "row", md: "row" }} width={"100%"} sx={{ marginTop: "80px", marginBottom: "80px" }}>
 
         <Box onClick={() => setSelectedService("mallas-plegadas")} style={{ width: "100%", height: "100%", cursor: "pointer" }}>
-          <Box className="interact" sx={{ height: { xs: "40vh", sm: "70vh", md: "100vh", lg: "100vh", xl: "100vh" }, zIndex: 0, backgroundColor: "#000", position: "relative", "&:hover": { backgroundColor: "#EE2737" } }}>
+          <Box className="interact" sx={{ height: { xs: "40vh", sm: "70vh", md: "75vh", lg: "75vh", xl: "75vh" }, zIndex: 0, backgroundColor: "#000", position: "relative", "&:hover": { backgroundColor: "#EE2737" } }}>
             <div className="interact-item" style={{ zIndex: 0, backgroundColor: "transparent", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between", paddingLeft: isMobile ? "30px" : "60px", paddingTop: isMobile ? "40px" : "60px", paddingBottom: isMobile ? "30px" : "60px", paddingRight: isMobile ? "30px" : "60px", height: "100%", boxSizing: "border-box" }}>
               <h2 style={{ margin: 0, fontSize: isMobile ? "1.5rem" : "2rem", fontWeight: 500, color: "white" }}>Mallas Plegadas</h2>
-              <p style={{ fontSize: "0.95rem", opacity: 0.7, fontFamily: "Inter, sans-serif", fontWeight: 300, maxWidth: isMobile ? "100%" : "450px", lineHeight: "1.6", color: "white", margin: 0, textAlign: "left" }}>
+              <p style={{ fontSize: "0.95rem", opacity: 0.7, fontFamily: "Inter, sans-serif", fontWeight: 300, maxWidth: isMobile ? "100%" : "100%", lineHeight: "1.6", color: "white", margin: 0, textAlign: "left" }}>
                 Combina las ventajas del cortado y doblado + mallas. Tecnología de punta en plegado con plegadora automatizada para optimización total de su proyecto constructivo.
               </p>
             </div>
@@ -827,10 +828,10 @@ export const Home = () => {
         </Box>
 
         <Box onClick={() => setSelectedService("barras-conformadas")} style={{ width: "100%", height: "100%", cursor: "pointer" }}>
-          <Box className="interact" sx={{ height: { xs: "40vh", sm: "70vh", md: "100vh", lg: "100vh", xl: "100vh" }, zIndex: 0, backgroundColor: "#000", position: "relative", "&:hover": { backgroundColor: "#EE2737" } }}>
+          <Box className="interact" sx={{ height: { xs: "40vh", sm: "70vh", md: "75vh", lg: "75vh", xl: "75vh" }, zIndex: 0, backgroundColor: "#000", position: "relative", "&:hover": { backgroundColor: "#EE2737" } }}>
             <div className="interact-item" style={{ zIndex: 0, backgroundColor: "transparent", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "space-between", paddingLeft: isMobile ? "30px" : "60px", paddingTop: isMobile ? "40px" : "60px", paddingBottom: isMobile ? "30px" : "60px", paddingRight: isMobile ? "30px" : "60px", height: "100%", boxSizing: "border-box" }}>
               <h2 style={{ margin: 0, fontSize: isMobile ? "1.5rem" : "2rem", fontWeight: 500, color: "white" }}>Barras Lisas y Conformadas</h2>
-              <p style={{ fontSize: "0.95rem", opacity: 0.7, fontFamily: "Inter, sans-serif", fontWeight: 300, maxWidth: isMobile ? "100%" : "450px", lineHeight: "1.6", color: "white", margin: 0, textAlign: "left" }}>
+              <p style={{ fontSize: "0.95rem", opacity: 0.7, fontFamily: "Inter, sans-serif", fontWeight: 300, maxWidth: isMobile ? "100%" : "100%", lineHeight: "1.6", color: "white", margin: 0, textAlign: "left" }}>
                 Producido de acuerdo con las especificaciones de la norma UNIT 843:95 y UNIT 34:95 (la del conformado es la UNIT 843, la 845 es la norma de la malla).
                 Procesos de calidad garantizada. Para mayor practicidad las barras pueden ir cortadas a medida para reducir el costo, generar economía de tiempo y eliminar desperdicios en obra.
               </p>
