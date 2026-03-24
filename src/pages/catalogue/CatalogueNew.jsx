@@ -257,9 +257,9 @@ export function CatalogueNew() {
 
   return (
     <div className="catalogue-wrapper is-light" ref={containerRef}>
-      <NavBar whiteBackground={true} />
+      <NavBar whiteBackground={true} disableInitialHidden={true} disableScrollHide={true} />
 
-      <section className="catalogue-header">
+      <section className="catalogue-header" style={{ marginTop: '40px' }}>
         <Container maxWidth="xl">
           <h4 ref={titleRef} className="catalogue-title">
             Catálogo
@@ -363,13 +363,15 @@ export function CatalogueNew() {
                     <div className="product-bottom">
                       <span className="availability-badge">{p.availability}</span>
 
-                      <button
-                        type="button"
-                        className="view-details-btn"
-                        onClick={(e) => onViewDetailsClick(e, p.slug)}
-                      >
-                        Ver detalles <span className="arrow" aria-hidden="true">→</span>
-                      </button>
+                      {p.isClickable && (
+                        <button
+                          type="button"
+                          className="view-details-btn"
+                          onClick={(e) => onViewDetailsClick(e, p.slug)}
+                        >
+                          Ver detalles <span className="arrow" aria-hidden="true">→</span>
+                        </button>
+                      )}
                     </div>
                   </div>
                 </div>

@@ -101,12 +101,9 @@ export const Home = () => {
   const isSmallScreen = isMobile || window.innerWidth <= 768;
   const textParts = useMemo(() => {
     if (isSmallScreen) {
-      // En móvil: dividir en 3 líneas bien distribuidas
-      return [
-        "Le damos forma al acero:",
-        "soluciones eficientes",
-        "para el hormigón armado"
-      ];
+      // En móvil: dejar un solo bloque para que el navegador haga el salto (wrap) de forma natural
+      // y llene los espacios vacíos, evitando los saltos duros forzados.
+      return [homeText];
     }
     return splitText(homeText, 3);
   }, [homeText, isSmallScreen]);
@@ -120,16 +117,16 @@ export const Home = () => {
   // =========================================================
   const heroLineSx = useMemo(
     () => ({
-      // ✅ Tamaño más grande en móvil
-      fontSize: { xs: "clamp(36px, 32px, 96px)", sm: "42px", md: "54px", lg: "96px" },
+      // ✅ Tamaño calcado del componente inferior para xs
+      fontSize: { xs: "2.5rem", sm: "42px", md: "54px", lg: "96px" },
 
-      // ✅ Line-height aumentado para evitar cortes en letras como "g"
+      // ✅ Line-height original (no tocar para evitar overlap roto)
       lineHeight: { xs: 1.1, sm: 1.15, md: 1.2, lg: 1.2 },
 
       textAlign: "left",
       fontFamily: "Inter, sans-serif",
       fontWeight: 400,
-      letterSpacing: "-0.08em",
+      letterSpacing: { xs: "-0.05em", sm: "-0.08em" },
       m: 0,
       p: 0,
     }),
@@ -148,7 +145,7 @@ export const Home = () => {
   // (porque cada línea es un <div> separado)
   // Interlineado mucho más apretado
   const HERO_LINE_GAP_TIGHT_DESKTOP = "-0.6em"; // Interlineado muy apretado
-  const HERO_LINE_GAP_TIGHT_MOBILE = "-0.45em";  // Interlineado muy apretado en móvil
+  const HERO_LINE_GAP_TIGHT_MOBILE = "-0.45em";  // Interlineado muy apretado en móvil (original)
 
   // Initialize scroll animations only when user starts scrolling
   // Utility to yield to the main thread between tasks
@@ -533,12 +530,12 @@ export const Home = () => {
           </Box>
 
           <Box
-            sx={{ paddingBottom: { xs: "60px", sm: "0px", md: "0px", lg: "0px" } }}
+            sx={{ paddingBottom: { xs: "60px", sm: "0px", md: "0px", lg: "0px" }, fontSize: { xs: "18px", md: "22px" }, fontWeight: "500", letterSpacing: "0.05em" }}
             ref={descubrirRef}
             className="scroll-indicator"
             variant="h6"
           >
-            Scroll para descubrir
+            [Scroll]
           </Box>
         </div>
 
@@ -557,6 +554,7 @@ export const Home = () => {
             paddingLeft: { xs: "24px", md: "3.5vw" },
             paddingRight: { xs: "24px", md: "3.5vw" },
             width: "100%",
+            boxSizing: "border-box"
           }}
         >
           <Box
@@ -652,14 +650,14 @@ export const Home = () => {
               fallback={
                 <div
                   style={{
-                    height: "60vh",
+                    height: "80vh",
                     backgroundColor: "#f0f0f0",
                     borderRadius: "8px",
                   }}
                 />
               }
             >
-              <ParallaxBoxColumn image="/images/malla10.jpg" />
+              <ParallaxBoxColumn image="/images/malla10.jpg" height="80vh" />
             </Suspense>
           </Box>
 
@@ -677,14 +675,14 @@ export const Home = () => {
               fallback={
                 <div
                   style={{
-                    height: "60vh",
+                    height: "80vh",
                     backgroundColor: "#f0f0f0",
                     borderRadius: "8px",
                   }}
                 />
               }
             >
-              <ParallaxBoxColumn image="/images/barras.jpg" />
+              <ParallaxBoxColumn image="/images/doblado6.jpg" height="80vh" />
             </Suspense>
           </Box>
         </Box>
@@ -905,7 +903,7 @@ export const Home = () => {
               loop
               muted
               playsInline
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%" }}
             >
               <source src="/videos/19.mp4" type="video/mp4" />
             </video>
