@@ -8,6 +8,7 @@ import { Contact } from "./pages/contact/Contact";
 import ProductDetail from "./pages/ProductDetail/ProductDetail";
 import Lenis from "@studio-freight/lenis";
 import NotFound from "./pages/notfound/Notfound"; // Importamos la página 404
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 function App() {
   const location = useLocation();
@@ -72,6 +73,7 @@ function App() {
         {/* RUTA 404: Captura cualquier ruta que no exista */}
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <SpeedInsights />
     </div>
   );
 }
