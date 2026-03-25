@@ -337,7 +337,7 @@ export function CatalogueNew() {
                         <div className="row row-action datasheet" onClick={(e) => onDatasheetClick(e, p.datasheet)}>
                           <span className="row-label">Ficha técnica</span>
                           <span className="row-icon-btn pdf">
-                            <PdfIcon />
+                            <img src="/images/image copy.png" alt="" style={{ width: 18, height: 18, objectFit: 'contain' }} />
                           </span>
                         </div>
                       )}

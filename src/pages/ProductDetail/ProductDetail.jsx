@@ -442,26 +442,16 @@ const ProductDetail = ({ serviceSlug }) => {
                     }
                   >
                     <span className="datasheet-icon" aria-hidden="true">
-                      <PdfIcon />
+                      <img src="/images/image copy.png" alt="" style={{ width: 18, height: 18, objectFit: 'contain' }} />
                     </span>
 
                     <span className="datasheet-text">Ficha técnica</span>
-
-                    <span className="datasheet-meta">
-                      {product.datasheetPdf ? 'PDF' : 'No disponible'}
-                    </span>
-
-                    <span className="datasheet-right-lines" aria-hidden="true">
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </span>
                   </button>
 
                   {/* Single CTA Button */}
                   <button className="cta-button primary" onClick={() => navigate('/contacto')}>
-                    <ButtonHoverBg label="solicitar información" buttonStyles={"cta-detail-button"} />
-                    <ButtonHoverBg label="→" buttonStyles={"cta-detail-button"} />
+                    <span className="cta-text">Solicitar información</span>
+                    <span className="cta-arrow">↗</span>
                   </button>
                 </div>
               </div>
@@ -566,8 +556,8 @@ const ProductDetail = ({ serviceSlug }) => {
               </p>
               <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <button className="cta-button primary" style={{ maxWidth: '25%' }} onClick={() => navigate('/contacto')}>
-                  <ButtonHoverBg label="solicitar información" buttonStyles={"cta-detail-button"} />
-                  <ButtonHoverBg label="→" buttonStyles={"cta-detail-button"} />
+                  <span className="cta-text">Solicitar información</span>
+                  <span className="cta-arrow">↗</span>
                 </button>
               </div>
             </div>

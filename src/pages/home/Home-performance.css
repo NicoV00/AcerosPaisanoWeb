@@ -268,8 +268,8 @@
   }
 
   .catalogue-button {
-    padding: 14px 12px !important;
-    font-size: 14px !important;
+    padding: 10px 12px !important;
+    font-size: 12px !important;
     width: auto !important;
     max-width: 250px !important;
     text-align: center !important;
@@ -278,7 +278,7 @@
     align-items: center !important;
     justify-content: center !important;
     background-color: #EE2737 !important;
-    border-radius: 6px !important;
+    border-radius: 2px !important;
     position: relative !important;
   }
 

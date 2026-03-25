@@ -163,10 +163,10 @@ export const About = () => {
                   Forjamos <strong>acero de calidad certificada</strong>
                 </span>
                 <span className="about-hero__taglineLine">
-                  para impulsar la construcción, el agro y
+                  para impulsar la construcción, la industria
                 </span>
                 <span className="about-hero__taglineLine">
-                  la industria en <strong>Uruguay</strong>.
+                  y el futuro en <strong>Uruguay</strong>.
                 </span>
               </p>
             </div>

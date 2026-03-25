@@ -383,13 +383,13 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) 46px;
   align-items: stretch;
-  gap: 8px;
+  gap: 3px;
 
   width: 100%;
-  padding: 8px;
-  background: #000000;
+  padding: 3px;
+  background: rgba(11, 11, 11, 0.04);
   border: none;
-  border-radius: 0;
+  border-radius: 5px;
   color: #ffffff;
   cursor: pointer;
   transition: transform 0.18s ease, box-shadow 0.18s ease;
@@ -409,36 +409,15 @@
   padding: 0 16px;
   background: #e00000;
   color: #fff;
-  border-radius: 2px;
+  border-radius: 3px;
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   text-transform: none;
   letter-spacing: 0.01em;
   line-height: 1;
   white-space: nowrap;
-}
-
-
-.cta-detail-button {
-  font-size: 0.7rem;
-  width: 100%;
-  padding: 5px;
-  color: #ffffff !important;
-  background-color: #e00000;
-  border: 1px solid transparent;
-  border-radius: 3px;
-  cursor: pointer;
-}
-
-.cta-detail-button p {
-  font-size: 1rem;
-}
-
-.cta-detail-button:hover {
-  background-color: #00000000;
-  border: 1px solid white;
-  transition-delay: 0.3s;
+  transition: background 0.25s ease;
 }
 
 .cta-button .cta-arrow {
@@ -449,14 +428,19 @@
   min-height: 44px;
   background: #e00000;
   color: #fff;
-  border-radius: 2px;
+  border-radius: 3px;
   font-size: 18px;
   line-height: 1;
-  transition: transform 0.2s ease;
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.cta-button:hover .cta-text,
+.cta-button:hover .cta-arrow {
+  background: #b80000;
 }
 
 .cta-button:hover .cta-arrow {
-  transform: translateX(2px) translateY(-1px);
+  transform: translateX(3px);
 }
 
 .cta-button.large {
