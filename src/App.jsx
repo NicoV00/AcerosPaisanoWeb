@@ -9,6 +9,7 @@ import ProductDetail from "./pages/ProductDetail/ProductDetail";
 import Lenis from "@studio-freight/lenis";
 import NotFound from "./pages/notfound/Notfound"; // Importamos la página 404
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   const location = useLocation();
@@ -74,6 +75,7 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
       <SpeedInsights />
+      <Analytics />
     </div>
   );
 }
