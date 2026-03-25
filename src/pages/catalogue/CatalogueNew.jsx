@@ -50,8 +50,12 @@ const PdfIcon = () => (
 );
 
 export function CatalogueNew() {
-  const [viewMode, setViewMode] = useState("grid");
+  const [viewMode, setViewMode] = useState(() => localStorage.getItem("catalogueViewMode") || "grid");
   const [openExtended, setOpenExtended] = useState({});
+
+  useEffect(() => {
+    localStorage.setItem("catalogueViewMode", viewMode);
+  }, [viewMode]);
 
   const navigate = useNavigate();
   const titleRef = useRef(null);
@@ -257,9 +261,9 @@ export function CatalogueNew() {
 
   return (
     <div className="catalogue-wrapper is-light" ref={containerRef}>
-      <NavBar whiteBackground={true} />
+      <NavBar whiteBackground={true} disableInitialHidden={true} disableScrollHide={true} />
 
-      <section className="catalogue-header">
+      <section className="catalogue-header" style={{ marginTop: '40px' }}>
         <Container maxWidth="xl">
           <h4 ref={titleRef} className="catalogue-title">
             Catálogo
@@ -364,13 +368,15 @@ export function CatalogueNew() {
                   <div className="product-bottom">
                     <span className="availability-badge">{p.availability}</span>
 
-                    <button
-                      type="button"
-                      className="view-details-btn"
-                      onClick={(e) => onViewDetailsClick(e, p.slug)}
-                    >
-                      Ver detalles <span className="arrow" aria-hidden="true">→</span>
-                    </button>
+                    {p.isClickable && (
+                      <button
+                        type="button"
+                        className="view-details-btn"
+                        onClick={(e) => onViewDetailsClick(e, p.slug)}
+                      >
+                        Ver detalles <span className="arrow" aria-hidden="true">→</span>
+                      </button>
+                    )}
                   </div>
                 </div>
               </article>

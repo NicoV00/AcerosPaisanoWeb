@@ -201,6 +201,7 @@ export const About = () => {
                     className="subtitle"
                     variant="h2"
                     fontSize={{ xs: "25px", md: "30px", xl: "40px" }}
+                    sx={{ fontFamily: "Inter, sans-serif", fontWeight: 500 }}
                   >
                     {section.content.title}
                   </Typography>
@@ -216,7 +217,8 @@ export const About = () => {
                           lineHeight: 1.2,
                           marginBottom: "16px",
                           fontWeight: 300,
-                          opacity: 0.9
+                          opacity: 0.9,
+                          fontFamily: "Inter, sans-serif"
                         }}
                       >
                         {item}
@@ -257,6 +259,7 @@ export const About = () => {
                     className="subtitle"
                     variant="h2"
                     fontSize={{ xs: "25px", md: "30px", xl: "40px" }}
+                    sx={{ fontFamily: "Inter, sans-serif", fontWeight: 500 }}
                   >
                     {section.content.title}
                   </Typography>
@@ -272,7 +275,8 @@ export const About = () => {
                           lineHeight: 1.2,
                           marginBottom: "16px",
                           fontWeight: 300,
-                          opacity: 0.9
+                          opacity: 0.9,
+                          fontFamily: "Inter, sans-serif"
                         }}
                       >
                         {item}

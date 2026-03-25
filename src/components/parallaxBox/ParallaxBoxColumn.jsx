@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Box } from "@mui/material";
 
-export default function ParallaxBoxColumn({ image }) {
+export default function ParallaxBoxColumn({ image, height = "60vh" }) {
   const boxRef = useRef(null);
   const imageRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -68,7 +68,7 @@ export default function ParallaxBoxColumn({ image }) {
       ref={boxRef}
       sx={{
         width: "100%",
-        height: "60vh",
+        height: height,
         overflow: "hidden",
         position: "relative",
         borderRadius: "8px",

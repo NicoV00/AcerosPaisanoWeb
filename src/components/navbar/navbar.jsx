@@ -65,13 +65,13 @@ const AnimatedMenuIcon = ({ isOpen, isDark = false }) => (
   </Box>
 );
 
-export const NavBar = ({ whiteBackground = false }) => {
+export const NavBar = ({ whiteBackground = false, disableInitialHidden = false, disableScrollHide = false }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const isTablet = useMediaQuery(theme.breakpoints.between("md", "lg"));
 
   const [menuOpen, setMenuOpen] = useState(false);
-  const [hidden, setHidden] = useState(true);
+  const [hidden, setHidden] = useState(!disableInitialHidden);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [delayedHidden, setDelayedHidden] = useState(hidden);
 
@@ -87,8 +87,8 @@ export const NavBar = ({ whiteBackground = false }) => {
   );
 
   // tamaños
-  const webNavFontSize = useMemo(() => (isTablet ? "0.8rem" : "1rem"), [isTablet]);
-  const mobileDrawerFontSize = useMemo(() => "clamp(20px, 6.2vw, 26px)", []);
+  const webNavFontSize = useMemo(() => "15px", []);
+  const mobileDrawerFontSize = useMemo(() => "14px", []);
 
   useEffect(() => {
     if (hidden) {
@@ -102,13 +102,14 @@ export const NavBar = ({ whiteBackground = false }) => {
   const toggleMenu = () => setMenuOpen((prev) => !prev);
 
   useEffect(() => {
+    if (disableInitialHidden) return; // ✅ Skip timeout if already visible
     const timer = setTimeout(() => setHidden(false), 1000);
     return () => clearTimeout(timer);
-  }, []);
+  }, [disableInitialHidden]);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (menuOpen) return;
+      if (menuOpen || disableScrollHide) return; // ✅ Skip hiding if disabled
       const currentScrollY = window.scrollY;
 
       if (currentScrollY > lastScrollY && currentScrollY > 50) setHidden(true);
@@ -216,7 +217,7 @@ export const NavBar = ({ whiteBackground = false }) => {
           sx={{
             right: "auto",
             width: "100vw",
-            padding: isMobile ? "6px 16px" : "3px 23px",
+            padding: { xs: "6px 24px", md: "3px 3.5vw" },
             transition: "transform 0.4s ease-in-out, background-color 0.3s ease-in-out",
             transform: hidden && !menuOpen ? "translateY(-100%)" : "translateY(0)",
 
@@ -250,7 +251,7 @@ export const NavBar = ({ whiteBackground = false }) => {
               to="/"
               onClick={() => window.scrollTo(0, 0)}
               color="inherit"
-              sx={{ padding: { xs: "0px", md: "0px", lg: "0px", xl: "12px" }, minWidth: "auto" }}
+              sx={{ padding: "0px", minWidth: "auto" }}
             >
               <Box
                 component="img"
@@ -297,6 +298,7 @@ export const NavBar = ({ whiteBackground = false }) => {
                           fontFamily: navMono, // ✅ Geist Mono
                           fontSize: webNavFontSize,
                           fontWeight: 400,
+                          textTransform: "uppercase",
                           letterSpacing: "0.08em",
                           color: whiteBackground
                             ? "rgba(11, 11, 11, 0.7)"
@@ -324,6 +326,7 @@ export const NavBar = ({ whiteBackground = false }) => {
                       textTransform: "none",
                       padding: "6px 10px",
                       minWidth: "auto",
+                      marginRight: "-10px",
                     }}
                   >
                     <Typography
@@ -331,6 +334,7 @@ export const NavBar = ({ whiteBackground = false }) => {
                         fontFamily: navMono, // ✅ Geist Mono
                         fontSize: webNavFontSize,
                         fontWeight: 500,
+                        textTransform: "uppercase",
                         letterSpacing: "0.08em",
                         color: whiteBackground
                           ? "rgba(11, 11, 11, 0.7)"
@@ -445,16 +449,16 @@ export const NavBar = ({ whiteBackground = false }) => {
                           sx={{
                             fontFamily: navMono, // ✅ Geist Mono
                             fontWeight: 500,
-                            fontSize: mobileDrawerFontSize,
+                            fontSize: '24px',
                             letterSpacing: "0.06em",
                             lineHeight: 0.98,
-                            textTransform: "none",
+                            textTransform: "uppercase",
                             textShadow: "none",
                           }}
                         >
                           {item.title}
                           {item.title === "Productos" && (
-                            <sup style={{ fontSize: "14px", marginLeft: "6px" }}>6</sup>
+                            <sup style={{ fontSize: "14px", marginLeft: "6px" }}>9</sup>
                           )}
                         </Typography>
                       </Button>
