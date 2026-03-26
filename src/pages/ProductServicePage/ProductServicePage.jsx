@@ -236,16 +236,23 @@ const ProductServicePage = ({ serviceSlug, onClose }) => {
             paddingBottom: "40px"
           }}>
             <Link to={`/${effectiveSlug}`} style={{ textDecoration: "none", width: "100%" }} >
-              <ButtonHoverBg
-                label="Ir al Producto"
-                buttonStyles={"cta-detail-button"}
+              <Typography
                 sx={{
                   fontFamily: '"Geist Mono", monospace',
                   fontSize: "12px",
+                  fontWeight: 400,
                   textTransform: "uppercase",
-                  letterSpacing: "0.1em"
+                  letterSpacing: "0.08em",
+                  color: "rgba(255, 255, 255, 0.75)",
+                  transition: "color 0.3s ease",
+                  "&:hover": {
+                    color: "white",
+                  },
+                  lineHeight: 1,
                 }}
-              />
+              >
+                Ir al Producto
+              </Typography>
             </Link>
           </Box>
         </Box>

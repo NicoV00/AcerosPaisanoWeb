@@ -15,7 +15,8 @@ import { Link, useNavigate } from "react-router-dom";
 import ButtonHoverBg from "../../components/CustomButton/ButtonHoverBg";
 import { NavBar } from "../../components/navbar/navbar.jsx";
 import { Footer } from "../../components/footer/Footer.jsx";
-import { Box, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 import ProductServicePage from "../ProductServicePage/ProductServicePage";
 
 // Lazy load heavy components
@@ -515,7 +516,7 @@ export const Home = () => {
                   component="img"
                   src="./images/paisanologowhite1.png"
                   alt="Left Image"
-                  fetchpriority="high"
+                  fetchPriority="high"
                   sx={{
                     width: "auto",
                     height: { xs: "9vh", md: "10vh", xl: "20vh" },
@@ -535,9 +536,12 @@ export const Home = () => {
               muted
               playsInline
               preload="auto"
+              fetchPriority="high"
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             >
-              <source src="/14-optimized.mp4" type="video/mp4" />
+              {/* Mobile: 480p compressed version (0.57 MB vs 4.24 MB) */}
+              <source src="/14-mobile.mp4" type="video/mp4" media="(max-width: 768px)" />
+              {/* Desktop: full quality */}
               <source src="/14.mp4" type="video/mp4" />
             </video>
           </div>

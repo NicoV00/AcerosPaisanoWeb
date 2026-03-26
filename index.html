@@ -2,19 +2,16 @@
 <html lang="es">
 
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CPCFV23NH9"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'G-CPCFV23NH9');
-  </script>
-
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/png" href="/images/logo.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="/images/logo.png" />
+
+  <!-- Critical LCP Discovery -->
+  <link rel="preload" as="video" href="/14-mobile.mp4" media="(max-width: 768px)" type="video/mp4" fetchpriority="high" />
+  <link rel="preload" as="video" href="/14.mp4" media="(min-width: 769px)" type="video/mp4" fetchpriority="high" />
+  <link rel="preload" as="image" href="/images/paisanologowhite1.png" fetchpriority="high" />
+  <link rel="preload" as="image" href="/images/logo-small.png" fetchpriority="high" />
+
   <meta name="title" content="Aceros Paisano | Soluciones de Acero para la Construcción" />
   <meta name="description"
     content="Aceros Paisano: Aceros Paisano, especialistas en acero para la construcción en Uruguay: malla electrosoldada, hierro cortado y doblado, varillas y mas productos con certificación UNIT." />
@@ -38,44 +35,35 @@
   <meta property="twitter:description" content="Aceros Paisano: Líder en acero para la construcción en Uruguay." />
   <meta property="twitter:image" content="https://acerospaisano.com.uy/images/og-image.jpg" />
 
-  <!-- Preconnect to Google Fonts for better performance -->
+  <!-- Fonts & Connectivity -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <!-- Prefetch DNS for external resources -->
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
 
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-  <!-- Preload critical fonts -->
-  <link rel="preload" as="style"
-    href="https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap">
+  <!-- Consolidated Font List (Adding Geist Mono here) -->
   <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap">
+    href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&family=Anton&family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap">
 
   <title>Aceros Paisano | Soluciones de Acero para la Construcción</title>
 
-  <!-- Performance optimizations -->
   <style>
-    /* Critical CSS for above-the-fold content */
     body {
       margin: 0;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: 'Inter', sans-serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      background-color: #000;
     }
 
     #root {
       min-height: 100vh;
     }
 
-    /* Prevent layout shift from fonts loading */
     .font-outfit {
       font-family: 'Outfit', sans-serif;
     }
 
-    /* Predefine Anton font to prevent FOUT */
     .interact-item {
       font-family: 'Anton', sans-serif;
       font-display: swap;

@@ -43,8 +43,8 @@ export default function ParallaxBox({ image, title, titleColor, titleLeft = "2%"
     >
       {title && (
         <Box position="absolute" left={titleLeft} bottom={titleBottom} zIndex={1}>
-          <Typography variant="h2" fontSize={{ xs: "75px", md: "200px", xl: "200px"}} fontFamily={"Bona Nova SC"} color={titleColor}>{title}</Typography>
-          
+          <Typography variant="h2" fontSize={{ xs: "75px", md: "200px", xl: "200px" }} fontFamily={"Bona Nova SC"} color={titleColor}>{title}</Typography>
+
         </Box>
       )}
     </Box>

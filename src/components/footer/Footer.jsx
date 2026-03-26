@@ -1,35 +1,15 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Box, Typography, Grid, Container } from "@mui/material";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
+import Container from "@mui/material/Container";
 
 const mapUrl =
   "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3277.648787543024!2d-56.22233792426595!3d-34.76496757288514!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a1d2c0507031bd%3A0x3200638708617154!2sRuta%205%20Gral.%20Fructuoso%20Rivera%2025500%2C%2090200%20Las%20Piedras%2C%20Departamento%20de%20Canelones!5e0!3m2!1ses-419!2suy!4v1708363561594!5m2!1ses-419!2suy";
 
-/* ✅ Fuentes directamente en este archivo (sin tocar index.css)
-   - Inter para textos normales
-   - Geist Mono para labels / monospace
-*/
-const footerFontsImport = `
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600;700&display=swap');
-`;
-
 export const Footer = () => {
   const location = useLocation();
-
-  useEffect(() => {
-    const existing = document.querySelector('style[data-footer-fonts="true"]');
-    if (existing) return;
-
-    const styleEl = document.createElement("style");
-    styleEl.setAttribute("data-footer-fonts", "true");
-    styleEl.textContent = footerFontsImport;
-    document.head.appendChild(styleEl);
-
-    return () => {
-      // Si querés que quede cargado siempre aunque desmonte, comentá esto
-      if (styleEl.parentNode) styleEl.parentNode.removeChild(styleEl);
-    };
-  }, []);
 
   const isLightView =
     location.pathname.includes("productos") ||

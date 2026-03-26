@@ -1,25 +1,19 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  IconButton,
-  Box,
-  Drawer,
-  useMediaQuery,
-  useTheme,
-  List,
-  ListItem,
-  ListItemText,
-  GlobalStyles,
-} from "@mui/material";
-import { Link } from "react-router-dom";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import useTheme from "@mui/material/styles/useTheme";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import GlobalStyles from "@mui/material/GlobalStyles";
 
-/* ✅ Geist Mono */
-const fontImportStyles = `
-  @import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&display=swap');
-`;
+import { Link } from "react-router-dom";
 
 const AnimatedMenuIcon = ({ isOpen, isDark = false }) => (
   <Box
@@ -123,13 +117,7 @@ export const NavBar = ({ whiteBackground = false, disableInitialHidden = false, 
   }, [lastScrollY, menuOpen]);
 
   // ✅ inject Geist Mono
-  useEffect(() => {
-    const styleElement = document.createElement("style");
-    styleElement.type = "text/css";
-    styleElement.appendChild(document.createTextNode(fontImportStyles));
-    document.head.appendChild(styleElement);
-    return () => document.head.removeChild(styleElement);
-  }, []);
+
 
   useEffect(() => {
     if (menuOpen) setHidden(false);
