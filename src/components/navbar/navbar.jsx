@@ -255,7 +255,7 @@ export const NavBar = ({ whiteBackground = false, disableInitialHidden = false, 
             >
               <Box
                 component="img"
-                src="/images/logo.png"
+                src="/images/logo-small.png"
                 alt="Logo"
                 fetchPriority="high"
                 sx={{ height: isMobile ? 40 : 50 }}

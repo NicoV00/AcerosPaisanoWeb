@@ -355,13 +355,15 @@
    ANIMATION OPTIMIZATIONS
    ============================================ */
 
-/* GPU Acceleration */
-.line-wrapper,
-.line-overlay,
-.interact-item {
-  will-change: transform, opacity;
-  transform: translateZ(0);
-  backface-visibility: hidden;
+/* GPU Acceleration — desktop only: will-change wastes GPU memory on mobile */
+@media (min-width: 769px) {
+  .line-wrapper,
+  .line-overlay,
+  .interact-item {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
 }
 
 /* Smooth animations */

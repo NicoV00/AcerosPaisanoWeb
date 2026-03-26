@@ -69,6 +69,12 @@ export const Home = () => {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [animationsInitialized, setAnimationsInitialized] = useState(false);
 
+  // Secondary video lazy-load state
+  const [electroVideoVisible, setElectroVideoVisible] = useState(false);
+  const [cornerVideoVisible, setCornerVideoVisible] = useState(false);
+  const electroVideoRef = useRef();
+  const cornerVideoRef = useRef();
+
   const [selectedService, setSelectedService] = useState(null);
 
   const navigate = useNavigate();
@@ -331,9 +337,36 @@ export const Home = () => {
     };
   }, [isMobile, prefersReducedMotion, videoLoaded]);
 
+  // Lazy-load secondary videos with IntersectionObserver
+  useEffect(() => {
+    const observers = [];
+
+    const makeObserver = (ref, setter) => {
+      if (!ref.current) return;
+      const obs = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setter(true);
+            obs.disconnect();
+          }
+        },
+        { rootMargin: "200px", threshold: 0 }
+      );
+      obs.observe(ref.current);
+      observers.push(obs);
+    };
+
+    makeObserver(electroVideoRef, setElectroVideoVisible);
+    makeObserver(cornerVideoRef, setCornerVideoVisible);
+
+    return () => observers.forEach((o) => o.disconnect());
+  }, []);
+
   // Optimize intro animation
   useEffect(() => {
-    if (prefersReducedMotion) {
+    // Skip entirely on mobile — the overlay is hidden via CSS (display:{xs:'none'}) anyway
+    // but GSAP still runs and burns ~400 ms of script evaluation
+    if (isMobile || prefersReducedMotion) {
       if (welcomeRef.current) welcomeRef.current.style.display = "none";
       return;
     }
@@ -376,7 +409,7 @@ export const Home = () => {
     return () => {
       if (tl) tl.kill();
     };
-  }, [prefersReducedMotion]);
+  }, [prefersReducedMotion, isMobile]);
 
   // Initialize scroll animations
   useEffect(() => {
@@ -804,11 +837,15 @@ export const Home = () => {
       </div>
       {/* END of home-container */}
 
-      {/* First Parallax Video */}
-      <div className="Home" style={{ marginTop: "60px", marginBottom: "60px" }}>
-        <Suspense fallback={<div style={{ height: "75vh", backgroundColor: "#000" }} />}>
-          <ParallaxVideoBox videoSrc="/videos/Electro.mp4" />
-        </Suspense>
+      {/* First Parallax Video — lazy: only mounts when scrolled into view */}
+      <div className="Home" style={{ marginTop: "60px", marginBottom: "60px" }} ref={electroVideoRef}>
+        {electroVideoVisible ? (
+          <Suspense fallback={<div style={{ height: "75vh", backgroundColor: "#000" }} />}>
+            <ParallaxVideoBox videoSrc="/videos/Electro.mp4" />
+          </Suspense>
+        ) : (
+          <div style={{ height: "75vh", backgroundColor: "#000" }} />
+        )}
       </div>
 
       {/* Second Product Row */}
@@ -885,6 +922,7 @@ export const Home = () => {
           }}
         >
           <Box
+            ref={cornerVideoRef}
             sx={{
               width: { xs: "80%", md: "350px", lg: "450px" },
               // Altura más pronunciada en móvil
@@ -898,15 +936,18 @@ export const Home = () => {
               }
             }}
           >
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%" }}
-            >
-              <source src="/videos/19.mp4" type="video/mp4" />
-            </video>
+            {/* Corner video — only starts loading once section is in viewport */}
+            {cornerVideoVisible && (
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%" }}
+              >
+                <source src="/videos/19.mp4" type="video/mp4" />
+              </video>
+            )}
           </Box>
         </Box>
       </Box>
