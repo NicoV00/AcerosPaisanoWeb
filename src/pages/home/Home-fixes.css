@@ -80,28 +80,47 @@ div[style*="display: flex"]>div[style*="cursor: pointer"] {
   height: 100%;
   display: flex !important;
   flex-direction: column !important;
-  justify-content: space-between !important;
+  justify-content: flex-start !important;
   padding-bottom: 60px !important;
 }
 
-/* Títulos medium y descripción al fondo */
+/* Títulos medium y descripción debajo */
+.interact-item h2 {
+  margin-bottom: 0 !important;
+}
+
 .interact-item p:first-child {
   font-size: 2rem !important;
   font-weight: 500 !important;
 }
 
 .interact-item p:last-child {
-  margin-top: auto !important;
   text-align: left !important;
   max-width: 690px !important;
 }
 
+/* Desktop: título más abajo y descripción aún más abajo */
+@media (min-width: 769px) {
+  .interact-item h2 {
+    margin-top: 40px !important;
+  }
+
+  .interact-item p:last-child {
+    margin-top: 340px !important;
+  }
+}
+
 @media (max-width: 768px) {
+  .interact-item h2 {
+    margin-top: 0 !important;
+  }
+
   .interact-item p:first-child {
     font-size: 1.5rem !important;
   }
 
   .interact-item p:last-child {
+    margin-top: 60px !important;
     max-width: 100% !important;
   }
-}
+}

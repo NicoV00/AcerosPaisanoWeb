@@ -77,7 +77,7 @@ export const products = [
             'Optimización de recursos en obra',
         ],
         price: 'Entregas a todo el País',
-        image: './images/barras.jpg',
+        image: './images/barras3.webp',
         showModal: false
     },
     {

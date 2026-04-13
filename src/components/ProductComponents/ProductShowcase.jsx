@@ -61,7 +61,7 @@ const products = [
       'Logística optimizada: Traslado sencillo y seguro'
     ],
     images: [
-      './images/barras.jpg',
+      './images/barras3.webp',
       './images/barras1.jpg',
       './images/barras2.jpg',
       './images/barras3.jpg',

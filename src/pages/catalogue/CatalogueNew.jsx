@@ -100,6 +100,7 @@ export function CatalogueNew() {
         datasheet: "/pdf/mallas-plegadas.pdf",
         isClickable: true,
       },
+      /* TEMPORALMENTE OCULTO
       {
         id: 3,
         slug: "mallas-galvanizadas",
@@ -114,6 +115,7 @@ export function CatalogueNew() {
         isPrimary: true,
         isClickable: true,
       },
+      */
       {
         id: 4,
         slug: "hierro-cortado-y-doblado",
@@ -134,10 +136,10 @@ export function CatalogueNew() {
         code: "BC-005",
         category: "Barras",
         title: "Barras conformadas",
-        description: "Barras de acero con superficie corrugada para máxima adherencia al hormigón.",
-        specs: "Calidad: ADN-420",
+        description: "Barras de acero con superficie nervurada para máxima adherencia al hormigón.",
+        specs: "Calidad: ADN 500 S",
         availability: "Stock permanente",
-        image: "/images/barras.webp",
+        image: "/images/barras3.webp",
         isClickable: true,
       },
       {
@@ -333,6 +335,7 @@ export function CatalogueNew() {
                         <span className="row-value">{p.specs}</span>
                       </div>
 
+                      {/* TEMPORALMENTE OCULTO - Ficha técnica
                       {p.datasheet && (
                         <div className="row row-action datasheet" onClick={(e) => onDatasheetClick(e, p.datasheet)}>
                           <span className="row-label">Ficha técnica</span>
@@ -341,6 +344,7 @@ export function CatalogueNew() {
                           </span>
                         </div>
                       )}
+                      */}
 
                       {p.isPrimary && (
                         <>

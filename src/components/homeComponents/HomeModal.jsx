@@ -18,10 +18,10 @@ const modalInfo = {
     { title: "Diseño Especial", content: "Soluciones a medida, personalizadas para proyectos específicos.", image: "./images/mallas6.jpg", alt: "Industria Agropecuaria" },
   ],
   "Barras lisas y Conformadas": [
-    { title: "Certificación", content: "Certificadas bajo normas UNIT 34:1995 Y UNIT 845:1995.", image: "./images/barras.jpg", alt: "Construcción y Arquitectura" },
+    { title: "Certificación", content: "Certificadas bajo normas UNIT 34:1995 Y UNIT 845:1995.", image: "./images/barras3.webp", alt: "Construcción y Arquitectura" },
     { title: "Rendimiento y calidad", content: "Procesos de calidad garantizada.", image: "./images/barras1.jpg", alt: "Industria Energética" },
     { title: "Cero desperdicio", content: "Barras cortadas a medida.", image: "./images/barras2.jpg", alt: "Manufactura Industrial" },
-    { title: "Maximización de recursos", content: "Optimización de recursos en obra.", image: "./images/barras3.jpg", alt: "Ahorro" },
+    { title: "Maximización de recursos", content: "Optimización de recursos en obra.", image: "./images/ACEROSPAISANO-126.webp", alt: "Ahorro" },
     { title: "Logística optimizada", content: "Traslado sencillo y seguro.", image: "./images/barras5.jpg", alt: "Industria Agropecuaria" },
   ],
   "Mallas Plegadas": [

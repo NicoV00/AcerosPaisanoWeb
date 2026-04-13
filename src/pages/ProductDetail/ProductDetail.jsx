@@ -113,9 +113,10 @@ const productsData = {
     images: [
       { src: '/images/plegada.jpg', alt: 'Mallas Plegadas' },
       { src: '/images/plegada1.jpg', alt: 'Mallas Plegadas proceso' },
-      { src: '/images/plegada2.jpg', alt: 'Mallas Plegadas optimización' },
       { src: '/images/plegada3.jpg', alt: 'Mallas Plegadas formatos' },
-      { src: '/images/plegada6.jpg', alt: 'Mallas Plegadas diseño' },
+      { src: '/images/plegadas-obra1.jpg', alt: 'Mallas Plegadas en obra' },
+      { src: '/images/plegadas-obra2.jpg', alt: 'Mallas Plegadas instalación' },
+      { src: '/images/plegadas-obra3.jpg', alt: 'Mallas Plegadas estructural' },
     ],
     // ✅ 3D se mueve a mallas plegadas
     threeDImage: {
@@ -235,9 +236,9 @@ const productsData = {
     },
     availability: 'Entregas a todo el país',
     images: [
-      { src: '/images/barras.jpg', alt: 'Barras Conformadas' },
+      { src: '/images/barras3.webp', alt: 'Barras Conformadas' },
       { src: '/images/barras2.jpg', alt: 'Certificación garantizada' },
-      { src: '/images/ACEROSPAISANO-003.jpg', alt: 'Optimización en obra' },
+      { src: '/images/barrasConformadas.webp', alt: 'Optimización en obra' },
       { src: '/images/ACEROSPAISANO-115.webp', alt: 'Optimización en obra' },
     ],
     threeDImage: null,
@@ -429,7 +430,7 @@ const ProductDetail = ({ serviceSlug }) => {
                     <span className="availability-text">{product.availability}</span>
                   </div>
 
-                  {/* Ficha técnica compacta */}
+                  {/* TEMPORALMENTE OCULTO - Ficha técnica
                   <button
                     type="button"
                     className={`datasheet-row ${!product.datasheetPdf ? 'is-disabled' : ''}`}
@@ -447,6 +448,7 @@ const ProductDetail = ({ serviceSlug }) => {
 
                     <span className="datasheet-text">Ficha técnica</span>
                   </button>
+                  */}
 
                   {/* Single CTA Button */}
                   <button className="cta-button primary" onClick={() => navigate('/contacto')}>

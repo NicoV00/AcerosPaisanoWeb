@@ -28,10 +28,10 @@ const modalInfo = {
   "barras-conformadas": {
     name: "Barras lisas y Conformadas",
     items: [
-      { "title": "Certificación", "content": "Producidas bajo los estándares de las normas UNIT 843:95 y UNIT 34:95.", "image": "/images/barras.jpg", "alt": "Construcción y Arquitectura" },
+      { "title": "Certificación", "content": "Producidas bajo los estándares de las normas UNIT 843:95 y UNIT 34:95.", "image": "/images/barras3.webp", "alt": "Construcción y Arquitectura" },
       { "title": "Rendimiento y calidad", "content": "Procesos de calidad garantizada.", "image": "/images/barras1.jpg", "alt": "Industria Energética" },
       { "title": "Cero desperdicio", "content": "Superficie nervurada y soldable en todos los diámetros.", "image": "/images/barras2.jpg", "alt": "Manufactura Industrial" },
-      { "title": "Maximización de recursos", "content": "Barras cortadas a medida.", "image": "/images/barras3.jpg", "alt": "Ahorro" },
+      { "title": "Maximización de recursos", "content": "Barras cortadas a medida.", "image": "/images/ACEROSPAISANO-115.webp", "alt": "Ahorro" },
       { "title": "Logística optimizada", "content": "Barras rectas en diámetros de 6.0mm hasta 32mm.", "image": "/images/barras5.jpg", "alt": "Industria Agropecuaria" }
     ]
   },

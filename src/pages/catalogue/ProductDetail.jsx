@@ -536,7 +536,7 @@ export function ProductDetail() {
           {/* Price */}
           {product.price && <PriceTag>{product.price}</PriceTag>}
 
-          {/* Ficha técnica (sin fondo + líneas grises a la derecha) */}
+          {/* TEMPORALMENTE OCULTO - Ficha técnica
           <SectionTitle sx={{ mt: product.price ? 3 : 1 }}>Ficha técnica</SectionTitle>
 
           <DatasheetRowButton
@@ -561,6 +561,7 @@ export function ProductDetail() {
               <span />
             </DatasheetRightLines>
           </DatasheetRowButton>
+          */}
 
           {/* Description */}
           <SectionTitle>Características</SectionTitle>

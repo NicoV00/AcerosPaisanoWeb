@@ -75,12 +75,12 @@ const products = [
     id: '05',
     name: 'Barras Conformadas',
     slug: 'barras-conformadas',
-    shortDescription: 'Máxima adherencia ADN-420',
-    description: 'Superficie corrugada para óptima adherencia al hormigón.',
-    image: '/images/barras.jpg',
+    shortDescription: 'Máxima adherencia ADN 500 S',
+    description: 'Superficie nervurada para óptima adherencia al hormigón.',
+    image: '/images/barras3.webp',
     specs: {
       'Norma': 'UNIT 34:1995',
-      'Calidad': 'ADN-420',
+      'Calidad': 'ADN 500 S',
       'Diámetros': '6-32mm',
       'Longitud': '12m'
     }
