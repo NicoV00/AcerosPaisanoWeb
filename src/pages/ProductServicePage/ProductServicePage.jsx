@@ -38,9 +38,9 @@ const modalInfo = {
   "mallas-plegadas": {
     name: "Mallas Plegadas",
     items: [
-      { "title": "Estandarización y confiabilidad", "content": "Combina las ventajas del cortado y doblado + mallas.", "image": "/images/plegada.jpg", "alt": "Construcción y Arquitectura" },
+      { "title": "Estandarización y confiabilidad", "content": "Combina las ventajas del cortado y doblado + mallas.", "image": "/images/plegadas-obra2.jpg", "alt": "Construcción y Arquitectura" },
       { "title": "Alta precisión", "content": "Proceso industrializado con plegadora automatizada.", "image": "/images/plegada1.jpg", "alt": "Industria Energética" },
-      { "title": "Optimización en obra", "content": "Elimina procesos manuales y mejora la productividad.", "image": "/images/plegada2.jpg", "alt": "Manufactura Industrial" },
+      { "title": "Optimización en obra", "content": "Elimina procesos manuales y mejora la productividad.", "image": "/images/plegadas-obra1.jpg", "alt": "Manufactura Industrial" },
       { "title": "Soluciones adaptables", "content": "Formatos versátiles para distintas necesidades constructivas.", "image": "/images/plegada3.jpg", "alt": "Industria Agropecuaria" },
       { "title": "Diseño optimizado", "content": "Adaptamos cada detalle a los requerimientos de la obra.", "image": "/images/plegada6.jpg", "alt": "Industria Agropecuaria" }
     ]
