@@ -54,23 +54,30 @@ function App() {
     }
   }, [location]);
 
-  // Google Tag Manager - DEFERRED LOAD (3.5s delay)
-  // This helps minimize main thread work on mobile during the first s to 3s of loading
+  // Google Tag Manager & GA4 - DEFERRED LOAD (3.5s delay)
+  // This helps minimize main thread work on mobile during the first 3.5s of loading
   useEffect(() => {
     const timer = setTimeout(() => {
-      // Create script tag for gtag.js
-      const script = document.createElement('script');
-      script.async = true;
-      script.src = "https://www.googletagmanager.com/gtag/js?id=G-CPCFV23NH9";
-      document.head.appendChild(script);
+      // 1. GA4 Configuration (gtag.js)
+      const scriptGA = document.createElement('script');
+      scriptGA.async = true;
+      scriptGA.src = "https://www.googletagmanager.com/gtag/js?id=G-CPCFV23NH9";
+      document.head.appendChild(scriptGA);
 
-      // Initialize dataLayer
+      // 2. dataLayer and gtag Function
       window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
-      gtag('config', 'G-CPCFV23NH9');
+      window.gtag = function() { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date());
+      window.gtag('config', 'G-CPCFV23NH9');
 
-      console.log("Analytics deferred loading complete");
+      // 3. Google Tag Manager (GTM)
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-KD7JSL9V');
+
+      console.log("Analytics and GTM deferred loading complete");
     }, 3500);
 
     return () => clearTimeout(timer);

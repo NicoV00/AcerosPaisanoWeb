@@ -177,8 +177,9 @@ export const NavBar = ({ whiteBackground = false, disableInitialHidden = false, 
   ];
 
   const handleNavClick = () => {
+    scrollYRef.current = 0; // Reset stored scroll to avoid restoring to a previous position when closing menu
     window.scrollTo(0, 0);
-    if (isMobile) toggleMenu();
+    if (menuOpen) setMenuOpen(false);
   };
 
   return (
@@ -237,7 +238,7 @@ export const NavBar = ({ whiteBackground = false, disableInitialHidden = false, 
             <Button
               component={Link}
               to="/"
-              onClick={() => window.scrollTo(0, 0)}
+              onClick={handleNavClick}
               color="inherit"
               sx={{ padding: "0px", minWidth: "auto" }}
             >
@@ -273,7 +274,7 @@ export const NavBar = ({ whiteBackground = false, disableInitialHidden = false, 
                       key={index}
                       component={Link}
                       to={item.path}
-                      onClick={() => window.scrollTo(0, 0)}
+                      onClick={handleNavClick}
                       color="inherit"
                       sx={{
                         textTransform: "none",
@@ -308,7 +309,7 @@ export const NavBar = ({ whiteBackground = false, disableInitialHidden = false, 
                   <Button
                     component={Link}
                     to="/contacto"
-                    onClick={() => window.scrollTo(0, 0)}
+                    onClick={handleNavClick}
                     color="inherit"
                     sx={{
                       textTransform: "none",

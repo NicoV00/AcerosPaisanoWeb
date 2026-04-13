@@ -164,7 +164,7 @@ export function CatalogueNew() {
         extended: "Utilizado en armaduras premoldeadas, industria y estructuras livianas de hormigón armado de casas y viviendas en altura, entre otras aplicaciones.",
         specs: 'Calidad: 600 Mpa',
         availability: "Stock permanente",
-        image: "/images/ACEROSPAISANO-126.webp",
+        image: "/images/image.png",
         isPrimary: true,
         isClickable: false,
       },

@@ -166,8 +166,8 @@ export const initBarba = () => {
     });
 
     // Re-initialize any third-party scripts
-    if (typeof gtag !== 'undefined') {
-      gtag('config', 'GA_MEASUREMENT_ID', {
+    if (typeof window.gtag !== 'undefined') {
+      window.gtag('config', 'G-CPCFV23NH9', {
         page_path: currentPath
       });
     }
