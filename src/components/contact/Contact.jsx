@@ -297,7 +297,7 @@ const ContactComponent = () => {
                       lineHeight: 1.5,
                     }}
                   >
-                    Ruta 5 Km 25.500
+                    Brigadier Gral. Fructuoso Rivera KM 25.500 (Ruta 5)
                   </Typography>
                   <Typography
                     variant="h4"
@@ -307,7 +307,7 @@ const ContactComponent = () => {
                       lineHeight: 1.5,
                     }}
                   >
-                    Las Piedras, Canelones, Uruguay
+                    15900 18 de Mayo, Departamento de Canelones
                   </Typography>
                 </Grid>
               </Grid>

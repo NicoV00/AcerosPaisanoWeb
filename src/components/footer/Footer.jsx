@@ -6,7 +6,7 @@ import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 
 const mapUrl =
-  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3277.648787543024!2d-56.22233792426595!3d-34.76496757288514!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a1d2c0507031bd%3A0x3200638708617154!2sRuta%205%20Gral.%20Fructuoso%20Rivera%2025500%2C%2090200%20Las%20Piedras%2C%20Departamento%20de%20Canelones!5e0!3m2!1ses-419!2suy!4v1708363561594!5m2!1ses-419!2suy";
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3280.1781069733797!2d-56.2442349109211!3d-34.70068739278997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a1cd0dee1b74d7%3A0x9d3355e7c66adcd2!2sAcerospaisano%20S.A.!5e0!3m2!1ses-419!2suy!4v1776969216181!5m2!1ses-419!2suy";
 
 export const Footer = () => {
   const location = useLocation();
@@ -288,7 +288,7 @@ export const Footer = () => {
 
                   <Typography
                     component="a"
-                    href="tel:23650000"
+                    href="tel:2365 0000"
                     sx={contactLinkSx}
                   >
                     2365 0000
@@ -324,9 +324,9 @@ export const Footer = () => {
                     }}
                     variant="h1"
                   >
-                    Ruta 5 Km 25.500
+                    Brigadier Gral. Fructuoso Rivera KM 25.500
                     <br />
-                    Las Piedras, Canelones
+                    15900 18 de Mayo, Departamento de Canelones
                   </Typography>
 
                   <Box
