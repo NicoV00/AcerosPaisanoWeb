@@ -12,7 +12,9 @@ const modalInfo = {
       { "title": "Calidad", "content": "Procesos de calidad garantizada.", "image": "/images/doblado6.jpg", "alt": "Industria Energética" },
       { "title": "Cero Desperdicio", "content": "Trabajamos con rollos de alambrón que generan cero desperdicio.", "image": "/images/doblado4.jpg", "alt": "Manufactura Industrial" },
       { "title": "Ahorro", "content": "Economía de tiempo y mano de obra.", "image": "/images/doblado7.jpg", "alt": "Ahorro" },
-      { "title": "Asistencia Técnica", "content": "Asesoramiento y seguimiento de obra por técnicos especializados.", "image": "/images/doblado5.jpg", "alt": "Industria Agropecuaria" }
+      { "title": "Asistencia Técnica", "content": "Asesoramiento y seguimiento de obra por técnicos especializados.", "image": "/images/doblado5.jpg", "alt": "Industria Agropecuaria" },
+      { "title": "Trazabilidad", "content": "Identificación de los paquetes facilitando su uso y armado.", "image": "/images/ACEROSPAISANO-037.jpg", "alt": "Identificación de los paquetes" },
+      { "title": "Logística", "content": "Entrega del material de acuerdo al cronograma de obra.", "image": "/images/plegadas-obra3.jpg", "alt": "Entrega del material" }
     ]
   },
   "mallas-electrosoldadas": {
@@ -293,12 +295,12 @@ const ProductServicePage = ({ serviceSlug, onClose }) => {
           <Box
             className='industrias-container'
             sx={{
-              height: '100%',
+              height: '90%',
               width: { xs: '100%', md: '55%', xl: '50%' },
               display: 'flex',
               flexDirection: 'column',
-              justifyContent: 'start',
-              marginTop: { xs: '20px', md: '25px', xl: '35px' },
+              justifyContent: 'end',
+              marginBottom: { xs: '20px', md: '5px', xl: '0px' },
               paddingLeft: { xs: '40px', md: '100px', xl: '120px' },
               paddingRight: { xs: '40px', md: '40px', xl: '60px' },
               color: '#999',

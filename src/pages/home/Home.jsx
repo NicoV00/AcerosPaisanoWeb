@@ -622,7 +622,7 @@ export const Home = () => {
                 }}
               >
                 <Typography
-                  component="h3"
+                  component="h1"
                   variant="inherit"
                   className="line"
                   sx={{
@@ -778,7 +778,7 @@ export const Home = () => {
                     textAlign: "left",
                   }}
                 >
-                  Sistema Industrializado de corte y dobladode varillas que garantiza la precisión de sus armaduras
+                  Sistema Industrializado de corte y doblado de varillas que garantiza la precisión de sus armaduras
                   y el cero desperdicio.
                   Nuestro proceso automatizado reduce hasta un 60% los tiempos de obra, optimizando recursos y garantizando
                   la calidad estructural de su proyecto.
@@ -871,7 +871,7 @@ export const Home = () => {
         <Box onClick={() => setSelectedService("barras-conformadas")} style={{ width: "100%", height: "100%", cursor: "pointer" }}>
           <Box className="interact" sx={{ height: { xs: "40vh", sm: "70vh", md: "75vh", lg: "75vh", xl: "75vh" }, zIndex: 0, backgroundColor: "#000", position: "relative", "&:hover": { backgroundColor: "#EE2737" } }}>
             <div className="interact-item" style={{ zIndex: 0, backgroundColor: "transparent", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "flex-start", gap: "20px", paddingLeft: isMobile ? "30px" : "60px", paddingTop: isMobile ? "40px" : "60px", paddingBottom: isMobile ? "30px" : "60px", paddingRight: isMobile ? "30px" : "60px", height: "100%", boxSizing: "border-box" }}>
-              <h2 style={{ margin: 0, fontSize: isMobile ? "1.5rem" : "2rem", fontWeight: 500, color: "white" }}>Barras Lisas y Conformadas</h2>
+              <h2 style={{ margin: 0, fontSize: isMobile ? "1.5rem" : "2rem", fontWeight: 500, color: "white" }}>Barras Conformadas y Lisas</h2>
               <p style={{ fontSize: "0.95rem", opacity: 0.7, fontFamily: "Inter, sans-serif", fontWeight: 300, maxWidth: isMobile ? "100%" : "100%", lineHeight: "1.6", color: "white", margin: 0, textAlign: "left" }}>
                 Producido de acuerdo con las especificaciones de la norma UNIT 843:95 y UNIT 34:95.
                 Procesos de calidad garantizada. Para mayor practicidad las barras pueden ir cortadas a medida para reducir el costo, generar economía de tiempo y eliminar desperdicios en obra.

@@ -80,7 +80,7 @@ export default function ParallaxBoxColumn({ image, height = "60vh" }) {
           ref={imageRef}
           component="img"
           src={image}
-          alt="Parallax image"
+          alt={"Parallax image - " + image}
           sx={{
             width: "100%",
             height: "120%",

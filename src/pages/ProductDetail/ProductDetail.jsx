@@ -185,6 +185,7 @@ const productsData = {
       'Asesoramiento por técnicos especializados',
       'Entrega del material debidamente identificado facilitando su uso y armado.',
       'Asistencia técnica permanente',
+      'Control de carga y descarga en obra mediante planillas',
     ],
     technicalInfo: {
       Calidad: 'ISO 9001',
@@ -196,8 +197,6 @@ const productsData = {
     availability: 'Entregas a todo el país',
     images: [
       { src: '/images/cortadoYdoblado.jpg', alt: 'Hierro Cortado y Doblado' },
-      { src: '/images/doblado2.jpg', alt: 'Proceso de doblado' },
-      { src: '/images/ACEROSPAISANO-192.jpg', alt: 'Cero desperdicio' },
       { src: '/images/doblado6.jpg', alt: 'Control de calidad' },
       { src: '/images/doblado7.jpg', alt: 'Economía de tiempo' },
     ],
@@ -247,7 +246,7 @@ const productsData = {
   'barras-lisas': {
     id: '06',
     title: 'Barras Lisas',
-    subtitle: 'Calidad certificada para construcción',
+    subtitle: 'Calidad certificada para la industria y la construcción',
     description:
       'Barras de acero de alta calidad con superficie lisa, certificadas bajo normas UNIT 34:1995.',
     datasheetPdf: null,
@@ -276,7 +275,7 @@ const productsData = {
     availability: 'Entregas a todo el país',
     images: [
       { src: '/images/barras1.jpg', alt: 'Barras de calidad' },
-      { src: '/images/barras5.jpg', alt: 'Medidas precisas' },
+      { src: '/images/barras5.png', alt: 'Medidas precisas' },
       { src: '/images/ACEROSPAISANO-119.webp', alt: 'Optimización de recursos' },
     ],
     threeDImage: null,

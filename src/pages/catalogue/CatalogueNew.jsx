@@ -307,7 +307,7 @@ export function CatalogueNew() {
             return (
               <article
                 key={p.id}
-                className="product-item"
+                className={`product-item ${!p.isClickable ? "not-clickable" : ""}`}
                 role="link"
                 tabIndex={0}
                 aria-label={`Ver ${p.title}`}
