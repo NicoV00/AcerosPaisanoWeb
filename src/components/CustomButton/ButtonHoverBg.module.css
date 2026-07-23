@@ -1,6 +1,15 @@
 .buttonHoverBg {
   position: relative;
   overflow: hidden;
+  font-family: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.buttonHoverBg p {
+  font-family: inherit;
+  text-transform: inherit;
+  letter-spacing: inherit;
 }
 
 .buttonHoverBg p {

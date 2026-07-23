@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { Box, Typography } from "@mui/material";
 
-export default function ParallaxVideoBox({ videoSrc, title, titleColor, titleLeft = "2%", titleBottom = "14%" }) {
+export default function ParallaxVideoBox({ videoSrc, title, titleColor, titleLeft = "2%", titleBottom = "14%", height = "75vh", clipPath }) {
   const videoRef = useRef(null);
   const containerRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -82,13 +82,14 @@ export default function ParallaxVideoBox({ videoSrc, title, titleColor, titleLef
       ref={containerRef}
       sx={{
         width: "100vw",
-        height: "75vh",
+        height: height,
         marginTop: "40px",
         marginBottom: "40px",
         position: "relative",
         overflow: "hidden",
         marginLeft: "calc(50% - 50vw)",
         contain: "layout style",
+        clipPath: clipPath,
       }}
     >
       {isVisible && (
@@ -105,7 +106,7 @@ export default function ParallaxVideoBox({ videoSrc, title, titleColor, titleLef
             top: "-10%",
             transform: "translate(-50%, -50%)",
             width: "100vw",
-            height: "100vh",
+            height: "120vh",
             objectFit: "cover",
           }}
         >

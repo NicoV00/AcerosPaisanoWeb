@@ -556,7 +556,7 @@ export const Home = () => {
             }}
             className="catalogue-section"
           >
-            <Typography variant="h1" sx={{ maxWidth: "none", whiteSpace: "nowrap", fontFamily: '"Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace', fontSize: { xs: "13px", md: "18px" }, fontWeight: "400", letterSpacing: "0.01em", lineHeight: "1.3", marginBottom: "20px" }} className="catalogue-description">
+            <Typography variant="h1" sx={{ maxWidth: "none", whiteSpace: "nowrap", fontFamily: '"Inter", "Helvetica Neue", Helvetica, Arial, sans-serif', fontSize: { xs: "14px", md: "20px" }, fontWeight: "400", letterSpacing: "0.01em", lineHeight: "1.3", marginBottom: "20px" }} className="catalogue-description">
               Desde 2011 apoyando a la industria nacional
             </Typography>
             <Box className="catalogue-button-wrapper" sx={{ paddingRight: { xs: "12px", md: "20px" } }}>
@@ -798,11 +798,15 @@ export const Home = () => {
       {/* First Parallax Video — lazy: only mounts when scrolled into view */}
       <div className="Home" style={{ marginTop: "60px", marginBottom: "60px" }} ref={electroVideoRef}>
         {electroVideoVisible ? (
-          <Suspense fallback={<div style={{ height: "75vh", backgroundColor: "#000" }} />}>
-            <ParallaxVideoBox videoSrc="/videos/Electro.mp4" />
+          <Suspense fallback={<div style={{ height: "88vh", backgroundColor: "#000" }} />}>
+            <ParallaxVideoBox
+              videoSrc="/videos/Electro.mp4"
+              height={{ xs: "60vh", md: "88vh" }}
+              clipPath="polygon(150px 0, 100% 0, 100% calc(100% - 70px), calc(100% - 150px) 100%, 0 100%, 0 70px)"
+            />
           </Suspense>
         ) : (
-          <div style={{ height: "75vh", backgroundColor: "#000" }} />
+          <div style={{ height: "88vh", backgroundColor: "#000" }} />
         )}
       </div>
 
