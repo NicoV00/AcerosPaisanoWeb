@@ -338,6 +338,27 @@
   top: calc(-1 * var(--media-mb));
 }
 
+/* ✅ Mobile: sin sistema de líneas en las secciones */
+@media (max-width: 900px) {
+  .about-sub-section .about-panel {
+    border-top: none;
+  }
+
+  .about-sub-section .about-panel::before,
+  .about-sub-section .about-panel::after {
+    display: none;
+  }
+
+  .about-sub-section .subtitle::after {
+    display: none;
+  }
+
+  .about-footer-gap {
+    border-top: none;
+    height: 60px;
+  }
+}
+
 /* ✅ La última sección no se pinea: necesita stacking propio para deslizarse
    POR ENCIMA de la sección pineada anterior (que queda position:fixed) */
 .about-sub-section > .MuiBox-root:last-of-type {

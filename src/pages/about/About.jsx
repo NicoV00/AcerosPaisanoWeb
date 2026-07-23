@@ -110,6 +110,9 @@ export const About = () => {
     pinTriggersRef.current.forEach((t) => t?.kill?.());
     pinTriggersRef.current = [];
 
+    // En mobile no se pinea: las secciones scrollean normal, una tras otra
+    if (window.innerWidth < 900) return;
+
     sectionsRef.current.forEach((sectionEl, idx) => {
       if (!sectionEl) return;
 
@@ -203,10 +206,12 @@ export const About = () => {
             className="about-panel"
             ref={(el) => (sectionsRef.current[index] = el)}
             display="flex"
-            flexDirection={{ xs: "column", md: "row" }}
+            // Mobile: siempre texto arriba y video abajo (las secciones "reverse"
+            // tienen el video primero en el JSX, así que se invierte la columna)
+            flexDirection={{ xs: section.reverse ? "column-reverse" : "column", md: "row" }}
             sx={{
               backgroundColor: "black",
-              minHeight: { xs: "100vh", md: "80vh" },
+              minHeight: { xs: "auto", md: "80vh" },
               justifyContent: "space-between",
               // El contenido (video incluido) termina en la línea de margen
               px: "var(--margin-x)",

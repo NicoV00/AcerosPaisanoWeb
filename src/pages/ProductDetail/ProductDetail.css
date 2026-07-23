@@ -130,7 +130,7 @@
 
 .product-title {
   font-size: clamp(38px, 5.4vw, 62px);
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.05;
   letter-spacing: -0.04em;
   margin: 0 0 20px 0;
@@ -487,7 +487,7 @@
 
 .section-title {
   font-size: 32px;
-  font-weight: 420;
+  font-weight: 520;
   letter-spacing: -0.02em;
   margin: 0 0 8px 0;
   color: var(--ink);
@@ -775,7 +775,7 @@
 
 .cta-title {
   font-size: 28px;
-  font-weight: 420;
+  font-weight: 520;
   letter-spacing: -0.02em;
   margin: 0 0 12px 0;
   color: var(--ink);
