@@ -8,16 +8,23 @@ import {
   FormControlLabel,
   Checkbox,
   Alert,
+  Select,
+  MenuItem,
+  ListItemText,
   useMediaQuery,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
+import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
+import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 import * as emailjs from "emailjs-com";
 
 const ContactComponent = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
-  // Ajustá si tu navbar mide distinto (esto es CLAVE para matar scroll)
   const navOffset = isMobile ? 68 : 88;
 
   const [formData, setFormData] = useState({
@@ -44,6 +51,8 @@ const ContactComponent = () => {
     "Barras Conformadas",
     "Mallas Electrosoldadas",
     "Mallas Plegadas",
+    "Hierro Cortado y Doblado",
+    "Columnas y Vigas",
     "Otros",
   ];
 
@@ -57,14 +66,6 @@ const ContactComponent = () => {
       ...prev,
       [name]: type === "checkbox" ? checked : value,
     }));
-  };
-
-  const handleServiceSelect = (service) => {
-    const updatedServices = formData.services.includes(service)
-      ? formData.services.filter((s) => s !== service)
-      : [...formData.services, service];
-
-    setFormData((prev) => ({ ...prev, services: updatedServices }));
   };
 
   const validateForm = () => {
@@ -121,46 +122,88 @@ const ContactComponent = () => {
   const labelStyle = {
     fontFamily: "'Geist Mono', monospace",
     color: "#8a8a8a",
-    fontSize: { xs: "0.62rem", md: "0.72rem" }, // aumentado
+    fontSize: { xs: "0.62rem", md: "0.7rem" },
     textTransform: "uppercase",
     letterSpacing: "0.13em",
-    mb: 0.45, // más aire
+    mb: 0.6,
     display: "block",
-    lineHeight: 1.4, // más espaciado entre líneas
+    lineHeight: 1.4,
   };
 
   const textFieldStyle = {
-    mb: { xs: 1.15, md: 1.3 }, // más separación
-    "& .MuiInput-underline:before": { borderColor: "#232323" },
+    "& .MuiInput-underline:before": { borderColor: "#d9d9d9" },
     "& .MuiInput-underline:hover:not(.Mui-disabled):before": {
-      borderColor: "#343434",
+      borderColor: "#b5b5b5",
     },
     "& .MuiInput-underline:after": { borderColor: "#EE2737" },
     "& input, & textarea": {
-      color: "#fff",
-      fontSize: { xs: "0.92rem", md: "1.04rem" }, // aumentado
-      py: 0.4,
-      lineHeight: 1.5, // más espaciado
+      color: "#111",
+      fontSize: { xs: "0.92rem", md: "1rem" },
+      py: 0.6,
+      lineHeight: 1.5,
     },
     "& input::placeholder, & textarea::placeholder": {
-      color: "#5f5f5f",
+      color: "#9a9a9a",
       opacity: 1,
     },
   };
 
+  const CARD_PAD_X = { xs: "22px", md: "40px" };
+
+  const infoItems = [
+    {
+      icon: <MailOutlineIcon sx={{ fontSize: 20 }} />,
+      label: "EMAIL",
+      lines: [
+        {
+          text: "ventas@acerospaisano.com.uy",
+          href: "mailto:ventas@acerospaisano.com.uy",
+        },
+      ],
+    },
+    {
+      icon: <LocalPhoneOutlinedIcon sx={{ fontSize: 20 }} />,
+      label: "TELÉFONOS",
+      lines: [
+        {
+          text: "+598 99 914 939 / 2365 0000",
+          href: "https://wa.me/59899914939",
+        },
+      ],
+    },
+    {
+      icon: <PlaceOutlinedIcon sx={{ fontSize: 20 }} />,
+      label: "DIRECCIÓN",
+      lines: [{ text: "Ruta 5 Km 25.500, Las Piedras, Canelones, Uruguay" }],
+    },
+    {
+      icon: <AccessTimeOutlinedIcon sx={{ fontSize: 20 }} />,
+      label: "HORARIO",
+      lines: [{ text: "Oficina: Lun–Vie 8:00–17:00 hs" }],
+    },
+  ];
+
   return (
     <Box
       sx={{
-        height: `calc(100dvh - ${navOffset}px)`,
+        height: { xs: "auto", md: "100dvh" },
+        minHeight: { xs: `calc(100dvh - ${navOffset}px)`, md: "unset" },
         width: "100%",
         boxSizing: "border-box",
-        bgcolor: "#000",
+        position: "relative",
         color: "#fff",
         overflow: "hidden",
-        px: { xs: "16px", sm: "22px", md: "43px" }, // web exacto 43px
-        py: { xs: "10px", sm: "12px", md: "10px" }, // bajo para evitar scroll
+        px: { xs: "16px", sm: "22px", md: "3.5vw" },
+        pt: { xs: "28px", sm: "34px", md: "104px" },
+        pb: { xs: "28px", sm: "34px", md: "36px" },
         display: "flex",
-        alignItems: "stretch",
+        alignItems: "center",
+        backgroundColor: "#0a0e14",
+        backgroundImage:
+          "linear-gradient(rgba(10, 14, 20, 0.6), rgba(10, 14, 20, 0.6)), url('/images/contactnew.webp')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
       }}
     >
       <style>
@@ -168,460 +211,449 @@ const ContactComponent = () => {
           @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
           @import url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/mono.css');
           footer, .footer, #footer { display: none !important; }
-          html, body, #root { height: 100%; overflow: hidden !important; }
-          body { margin: 0; padding: 0; background: #000; }
+          body { margin: 0; padding: 0; background: #0a0e14; }
+          @media (min-width: 900px) {
+            html, body, #root { overflow: hidden !important; height: 100%; }
+            .contact { margin-top: 0 !important; }
+          }
         `}
       </style>
 
       <Grid
         container
-        sx={{
-          width: "100%",
-          height: "100%",
-          margin: 0,
-          minHeight: 0,
-          overflow: "hidden",
-        }}
-        columnSpacing={{ xs: 0, md: 3.5 }}
-        rowSpacing={{ xs: 1.2, md: 0 }}
+        sx={{ width: "100%", margin: 0 }}
+        columnSpacing={{ xs: 0, md: 6 }}
+        rowSpacing={{ xs: 4, md: 0 }}
+        alignItems="center"
       >
-        {/* IZQUIERDA */}
-        <Grid
-          item
-          xs={12}
-          md={7}
-          sx={{
-            display: "flex",
-            alignItems: { xs: "flex-start", md: "center" },
-            minHeight: 0,
-            pr: { xs: 0, md: 1.5 },
-          }}
-        >
-          <Box
+        {/* IZQUIERDA — info */}
+        <Grid item xs={12} md={6}>
+          <Typography
             sx={{
-              width: "100%",
-              height: { xs: "auto", md: "min(560px, 100%)" },
-              minHeight: 0,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: { xs: "flex-start", md: "space-between" },
-              transform: { xs: "none", md: "translateY(18px)" }, // baja visual sin sumar altura
+              fontFamily: "'Geist Mono', monospace",
+              fontSize: { xs: "0.62rem", md: "0.72rem" },
+              letterSpacing: "0.18em",
+              color: "rgba(255,255,255,0.55)",
+              mb: { xs: 1, md: 1.6 },
             }}
           >
-            <Typography
-              component="h1"
-              sx={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: {
-                  xs: "1.96rem",
-                  sm: "2.1rem",
-                  md: "4.35rem",
-                  lg: "5rem",
-                },
-                fontWeight: 400,
-                lineHeight: { xs: 1.0, md: 0.94 },
-                letterSpacing: "-0.045em",
-                mt: 0,
-                mb: { xs: 1.35, md: 0 },
-                maxWidth: { xs: "100%", md: "95%" },
-              }}
-            >
-              Construyendo el futuro del acero en Uruguay.
-            </Typography>
+            CONTACTO
+          </Typography>
 
-            {/* más separado de la frase */}
-            <Box
-              sx={{
-                pt: { xs: 0.25, md: 1.1 },
-                mt: { xs: 0.2, md: 0 },
-                maxWidth: { xs: "100%", md: "96%" },
-              }}
-            >
-              <Grid
-                container
-                columnSpacing={{ xs: 2, sm: 3, md: 5 }}
-                rowSpacing={{ xs: 1.1, md: 0.9 }}
-              >
-                <Grid item xs={12} sm={6}>
-                  <Typography variant="h6" sx={labelStyle}>EMPRESA</Typography>
-                  <Typography
-                    variant="body2"
-                    component="a"
-                    href="mailto:ventas@acerospaisano.com.uy"
-                    sx={{
-                      fontFamily: "'Inter', sans-serif",
-                      mb: 1.2,
-                      fontSize: { xs: "0.88rem", md: "0.98rem" },
-                      lineHeight: 1.5,
-                      color: "#fff",
-                      textDecoration: "none",
-                      transition: "color 0.2s",
-                      "&:hover": {
-                        color: "#EE2737",
-                      },
-                    }}
-                  >
-                    ventas@acerospaisano.com.uy
-                  </Typography>
+          <Typography
+            component="h1"
+            sx={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: { xs: "2.1rem", sm: "2.6rem", md: "3.6rem", lg: "4.2rem" },
+              fontWeight: 400,
+              lineHeight: 1.02,
+              letterSpacing: "-0.04em",
+              mb: { xs: 1.5, md: 2.2 },
+            }}
+          >
+            Contactá Aceros Paisano
+          </Typography>
 
-                  <Typography variant="h6" sx={labelStyle}>TELÉFONOS</Typography>
-                  <Typography
-                    variant="body2"
-                    component="a"
-                    href="https://wa.me/59899914939"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    sx={{
-                      fontFamily: "'Inter', sans-serif",
-                      fontSize: { xs: "0.88rem", md: "0.98rem" },
-                      lineHeight: 1.5,
-                      color: "#fff",
-                      textDecoration: "none",
-                      transition: "color 0.2s",
-                      "&:hover": {
-                        color: "#EE2737",
-                      },
-                    }}
-                  >
-                    +598 99 914 939 / 2365 0000
-                  </Typography>
-                </Grid>
+          <Typography
+            sx={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: { xs: "0.95rem", md: "1.08rem" },
+              lineHeight: 1.65,
+              color: "rgba(255,255,255,0.82)",
+              maxWidth: "500px",
+              mb: { xs: 2.5, md: 4 },
+            }}
+          >
+            Para consultas de venta, pedidos de cotización y consultas
+            generales, completá el formulario a la derecha o comunicate
+            directamente con nuestro equipo comercial. Te respondemos a la
+            brevedad.
+          </Typography>
 
-                <Grid item xs={12} sm={6}>
-                  <Typography variant="h6" sx={labelStyle}>DIRECCIÓN</Typography>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: { xs: 2, md: 2.6 } }}>
+            {infoItems.map((item) => (
+              <Box key={item.label} sx={{ display: "flex", alignItems: "flex-start", gap: 2 }}>
+                <Box
+                  sx={{
+                    width: 44,
+                    height: 44,
+                    flexShrink: 0,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    bgcolor: "#fff",
+                    color: "#111",
+                    borderRadius: "3px",
+                    boxShadow: "0 2px 10px rgba(0,0,0,0.25)",
+                  }}
+                >
+                  {item.icon}
+                </Box>
+                <Box>
                   <Typography
-                    variant="h4"
                     sx={{
-                      fontFamily: "'Inter', sans-serif",
-                      fontSize: { xs: "0.88rem", md: "0.98rem" },
-                      lineHeight: 1.5,
+                      fontFamily: "'Geist Mono', monospace",
+                      fontSize: { xs: "0.6rem", md: "0.68rem" },
+                      letterSpacing: "0.14em",
+                      color: "rgba(255,255,255,0.6)",
+                      mb: 0.3,
                     }}
                   >
-                    Brigadier Gral. Fructuoso Rivera KM 25.500 (Ruta 5)
+                    {item.label}
                   </Typography>
-                  <Typography
-                    variant="h4"
-                    sx={{
-                      fontFamily: "'Inter', sans-serif",
-                      fontSize: { xs: "0.88rem", md: "0.98rem" },
-                      lineHeight: 1.5,
-                    }}
-                  >
-                    15900 18 de Mayo, Departamento de Canelones
-                  </Typography>
-                </Grid>
-              </Grid>
-            </Box>
+                  {item.lines.map((line) =>
+                    line.href ? (
+                      <Typography
+                        key={line.text}
+                        component="a"
+                        href={line.href}
+                        target={line.href.startsWith("http") ? "_blank" : undefined}
+                        rel="noopener noreferrer"
+                        sx={{
+                          display: "block",
+                          fontFamily: "'Inter', sans-serif",
+                          fontSize: { xs: "0.88rem", md: "0.96rem" },
+                          lineHeight: 1.5,
+                          color: "#fff",
+                          textDecoration: "none",
+                          transition: "color 0.2s",
+                          "&:hover": { color: "#EE2737" },
+                        }}
+                      >
+                        {line.text}
+                      </Typography>
+                    ) : (
+                      <Typography
+                        key={line.text}
+                        sx={{
+                          fontFamily: "'Inter', sans-serif",
+                          fontSize: { xs: "0.88rem", md: "0.96rem" },
+                          lineHeight: 1.5,
+                          color: "#fff",
+                        }}
+                      >
+                        {line.text}
+                      </Typography>
+                    )
+                  )}
+                </Box>
+              </Box>
+            ))}
           </Box>
         </Grid>
 
-        {/* DERECHA */}
-        <Grid
-          item
-          xs={12}
-          md={5}
-          sx={{
-            display: "flex",
-            alignItems: { xs: "flex-start", md: "center" },
-            minHeight: 0,
-          }}
-        >
+        {/* DERECHA — card blanca con esquina inferior derecha cortada */}
+        <Grid item xs={12} md={6} sx={{ display: "flex", justifyContent: { md: "flex-end" } }}>
           <Box
+            component="form"
+            onSubmit={handleSubmit}
+            noValidate
             sx={{
+              bgcolor: "#fff",
+              color: "#111",
               width: "100%",
-              height: { xs: "auto", md: "min(560px, 100%)" },
-              minHeight: 0,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "flex-start",
-              transform: { xs: "none", md: "translateY(18px)" }, // baja visual
+              maxWidth: { md: "620px" },
+              mr: { md: "26px" },
+              boxSizing: "border-box",
+              px: CARD_PAD_X,
+              pt: { xs: "26px", md: "32px" },
+              pb: { xs: "40px", md: "54px" },
+              overflow: "hidden",
+              clipPath: {
+                xs: "polygon(0 0, 100% 0, 100% calc(100% - 28px), calc(100% - 28px) 100%, 0 100%)",
+                md: "polygon(0 0, 100% 0, 100% calc(100% - 36px), calc(100% - 36px) 100%, 0 100%)",
+              },
             }}
           >
-            <Box
-              component="img"
-              src="/images/doblado6.jpg"
-              alt="Aceros"
+            <Typography
               sx={{
-                width: "100%",
-                height: { xs: "78px", sm: "92px", md: "136px", lg: "156px" },
-                objectFit: "cover",
-                borderRadius: "2px",
-                filter: "brightness(0.84)",
-                mb: { xs: 1.25, md: 1.5 }, // + aire
-                flexShrink: 0,
-              }}
-            />
-
-            <Box
-              component="form"
-              onSubmit={handleSubmit}
-              noValidate
-              sx={{
-                flex: 1,
-                minHeight: 0,
-                display: "flex",
-                flexDirection: "column",
-                overflow: "hidden",
+                fontFamily: "'Inter', sans-serif",
+                fontSize: { xs: "1.3rem", md: "1.55rem" },
+                fontWeight: 600,
+                letterSpacing: "-0.02em",
+                color: "#111",
+                mb: { xs: 2, md: 2.4 },
               }}
             >
-              {success && (
-                <Alert
-                  severity="success"
-                  sx={{
-                    mb: 1,
-                    bgcolor: "transparent",
-                    color: "#EE2737",
-                    border: "1px solid #EE2737",
-                    borderRadius: 0,
-                    py: 0.2,
-                    "& .MuiAlert-message": {
+              Envianos un mensaje
+            </Typography>
+
+            {success && (
+              <Alert
+                severity="success"
+                sx={{
+                  mb: 2,
+                  bgcolor: "transparent",
+                  color: "#EE2737",
+                  border: "1px solid #EE2737",
+                  borderRadius: 0,
+                  py: 0.2,
+                  "& .MuiAlert-message": {
+                    fontFamily: "'Geist Mono', monospace",
+                    fontSize: "0.74rem",
+                    letterSpacing: "0.05em",
+                  },
+                }}
+              >
+                ¡ENVIADO!
+              </Alert>
+            )}
+
+            <Grid
+              container
+              columnSpacing={{ xs: 1.5, md: 2 }}
+              rowSpacing={{ xs: 1.5, md: 1.6 }}
+            >
+              <Grid item xs={12} sm={6}>
+                <Typography sx={labelStyle}>NOMBRE</Typography>
+                <TextField
+                  fullWidth
+                  variant="standard"
+                  placeholder="Nombre"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  error={!!errors.name}
+                  sx={textFieldStyle}
+                />
+                {!!errors.name && (
+                  <Typography
+                    sx={{
+                      color: "#EE2737",
+                      fontSize: "0.68rem",
+                      mt: 0.3,
                       fontFamily: "'Geist Mono', monospace",
-                      fontSize: "0.74rem",
-                      letterSpacing: "0.05em",
+                    }}
+                  >
+                    {errors.name}
+                  </Typography>
+                )}
+              </Grid>
+
+              <Grid item xs={12} sm={6}>
+                <Typography sx={labelStyle}>EMAIL</Typography>
+                <TextField
+                  fullWidth
+                  variant="standard"
+                  placeholder="Email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  error={!!errors.email}
+                  sx={textFieldStyle}
+                />
+                {!!errors.email && (
+                  <Typography
+                    sx={{
+                      color: "#EE2737",
+                      fontSize: "0.68rem",
+                      mt: 0.3,
+                      fontFamily: "'Geist Mono', monospace",
+                    }}
+                  >
+                    {errors.email}
+                  </Typography>
+                )}
+              </Grid>
+
+              <Grid item xs={12}>
+                <Typography sx={labelStyle}>EMPRESA</Typography>
+                <TextField
+                  fullWidth
+                  variant="standard"
+                  placeholder="Opcional"
+                  name="company"
+                  value={formData.company}
+                  onChange={handleChange}
+                  sx={textFieldStyle}
+                />
+              </Grid>
+
+              <Grid item xs={12}>
+                <Typography sx={labelStyle}>PRODUCTOS Y SERVICIOS</Typography>
+                <Select
+                  multiple
+                  fullWidth
+                  displayEmpty
+                  variant="standard"
+                  name="services"
+                  value={formData.services}
+                  onChange={handleChange}
+                  error={!!errors.services}
+                  IconComponent={KeyboardArrowDownRoundedIcon}
+                  renderValue={(selected) =>
+                    selected.length === 0 ? (
+                      <span style={{ color: "#9a9a9a" }}>
+                        Seleccioná uno o varios
+                      </span>
+                    ) : (
+                      selected.join(", ")
+                    )
+                  }
+                  MenuProps={{
+                    disableScrollLock: true,
+                    transitionDuration: 260,
+                    anchorOrigin: { vertical: "bottom", horizontal: "left" },
+                    transformOrigin: { vertical: "top", horizontal: "left" },
+                    PaperProps: {
+                      elevation: 0,
+                      sx: {
+                        mt: 1,
+                        borderRadius: "6px",
+                        border: "1px solid #ececec",
+                        boxShadow: "0 12px 34px rgba(0,0,0,0.14)",
+                        maxHeight: 300,
+                        "& .MuiList-root": { py: 0.5 },
+                        "& .MuiMenuItem-root": {
+                          fontFamily: "'Inter', sans-serif",
+                          fontSize: "0.9rem",
+                          py: 1,
+                          transition: "background-color 0.18s ease",
+                          "&:hover": { bgcolor: "#f5f5f5" },
+                          "&.Mui-selected": { bgcolor: "#fbeaec" },
+                          "&.Mui-selected:hover": { bgcolor: "#f7dfe2" },
+                        },
+                      },
+                    },
+                  }}
+                  sx={{
+                    "&:before": { borderColor: "#d9d9d9" },
+                    "&:hover:not(.Mui-disabled):before": { borderColor: "#b5b5b5" },
+                    "&:after": { borderColor: "#EE2737" },
+                    "& .MuiSelect-select": {
+                      color: "#111",
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: { xs: "0.92rem", md: "1rem" },
+                      py: 0.6,
+                    },
+                    "& .MuiSelect-icon": {
+                      color: "#888",
+                      transition: "transform 0.28s ease",
+                    },
+                    "& .MuiSelect-icon.MuiSelect-iconOpen": {
+                      transform: "rotate(180deg)",
                     },
                   }}
                 >
-                  ¡ENVIADO!
-                </Alert>
-              )}
-
-              <Grid
-                container
-                columnSpacing={{ xs: 1.2, md: 1.6 }}
-                rowSpacing={{ xs: 0.55, md: 0.75 }} // DESAPRETADO
-                sx={{ minHeight: 0 }}
-              >
-                <Grid item xs={6}>
-                  <Typography sx={labelStyle}>NOMBRE</Typography>
-                  <TextField
-                    fullWidth
-                    variant="standard"
-                    placeholder="Nombre"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    error={!!errors.name}
-                    sx={textFieldStyle}
-                  />
-                  {!!errors.name && (
-                    <Typography
-                      sx={{
-                        color: "#EE2737",
-                        fontSize: "0.68rem",
-                        mt: -0.35,
-                        mb: 0.2,
-                        fontFamily: "'Geist Mono', monospace",
-                      }}
-                    >
-                      {errors.name}
-                    </Typography>
-                  )}
-                </Grid>
-
-                <Grid item xs={6}>
-                  <Typography sx={labelStyle}>EMAIL</Typography>
-                  <TextField
-                    fullWidth
-                    variant="standard"
-                    placeholder="Email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    error={!!errors.email}
-                    sx={textFieldStyle}
-                  />
-                  {!!errors.email && (
-                    <Typography
-                      sx={{
-                        color: "#EE2737",
-                        fontSize: "0.68rem",
-                        mt: -0.35,
-                        mb: 0.2,
-                        fontFamily: "'Geist Mono', monospace",
-                      }}
-                    >
-                      {errors.email}
-                    </Typography>
-                  )}
-                </Grid>
-
-                <Grid item xs={12}>
-                  <Typography sx={labelStyle}>EMPRESA</Typography>
-                  <TextField
-                    fullWidth
-                    variant="standard"
-                    placeholder="Opcional"
-                    name="company"
-                    value={formData.company}
-                    onChange={handleChange}
-                    sx={textFieldStyle}
-                  />
-                </Grid>
-
-                <Grid item xs={12}>
-                  <Typography sx={labelStyle}>PRODUCTOS Y SERVICIOS</Typography>
-
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexWrap: "wrap",
-                      columnGap: { xs: 0.65, md: 0.75 },
-                      rowGap: { xs: 0.6, md: 0.7 },
-                      mt: 0.45,
-                      mb: 0.4,
-                    }}
-                  >
-                    {servicesList.map((s) => {
-                      const selected = formData.services.includes(s);
-                      return (
-                        <Button
-                          key={s}
-                          type="button"
-                          onClick={() => handleServiceSelect(s)}
-                          sx={{
-                            fontFamily: "'Geist Mono', monospace",
-                            fontSize: { xs: "0.56rem", md: "0.66rem" }, // + tamaño
-                            lineHeight: 1.08,
-                            color: selected ? "#fff" : "#7d7d7d",
-                            bgcolor: selected ? "#EE2737" : "transparent",
-                            border: selected
-                              ? "1px solid #EE2737"
-                              : "1px solid #2a2a2a",
-                            borderRadius: "2px",
-                            px: { xs: 0.95, md: 1.35 },
-                            py: { xs: 0.22, md: 0.28 }, // + alto
-                            minWidth: "unset",
-                            minHeight: "unset",
-                            textTransform: "none",
-                            whiteSpace: "nowrap",
-                            "&:hover": {
-                              bgcolor: selected ? "#EE2737" : "#111",
-                              color: "#fff",
-                            },
-                          }}
-                        >
-                          {s}
-                        </Button>
-                      );
-                    })}
-                  </Box>
-
-                  {!!errors.services && (
-                    <Typography
-                      sx={{
-                        color: "#EE2737",
-                        fontSize: "0.68rem",
-                        mt: 0.15,
-                        fontFamily: "'Geist Mono', monospace",
-                      }}
-                    >
-                      {errors.services}
-                    </Typography>
-                  )}
-                </Grid>
-
-                <Grid item xs={12}>
-                  <Typography sx={labelStyle}>MENSAJE</Typography>
-                  <TextField
-                    fullWidth
-                    variant="standard"
-                    placeholder="Descripción del proyecto..."
-                    name="message"
-                    multiline
-                    rows={1}
-                    value={formData.message}
-                    onChange={handleChange}
-                    sx={{
-                      ...textFieldStyle,
-                      mb: { xs: 0.8, md: 0.95 },
-                      "& textarea": {
-                        minHeight: "24px !important",
-                        resize: "none",
-                      },
-                    }}
-                  />
-                </Grid>
-
-                <Grid item xs={12}>
-                  <Box
-                    sx={{
-                      mt: { xs: 0.65, md: 0.9 }, // + separación arriba del row final
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: { xs: "stretch", md: "center" },
-                      flexDirection: { xs: "column", md: "row" },
-                      gap: { xs: 1, md: 1.4 },
-                    }}
-                  >
-                    <Box sx={{ alignSelf: "flex-start" }}>
-                      <FormControlLabel
-                        sx={{ ml: -0.45, mr: 0 }}
-                        control={
-                          <Checkbox
-                            size="small"
-                            sx={{
-                              color: "#333",
-                              p: 0.5,
-                              "&.Mui-checked": { color: "#EE2737" },
-                            }}
-                            checked={formData.agree}
-                            onChange={handleChange}
-                            name="agree"
-                          />
-                        }
-                        label={
-                          <Typography
-                            sx={{
-                              color: errors.agree ? "#EE2737" : "#555",
-                              fontFamily: "'Geist Mono', monospace",
-                              fontSize: { xs: "0.52rem", md: "0.58rem" }, // + tamaño
-                              lineHeight: 1.15,
-                              letterSpacing: "0.03em",
-                            }}
-                          >
-                            ACEPTO EL PROCESAMIENTO DE DATOS
-                          </Typography>
-                        }
+                  {servicesList.map((s) => (
+                    <MenuItem key={s} value={s}>
+                      <Checkbox
+                        checked={formData.services.includes(s)}
+                        size="small"
+                        sx={{
+                          p: 0.5,
+                          mr: 1,
+                          color: "#ccc",
+                          "&.Mui-checked": { color: "#EE2737" },
+                        }}
                       />
-                      {!!errors.agree && (
-                        <Typography
-                          sx={{
-                            color: "#EE2737",
-                            fontSize: "0.68rem",
-                            mt: -0.2,
-                            ml: 0.2,
-                            fontFamily: "'Geist Mono', monospace",
-                          }}
-                        >
-                          {errors.agree}
-                        </Typography>
-                      )}
-                    </Box>
+                      <ListItemText primary={s} />
+                    </MenuItem>
+                  ))}
+                </Select>
+                {!!errors.services && (
+                  <Typography
+                    sx={{
+                      color: "#EE2737",
+                      fontSize: "0.68rem",
+                      mt: 0.3,
+                      fontFamily: "'Geist Mono', monospace",
+                    }}
+                  >
+                    {errors.services}
+                  </Typography>
+                )}
+              </Grid>
 
-                    <Button
-                      type="submit"
-                      variant="contained"
+              <Grid item xs={12}>
+                <Typography sx={labelStyle}>MENSAJE</Typography>
+                <TextField
+                  fullWidth
+                  variant="standard"
+                  placeholder="Descripción del proyecto..."
+                  name="message"
+                  multiline
+                  rows={2}
+                  value={formData.message}
+                  onChange={handleChange}
+                  sx={{ ...textFieldStyle, "& textarea": { resize: "none" } }}
+                />
+              </Grid>
+
+              <Grid item xs={12}>
+                <FormControlLabel
+                  sx={{ ml: -0.45, mr: 0 }}
+                  control={
+                    <Checkbox
+                      size="small"
                       sx={{
-                        bgcolor: "#fff",
-                        color: "#000",
-                        px: { xs: 3.2, md: 5.2 },
-                        py: { xs: 0.9, md: 1.02 },
-                        borderRadius: 0,
+                        color: "#bbb",
+                        p: 0.5,
+                        "&.Mui-checked": { color: "#EE2737" },
+                      }}
+                      checked={formData.agree}
+                      onChange={handleChange}
+                      name="agree"
+                    />
+                  }
+                  label={
+                    <Typography
+                      sx={{
+                        color: errors.agree ? "#EE2737" : "#888",
                         fontFamily: "'Geist Mono', monospace",
-                        fontWeight: 700,
-                        fontSize: { xs: "0.66rem", md: "0.75rem" }, // + tamaño
-                        letterSpacing: "0.05em",
-                        width: { xs: "100%", md: "auto" },
-                        minWidth: { md: "190px" },
-                        "&:hover": { bgcolor: "#EE2737", color: "#fff" },
+                        fontSize: { xs: "0.54rem", md: "0.6rem" },
+                        lineHeight: 1.2,
+                        letterSpacing: "0.03em",
                       }}
                     >
-                      ENVIAR CONSULTA
-                    </Button>
-                  </Box>
-                </Grid>
+                      ACEPTO EL PROCESAMIENTO DE DATOS
+                    </Typography>
+                  }
+                />
+                {!!errors.agree && (
+                  <Typography
+                    sx={{
+                      color: "#EE2737",
+                      fontSize: "0.68rem",
+                      mt: -0.2,
+                      ml: 0.2,
+                      fontFamily: "'Geist Mono', monospace",
+                    }}
+                  >
+                    {errors.agree}
+                  </Typography>
+                )}
               </Grid>
-            </Box>
+            </Grid>
+
+            {/* Botón separado dentro de la card, con su propio corte
+                inferior derecho alineado (misma pendiente) al de la card */}
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              disableElevation
+              sx={{
+                mt: { xs: 2, md: 2.2 },
+                bgcolor: "#111",
+                color: "#fff",
+                py: { xs: 1.5, md: 1.7 },
+                borderRadius: 0,
+                boxShadow: "none",
+                fontFamily: "'Geist Mono', monospace",
+                fontWeight: 700,
+                fontSize: { xs: "0.7rem", md: "0.8rem" },
+                letterSpacing: "0.08em",
+                transition: "background-color 0.25s ease",
+                clipPath: {
+                  xs: "polygon(0 0, 100% 0, 100% calc(100% - 22px), calc(100% - 22px) 100%, 0 100%)",
+                  md: "polygon(0 0, 100% 0, 100% calc(100% - 28px), calc(100% - 28px) 100%, 0 100%)",
+                },
+                "&:hover": { bgcolor: "#EE2737", boxShadow: "none" },
+              }}
+            >
+              ENVIAR CONSULTA
+            </Button>
           </Box>
         </Grid>
       </Grid>

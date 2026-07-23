@@ -129,8 +129,8 @@
 }
 
 .product-title {
-  font-size: clamp(42px, 6vw, 72px);
-  font-weight: 500;
+  font-size: clamp(38px, 5.4vw, 62px);
+  font-weight: 400;
   line-height: 1.05;
   letter-spacing: -0.04em;
   margin: 0 0 20px 0;
@@ -254,40 +254,42 @@
 .info-availability {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 16px;
+  gap: 10px;
+  padding: 10px 14px;
   background: var(--bg);
   border: 1px solid var(--hair);
+  border-radius: 2px;
   margin-bottom: 18px;
 }
 
-.availability-indicator {
-  width: 8px;
-  height: 8px;
+.info-availability::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
   background: var(--success);
-  box-shadow: 0 0 12px var(--success);
-  animation: pulse 2s ease-in-out infinite;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--success) 18%, transparent);
   flex-shrink: 0;
 }
 
-@keyframes pulse {
-
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0.5;
-  }
+.info-availability::after {
+  content: "UY";
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  border: 1px solid var(--hair);
+  border-radius: 2px;
+  padding: 2px 6px;
 }
 
 .availability-text {
   font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--muted);
+  font-size: 11.5px;
+  color: var(--ink);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
 }
 
 /* ============================================
@@ -479,12 +481,12 @@
 }
 
 .section-header {
-  margin-bottom: 60px;
+  margin-bottom: 32px;
 }
 
 .section-title {
   font-size: 32px;
-  font-weight: 520;
+  font-weight: 420;
   letter-spacing: -0.02em;
   margin: 0 0 8px 0;
   color: var(--ink);
@@ -641,8 +643,8 @@
    FEATURES SECTION
    ============================================ */
 .features-section {
-  margin-top: 100px;
-  padding-top: 80px;
+  margin-top: 48px;
+  padding-top: 40px;
   border-top: 1px solid var(--hair2);
 }
 
@@ -660,6 +662,7 @@
 
 .feature-item {
   display: flex;
+  align-items: center;
   gap: 16px;
   padding: 20px;
   background: var(--bg-elevated);
@@ -678,9 +681,14 @@
 
 .feature-icon {
   color: var(--red);
-  font-size: 18px;
-  font-weight: bold;
   flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-icon svg {
+  display: block;
 }
 
 .feature-text {
@@ -694,8 +702,8 @@
    SPECIFICATIONS SECTION
    ============================================ */
 .specifications-section {
-  margin-top: 100px;
-  padding-top: 80px;
+  margin-top: 48px;
+  padding-top: 40px;
   border-top: 1px solid var(--hair2);
 }
 
@@ -766,7 +774,7 @@
 
 .cta-title {
   font-size: 28px;
-  font-weight: 520;
+  font-weight: 420;
   letter-spacing: -0.02em;
   margin: 0 0 12px 0;
   color: var(--ink);
@@ -1047,5 +1055,235 @@
 
   .cta-section .cta-button {
     min-width: 100%;
+  }
+}
+/* ============================================
+   ROAD DATA SECTION (Pasadores)
+   ============================================ */
+.road-data-section {
+  padding: 48px 0;
+  border-top: 1px solid var(--hair2);
+}
+
+.road-data-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: 20px;
+  align-items: stretch;
+}
+
+.road-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--hair);
+  border-radius: 2px;
+  padding: 24px;
+  overflow: hidden;
+}
+
+.road-card-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--hair2);
+}
+
+.road-card-head-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 2px;
+  border: 1px solid var(--red);
+  color: var(--red);
+  flex-shrink: 0;
+}
+
+.road-card-title {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  margin: 0;
+}
+
+.road-ref-row {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.road-ref-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 140px;
+  padding: 10px 12px;
+  border: 1px solid var(--hair);
+  border-radius: 2px;
+  background: var(--bg-subtle);
+}
+
+.road-ref-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 2px;
+  border: 1px solid var(--red);
+  color: var(--red);
+  flex-shrink: 0;
+}
+
+.road-ref-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+
+.road-ref-value {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--ink);
+}
+
+.road-data-grid-single {
+  grid-template-columns: 1fr;
+}
+
+.road-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.road-th-group {
+  text-align: center;
+  color: var(--red);
+}
+
+.road-table thead tr + tr th {
+  border-bottom: 1px solid var(--red);
+  padding-top: 8px;
+  font-weight: 500;
+  font-size: 10px;
+}
+
+.road-td-mono {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--ink);
+}
+
+/* Grupo "Diámetros (mm)": columnas 6-8 marcadas como bloque aparte */
+.road-table-trelizas th:nth-child(6),
+.road-table-trelizas thead tr + tr th,
+.road-table-trelizas td:nth-child(n + 6) {
+  text-align: center;
+}
+
+.road-table-trelizas th.road-th-group,
+.road-table-trelizas thead tr + tr th:first-child,
+.road-table-trelizas td:nth-child(6) {
+  border-left: 1px solid var(--hair);
+}
+
+.road-table th {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: left;
+  color: var(--muted);
+  background: transparent;
+  padding: 0 12px 10px;
+  border-bottom: 1px solid var(--red);
+}
+
+.road-table td {
+  padding: 12px;
+  font-size: 13.5px;
+  color: var(--ink);
+  border-bottom: 1px solid var(--hair);
+  vertical-align: middle;
+}
+
+.road-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.road-table tbody tr:hover {
+  background: var(--bg-subtle);
+}
+
+.road-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.road-td-accent {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--red);
+  white-space: nowrap;
+}
+
+.road-td-muted {
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.road-param {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.road-param-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 2px;
+  border: 1px solid var(--hair);
+  background: var(--bg-subtle);
+  color: var(--red);
+  flex-shrink: 0;
+}
+
+@media (max-width: 960px) {
+  .road-data-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .road-card {
+    padding: 20px;
+  }
+
+  .road-table-dims {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .road-table th,
+  .road-table td {
+    padding: 12px;
+    font-size: 13.5px;
   }
 }

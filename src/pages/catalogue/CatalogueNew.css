@@ -102,14 +102,22 @@ body[data-nav-tone="dark"] .nav-bar {
 
 /* Container */
 .catalogue-container {
-  padding: 12px 24px 56px;
+  padding: 32px 24px 56px;
+}
+
+/* Header row: título a la izquierda, toggle a la derecha (arriba de la línea) */
+.catalogue-header-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
 }
 
 /* Toggle */
 .view-controls {
   display: flex;
   justify-content: flex-end;
-  margin: 10px 0 16px;
+  margin: 0 0 6px;
 }
 
 .view-toggle {
@@ -123,18 +131,23 @@ body[data-nav-tone="dark"] .nav-bar {
 .toggle-btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 14px;
+  gap: 6px;
+  padding: 7px 11px;
   background: transparent;
   border: none;
   color: rgba(11, 11, 11, 0.7);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.07em;
   cursor: pointer;
   border-radius: 8px;
   transition: background 0.16s ease, color 0.16s ease;
+}
+
+.toggle-btn svg {
+  width: 16px;
+  height: 16px;
 }
 
 .toggle-btn.active {
@@ -168,6 +181,11 @@ body[data-nav-tone="dark"] .nav-bar {
 .products-container.grid {
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
+}
+
+.products-container.grid .product-item {
+  display: flex;
+  flex-direction: column;
 }
 
 /* Card */
@@ -204,12 +222,12 @@ body[data-nav-tone="dark"] .nav-bar {
 .product-image-container {
   background: #ded9d5;
   overflow: hidden;
-  height: 220px;
+  height: 260px;
 }
 
 .products-container.list .product-image-container {
   height: 100%;
-  min-height: 220px;
+  min-height: 190px;
 }
 
 .product-image {
@@ -225,7 +243,7 @@ body[data-nav-tone="dark"] .nav-bar {
 
 /* Content */
 .product-content {
-  padding: 16px 16px 14px;
+  padding: 16px 16px 20px;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -233,8 +251,13 @@ body[data-nav-tone="dark"] .nav-bar {
   min-height: 28vh;
 }
 
+.products-container.grid .product-content {
+  min-height: auto;
+}
+
 .products-container.list .product-content {
   padding: 18px 16px 16px;
+  min-height: 28vh;
 }
 
 /* Pills */
@@ -425,6 +448,21 @@ body[data-nav-tone="dark"] .nav-bar {
   color: rgba(11, 11, 11, 0.68);
   font-size: 13px;
   line-height: 1.55;
+  max-width: 68ch;
+}
+
+/* En lista, arrancar en la misma línea del rótulo "Descripción extendida" */
+.products-container.list .extended-panel {
+  margin-top: -28px;
+}
+
+.products-container.list .extended-panel.open {
+  max-height: 120px;
+}
+
+.products-container.list .extended-text {
+  margin: 0 0 0 170px;
+  max-width: 60ch;
 }
 
 /* PDF icon row */

@@ -100,6 +100,9 @@ function App() {
           <Route path="/hierro-cortado-y-doblado" element={<ProductDetail serviceSlug="hierro-cortado-y-doblado" />} />
           <Route path="/barras-conformadas" element={<ProductDetail serviceSlug="barras-conformadas" />} />
           <Route path="/barras-lisas" element={<ProductDetail serviceSlug="barras-lisas" />} />
+          <Route path="/armaduras-de-pilotes" element={<ProductDetail serviceSlug="armaduras-de-pilotes" />} />
+          <Route path="/pasadores" element={<ProductDetail serviceSlug="pasadores" />} />
+          <Route path="/trelizas" element={<ProductDetail serviceSlug="trelizas" />} />
 
           <Route path="/productos/:slug" element={<ProductDetail />} />
 

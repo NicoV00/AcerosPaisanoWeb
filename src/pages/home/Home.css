@@ -221,12 +221,20 @@
   margin-top: 150px;
   margin-right: 0;
   margin-left: 0;
-  padding-left: 0;
-  padding-right: 0;
+  padding-left: 3.5vw;
+  padding-right: 3.5vw;
   width: 100%;
+  box-sizing: border-box;
   color: white;
   font-size: 5rem;
   z-index: 1000;
+}
+
+@media (max-width: 899px) {
+  .home-bottom-row {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
 }
 
 .about-intro {
@@ -251,7 +259,7 @@
 
 .line {
   display: block;
-  color: #3a3a3a;
+  color: #fff !important;
   margin: 0;
 }
 

@@ -167,7 +167,7 @@ export const Footer = () => {
         <Box
           sx={{
             bgcolor: COLORS.cardBg,
-            borderRadius: { xs: "28px", md: "40px" },
+            borderRadius: { xs: "8px", md: "12px" },
             p: { xs: 3, sm: 4, md: 8, lg: 10 },
             boxShadow: isLightView
               ? "0 10px 40px rgba(0,0,0,0.03)"
@@ -254,6 +254,9 @@ export const Footer = () => {
                   <NavLink to="/productos/hierro-cortado-y-doblado">
                     Hierro cortado y doblado
                   </NavLink>
+                  <NavLink to="/productos/armaduras-de-pilotes">Armaduras de Pilotes</NavLink>
+                  <NavLink to="/productos/pasadores">Pasadores</NavLink>
+                  <NavLink to="/productos/trelizas">Trelizas</NavLink>
                   <NavLink to="/productos/barras-conformadas">Barras Conformadas</NavLink>
                   <NavLink to="/productos/barras-lisas">Barras Lisas</NavLink>
                 </Grid>

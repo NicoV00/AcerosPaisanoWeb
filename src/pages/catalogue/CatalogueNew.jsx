@@ -131,6 +131,51 @@ export function CatalogueNew() {
         isClickable: true,
       },
       {
+        id: 10,
+        slug: "armaduras-de-pilotes",
+        code: "AP-008",
+        category: "Armaduras",
+        title: "Armaduras de pilotes",
+        description: "Armaduras cilíndricas prefabricadas para pilotes de fundación, listas para colocar en obra.",
+        extended:
+          "Fabricadas según los planos del proyecto, con barras longitudinales y zuncho helicoidal de paso uniforme. Eliminan el armado manual en obra, garantizan la geometría de la jaula y reducen los tiempos de fundación.",
+        specs: "Diámetros y largos según proyecto",
+        availability: "Bajo pedido",
+        image: "/images/pilotes 1.webp",
+        isPrimary: true,
+        isClickable: true,
+      },
+      {
+        id: 11,
+        slug: "pasadores",
+        code: "PS-009",
+        category: "Barras",
+        title: "Pasadores",
+        description: "Barras lisas cortadas a medida para transferencia de cargas en juntas de pavimentos de hormigón.",
+        extended:
+          "Permiten la transferencia de cargas entre losas y el movimiento horizontal en las juntas, evitando escalonamientos. Se entregan cortados a la medida exacta del proyecto, con extremos de corte limpio.",
+        specs: "Corte a medida, extremos sin rebabas",
+        availability: "Bajo pedido",
+        image: "/images/pasadores.webp",
+        isPrimary: true,
+        isClickable: true,
+      },
+      {
+        id: 12,
+        slug: "trelizas",
+        code: "TR-010",
+        category: "Armaduras",
+        title: "Trelizas",
+        description: "Armaduras triangulares electrosoldadas para prelosas, viguetas y elementos premoldeados.",
+        extended:
+          "Estructura triangular de tres cordones de acero unidos por diagonales electrosoldadas. Aportan rigidez a los elementos prefabricados durante la manipulación, el transporte y el hormigonado.",
+        specs: "Alturas y largos según proyecto",
+        availability: "Bajo pedido",
+        image: "/images/trelizasss.webp",
+        isPrimary: true,
+        isClickable: true,
+      },
+      {
         id: 5,
         slug: "barras-conformadas",
         code: "BC-005",
@@ -267,39 +312,43 @@ export function CatalogueNew() {
 
       <section className="catalogue-header" style={{ marginTop: '40px' }}>
         <Container maxWidth="xl">
-          <h4 ref={titleRef} className="catalogue-title">
-            Catálogo
-          </h4>
-          <p className="catalogue-subtitle">Soluciones industriales en acero para construcción</p>
+          <div className="catalogue-header-row">
+            <div>
+              <h4 ref={titleRef} className="catalogue-title">
+                Catálogo
+              </h4>
+              <p className="catalogue-subtitle">Soluciones industriales en acero para construcción</p>
+            </div>
+
+            {!isMobile && (
+              <div className="view-controls">
+                <div className="view-toggle" aria-label="Cambiar vista del catálogo">
+                  <button
+                    type="button"
+                    className={`toggle-btn ${viewMode === "list" ? "active" : ""}`}
+                    onClick={() => setViewMode("list")}
+                    aria-pressed={viewMode === "list"}
+                  >
+                    <ListViewIcon />
+                    <span>Lista</span>
+                  </button>
+                  <button
+                    type="button"
+                    className={`toggle-btn ${viewMode === "grid" ? "active" : ""}`}
+                    onClick={() => setViewMode("grid")}
+                    aria-pressed={viewMode === "grid"}
+                  >
+                    <GridViewIcon />
+                    <span>Grilla</span>
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
         </Container>
       </section>
 
       <Container maxWidth="xl" className="catalogue-container">
-        {!isMobile && (
-          <div className="view-controls">
-            <div className="view-toggle" aria-label="Cambiar vista del catálogo">
-              <button
-                type="button"
-                className={`toggle-btn ${viewMode === "list" ? "active" : ""}`}
-                onClick={() => setViewMode("list")}
-                aria-pressed={viewMode === "list"}
-              >
-                <ListViewIcon />
-                <span>List view</span>
-              </button>
-              <button
-                type="button"
-                className={`toggle-btn ${viewMode === "grid" ? "active" : ""}`}
-                onClick={() => setViewMode("grid")}
-                aria-pressed={viewMode === "grid"}
-              >
-                <GridViewIcon />
-                <span>Grid view</span>
-              </button>
-            </div>
-          </div>
-        )}
-
         <div ref={productsRef} className={`products-container ${viewMode}`}>
           {products.map((p) => {
             const isOpen = !!openExtended[p.id];

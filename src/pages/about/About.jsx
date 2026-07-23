@@ -61,6 +61,7 @@ export const About = () => {
   // HERO refs
   const titleRef = useRef(null);
   const taglineRef = useRef(null);
+  const gridImgRef = useRef(null);
 
   // Guardamos SOLO los triggers creados acá
   const pinTriggersRef = useRef([]);
@@ -83,6 +84,22 @@ export const About = () => {
           { y: 0, opacity: 1, duration: 1.0, ease: "power3.out", delay: 0.28 }
         );
       }
+
+      if (gridImgRef.current) {
+        // Revelado desde el centro: la imagen se descubre con un círculo
+        // que crece desde el punto central hasta cubrirla por completo.
+        gsap.fromTo(
+          gridImgRef.current,
+          { clipPath: "circle(0% at 50% 50%)", scale: 1.08 },
+          {
+            clipPath: "circle(75% at 50% 50%)",
+            scale: 1,
+            duration: 1.6,
+            ease: "power3.inOut",
+            delay: 0.35,
+          }
+        );
+      }
     });
 
     return () => ctx.revert();
@@ -96,7 +113,10 @@ export const About = () => {
     sectionsRef.current.forEach((sectionEl, idx) => {
       if (!sectionEl) return;
 
+      // La última sección NO se pinea: scrollea normal y el footer la sigue
+      // (evita el salto y el espacio negro variable antes del footer)
       const isLast = idx === sectionsRef.current.length - 1;
+      if (isLast) return;
 
       const trigger = ScrollTrigger.create({
         trigger: sectionEl,
@@ -104,8 +124,7 @@ export const About = () => {
         pin: true,
         pinSpacing: false,
         anticipatePin: 1,
-        end: () =>
-          "+=" + Math.round(window.innerHeight * (isLast ? 1.0 : 1)),
+        end: () => "+=" + Math.round(window.innerHeight),
         invalidateOnRefresh: true,
       });
 
@@ -130,47 +149,49 @@ export const About = () => {
 
       {/* HERO */}
       <header className="about-hero">
-        <div className="about-hero__media" aria-hidden="true">
-          <img src="/images/malla10.jpg" alt="" />
+        {/* Marco de líneas que encapsula todo el hero */}
+        <span className="about-hero__frameline about-hero__frameline--top" aria-hidden="true" />
+        <span className="about-hero__frameline about-hero__frameline--v about-hero__frameline--v1" aria-hidden="true" />
+        <span className="about-hero__frameline about-hero__frameline--v about-hero__frameline--v2" aria-hidden="true" />
+        <span className="about-hero__frameline about-hero__frameline--v about-hero__frameline--v3" aria-hidden="true" />
+        {/* Líneas de margen: llegan hasta la imagen grande cortando la divisoria final */}
+        <span className="about-hero__frameline about-hero__frameline--margin about-hero__frameline--mleft" aria-hidden="true" />
+        <span className="about-hero__frameline about-hero__frameline--margin about-hero__frameline--mright" aria-hidden="true" />
+
+        <div className="about-hero__top">
+          <h1 ref={titleRef} className="about-hero__headline">
+            Acero certificado. Forjado para la industria que no puede fallar.
+          </h1>
+
+          <p ref={taglineRef} className="about-hero__subtext">
+            Forjamos acero de calidad certificada para impulsar
+            la construcción, la industria y el futuro en Uruguay.
+          </p>
         </div>
 
-        <div className="about-hero__overlay" aria-hidden="true" />
-
-        <div className="about-hero__content">
-          {/* Título grande top-left */}
-          <div className="about-hero__titleWrap">
-            <h1 ref={titleRef} className="catalogue-title">
-              Sobre nosotros
-            </h1>
+        {/* Imagen custom decorativa */}
+        <div className="about-hero__gridDeco" aria-hidden="true">
+          {/* Líneas horizontales: pasan por los lados de la imagen y llegan hasta la derecha */}
+          <span className="about-hero__gridline about-hero__gridline--h about-hero__gridline--top" />
+          <span className="about-hero__gridline about-hero__gridline--h about-hero__gridline--bottom" />
+          {/* Puntos en los vértices recortados de la imagen */}
+          <span className="about-hero__griddot about-hero__griddot--tl" />
+          <span className="about-hero__griddot about-hero__griddot--br" />
+          <div className="about-hero__gridImage">
+            <img
+              ref={gridImgRef}
+              src="/images/sobre selllo.png"
+              alt=""
+              style={{ clipPath: "circle(0% at 50% 50%)", willChange: "clip-path, transform" }}
+            />
           </div>
+        </div>
 
-          {/* Frase inferior */}
-          <div className="about-hero__taglineWrap">
-            <div ref={taglineRef} className="about-hero__taglineInner">
-              {/* Desktop / tablet */}
-              <p className="about-hero__tagline about-hero__tagline--desktop">
-                <span className="about-hero__taglineLine">
-                  Forjamos <strong>acero de calidad certificada</strong> para impulsar
-                </span>
-                <span className="about-hero__taglineLine">
-                  la construcción, la industria y el futuro en <strong>Uruguay</strong>.
-                </span>
-              </p>
+        {/* Línea divisoria antes de la imagen grande */}
+        <hr className="about-hero__divider" />
 
-              {/* Mobile (3 líneas balanceadas para evitar corte raro) */}
-              <p className="about-hero__tagline about-hero__tagline--mobile">
-                <span className="about-hero__taglineLine">
-                  Forjamos <strong>acero de calidad certificada</strong>
-                </span>
-                <span className="about-hero__taglineLine">
-                  para impulsar la construcción, la industria
-                </span>
-                <span className="about-hero__taglineLine">
-                  y el futuro en <strong>Uruguay</strong>.
-                </span>
-              </p>
-            </div>
-          </div>
+        <div className="about-hero__media">
+          <img src="/images/aa.webp" alt="" />
         </div>
       </header>
 
@@ -179,6 +200,7 @@ export const About = () => {
         {sections.map((section, index) => (
           <Box
             key={index}
+            className="about-panel"
             ref={(el) => (sectionsRef.current[index] = el)}
             display="flex"
             flexDirection={{ xs: "column", md: "row" }}
@@ -186,6 +208,9 @@ export const About = () => {
               backgroundColor: "black",
               minHeight: { xs: "100vh", md: "80vh" },
               justifyContent: "space-between",
+              // El contenido (video incluido) termina en la línea de margen
+              px: "var(--margin-x)",
+              boxSizing: "border-box",
             }}
           >
             {!section.reverse && (
@@ -195,13 +220,16 @@ export const About = () => {
                   flexDirection={"column"}
                   justifyContent={{ xs: "flex-start", md: "space-between" }}
                   height={{ sm: "60%", md: "70%", xl: "80%" }}
-                  padding={{ xs: "25px", sm: "50px", md: "60px", xl: "80px" }}
+                  // Menos espacio arriba para que el título quede más centrado
+                  paddingTop={{ xs: "16px", sm: "24px", md: "28px", xl: "36px" }}
+                  paddingBottom={{ xs: "25px", sm: "50px", md: "60px", xl: "80px" }}
+                  paddingX="calc(var(--headline-pad) - var(--margin-x))"
                 >
                   <Typography
                     className="subtitle"
                     variant="h2"
-                    fontSize={{ xs: "25px", md: "30px", xl: "40px" }}
-                    sx={{ fontFamily: "Inter, sans-serif", fontWeight: 500 }}
+                    fontSize={{ xs: "22px", md: "27px", xl: "36px" }}
+                    sx={{ fontFamily: "Inter, sans-serif", fontWeight: 400 }}
                   >
                     {section.content.title}
                   </Typography>
@@ -253,13 +281,16 @@ export const About = () => {
                   flexDirection={"column"}
                   justifyContent={{ xs: "flex-start", md: "space-between" }}
                   height={{ md: "70%", xl: "80%" }}
-                  padding={{ xs: "25px", sm: "50px", md: "60px", xl: "80px" }}
+                  // Menos espacio arriba para que el título quede más centrado
+                  paddingTop={{ xs: "16px", sm: "24px", md: "28px", xl: "36px" }}
+                  paddingBottom={{ xs: "25px", sm: "50px", md: "60px", xl: "80px" }}
+                  paddingX="calc(var(--headline-pad) - var(--margin-x))"
                 >
                   <Typography
                     className="subtitle"
                     variant="h2"
-                    fontSize={{ xs: "25px", md: "30px", xl: "40px" }}
-                    sx={{ fontFamily: "Inter, sans-serif", fontWeight: 500 }}
+                    fontSize={{ xs: "22px", md: "27px", xl: "36px" }}
+                    sx={{ fontFamily: "Inter, sans-serif", fontWeight: 400 }}
                   >
                     {section.content.title}
                   </Typography>
@@ -288,9 +319,10 @@ export const About = () => {
             )}
           </Box>
         ))}
-        {/* Espaciador manual para compensar el último pin sin usar pinSpacing (evita brincos) */}
-        <div className="about-footer-spacer" style={{ height: "100vh" }} />
       </div>
+
+      {/* Línea final + espacio negro antes del footer */}
+      <div className="about-footer-gap" aria-hidden="true" />
 
       <Footer />
     </section>

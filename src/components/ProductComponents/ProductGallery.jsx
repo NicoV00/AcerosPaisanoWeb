@@ -36,15 +36,12 @@ const MainImageContainer = styled(Box)(({ theme }) => ({
 const MainImage = styled('img')(({ theme }) => ({
   width: '100%',
   height: '100%',
-  objectFit: 'contain',
+  objectFit: 'cover',
   opacity: 0,
   transition: 'opacity 0.4s ease',
   '&.visible': {
     opacity: 1,
   },
-  [theme.breakpoints.down('md')]: {
-    objectFit: 'cover',
-  }
 }));
 
 // Minimal navigation arrows

@@ -40,11 +40,31 @@ const modalInfo = {
   "mallas-plegadas": {
     name: "Mallas Plegadas",
     items: [
-      { "title": "Estandarización y confiabilidad", "content": "Combina las ventajas del cortado y doblado + mallas.", "image": "/images/plegadas-obra2.jpg", "alt": "Construcción y Arquitectura" },
+      { "title": "Estandarización y confiabilidad", "content": "Combina las ventajas del cortado y doblado + mallas.", "image": "/images/plegadasobra.webp", "alt": "Construcción y Arquitectura" },
       { "title": "Alta precisión", "content": "Proceso industrializado con plegadora automatizada.", "image": "/images/plegada1.jpg", "alt": "Industria Energética" },
       { "title": "Optimización en obra", "content": "Elimina procesos manuales y mejora la productividad.", "image": "/images/plegadas-obra1.jpg", "alt": "Manufactura Industrial" },
       { "title": "Soluciones adaptables", "content": "Formatos versátiles para distintas necesidades constructivas.", "image": "/images/plegada3.jpg", "alt": "Industria Agropecuaria" },
       { "title": "Diseño optimizado", "content": "Adaptamos cada detalle a los requerimientos de la obra.", "image": "/images/plegada6.jpg", "alt": "Industria Agropecuaria" }
+    ]
+  },
+  "armaduras-de-pilotes": {
+    name: "Armaduras de Pilotes",
+    items: [
+      { "title": "Geometría exacta", "content": "Paso de espiral uniforme y controlado en toda la armadura.", "image": "/images/Pilotes2.webp", "alt": "Fundaciones profundas" },
+      { "title": "Prefabricación", "content": "Armaduras cilíndricas fabricadas según los planos del proyecto.", "image": "/images/pilotes 1.webp", "alt": "Fabricación a medida" },
+      { "title": "Menos tiempo en obra", "content": "Elimina el armado manual de jaulas, reduciendo tiempos de fundación.", "image": "/images/Pilotes3.webp", "alt": "Proceso industrializado" },
+      { "title": "Entrega programada", "content": "Entregas según cronograma de obra, identificadas según plano.", "image": "/images/doblado5.jpg", "alt": "Logística de obra" },
+      { "title": "Asistencia Técnica", "content": "Asesoramiento y seguimiento permanente de nuestros técnicos.", "image": "/images/Pilotes2.webp", "alt": "Soporte técnico" }
+    ]
+  },
+  "pasadores": {
+    name: "Pasadores",
+    items: [
+      { "title": "Rapidez y productividad", "content": "Mayor rapidez y productividad con reducción de tiempos de obra.", "image": "/images/pasadores3.webp", "alt": "Pasadores Aceros Paisano" },
+      { "title": "Calidad de su armadura", "content": "Acero liso AL-220 producido bajo la norma UNIT 34:95.", "image": "/images/pasadores.webp", "alt": "Barras lisas AL-220" },
+      { "title": "Cortes exactos", "content": "Corte a medida según plano o pliego técnico, con cero desperdicio.", "image": "/images/pasadores2.webp", "alt": "Corte de precisión" },
+      { "title": "Menor costo financiero", "content": "Reducción del espacio en obra y menor costo financiero.", "image": "/images/pasadores3.webp", "alt": "Optimización en obra" },
+      { "title": "Asistencia Técnica", "content": "Asesoramiento y seguimiento permanente de nuestros técnicos.", "image": "/images/pasadores.webp", "alt": "Soporte técnico" }
     ]
   }
 };
