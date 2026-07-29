@@ -54,6 +54,29 @@ function App() {
     }
   }, [location]);
 
+  // Safari iOS bloquea autoplay en modo de bajo consumo / ahorro de datos.
+  // En el primer gesto del usuario reintentamos play() en todos los videos
+  // con autoplay que hayan quedado pausados.
+  useEffect(() => {
+    const resumeVideos = () => {
+      document.querySelectorAll("video[autoplay]").forEach((video) => {
+        video.muted = true;
+        video.defaultMuted = true;
+        if (video.paused) video.play().catch(() => {});
+      });
+    };
+
+    const events = ["touchend", "pointerdown", "scroll"];
+    events.forEach((e) =>
+      window.addEventListener(e, resumeVideos, { passive: true, capture: true })
+    );
+
+    return () =>
+      events.forEach((e) =>
+        window.removeEventListener(e, resumeVideos, { capture: true })
+      );
+  }, []);
+
   // Google Tag Manager & GA4 - DEFERRED LOAD (3.5s delay)
   // This helps minimize main thread work on mobile during the first 3.5s of loading
   useEffect(() => {
