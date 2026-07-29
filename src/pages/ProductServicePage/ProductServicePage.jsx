@@ -177,10 +177,11 @@ const ProductServicePage = ({ serviceSlug, onClose }) => {
         sx={{
           overflow: 'auto',
           overflowX: 'hidden',
-          backgroundColor: 'rgba(0, 0, 0, 0.98)',
+          backgroundColor: '#000000',
           position: 'fixed',
+          /* inset:0 cubre todo el viewport fijo; fijar height a 100dvh dejaba
+             un hueco abajo por el que asomaba la página de atrás */
           inset: 0,
-          height: '100dvh',
           paddingTop: 'env(safe-area-inset-top, 0px)',
           boxSizing: 'border-box',
           zIndex: 9999
@@ -270,7 +271,8 @@ const ProductServicePage = ({ serviceSlug, onClose }) => {
             paddingLeft: "12px",
             paddingRight: "12px",
             paddingTop: "20px",
-            paddingBottom: "40px"
+            /* aire extra para la barra inferior de Safari */
+            paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 120px)"
           }}>
             <Link to={`/${effectiveSlug}`} style={{ textDecoration: "none", display: "block", width: "100%" }} >
               <Typography
@@ -301,7 +303,7 @@ const ProductServicePage = ({ serviceSlug, onClose }) => {
 
   // Desktop version
   return (
-    <Box width={"100%"} sx={{ overflow: 'hidden', backgroundColor: 'rgba(0, 0, 0, 1)', position: 'fixed', inset: 0, height: '100dvh', paddingTop: 'env(safe-area-inset-top, 0px)', boxSizing: 'border-box', zIndex: 9999 }}>
+    <Box width={"100%"} sx={{ overflow: 'hidden', backgroundColor: 'rgba(0, 0, 0, 1)', position: 'fixed', inset: 0, paddingTop: 'env(safe-area-inset-top, 0px)', boxSizing: 'border-box', zIndex: 9999 }}>
       <div style={{ zIndex: 1000, position: 'relative', height: '100%' }}>
 
 

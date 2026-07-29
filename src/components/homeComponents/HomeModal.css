@@ -8,7 +8,7 @@
   inset: 0;
   z-index: 9999;
 
-  background: rgba(0, 0, 0, 0.98);
+  background: #000;
   box-sizing: border-box;
   padding: var(--pad);
   /* cubrir hasta el borde físico (notch/status bar) */
@@ -17,8 +17,8 @@
   font-family: inherit;
   color: #fff;
 
-  /* evita bugs de viewport */
-  height: 100dvh;
+  /* inset:0 ya da la altura del viewport fijo; fijar 100dvh dejaba un hueco
+     abajo por el que asomaba la página de atrás en Safari iOS */
   overflow: hidden;
 }
 

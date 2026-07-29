@@ -102,10 +102,9 @@ export const HomeModal = ({ info, onClose }) => {
         width={"100%"}
         sx={{
           overflow: 'auto',
-          backgroundColor: 'rgba(0, 0, 0, 0.98)',
+          backgroundColor: '#000000',
           position: 'fixed',
           inset: 0,
-          height: '100dvh',
           paddingTop: 'env(safe-area-inset-top, 0px)',
           boxSizing: 'border-box',
           zIndex: 9999

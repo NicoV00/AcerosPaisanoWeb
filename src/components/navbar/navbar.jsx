@@ -39,7 +39,7 @@ const AnimatedMenuIcon = ({ isOpen, isDark = false }) => (
         position: "absolute",
         transition: "all 0.3s ease",
         transform: isOpen ? "rotate(45deg)" : "translateY(-6px)",
-        boxShadow: isOpen ? "0 0 5px #FFFFFF" : "none",
+        boxShadow: "none",
       }}
     />
     <Box
@@ -54,7 +54,7 @@ const AnimatedMenuIcon = ({ isOpen, isDark = false }) => (
         position: "absolute",
         transition: "all 0.3s ease",
         transform: isOpen ? "rotate(-45deg)" : "translateY(6px)",
-        boxShadow: isOpen ? "0 0 5px #FFFFFF" : "none",
+        boxShadow: "none",
       }}
     />
   </Box>
@@ -69,6 +69,8 @@ export const NavBar = ({ whiteBackground = false, disableInitialHidden = false, 
   const [hidden, setHidden] = useState(!disableInitialHidden);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [delayedHidden, setDelayedHidden] = useState(hidden);
+  // true cuando ya se scrolleó fuera del tope: la navbar pasa a fondo sólido
+  const [scrolled, setScrolled] = useState(false);
 
   const appBarRef = useRef(null);
   const [navHeight, setNavHeight] = useState(76);
@@ -104,6 +106,7 @@ export const NavBar = ({ whiteBackground = false, disableInitialHidden = false, 
 
   useEffect(() => {
     const handleScroll = () => {
+      setScrolled(window.scrollY > 40);
       if (menuOpen || disableScrollHide) return; // ✅ Skip hiding if disabled
       const currentScrollY = window.scrollY;
 
@@ -172,8 +175,10 @@ export const NavBar = ({ whiteBackground = false, disableInitialHidden = false, 
 
   // theme-color acompaña el fondo de la navbar (menú abierto = negro)
   useEffect(() => {
-    setThemeColor(menuOpen ? "#000000" : whiteBackground ? "#ffffff" : "#000000");
-  }, [menuOpen, whiteBackground]);
+    setThemeColor(
+      menuOpen ? "#000000" : whiteBackground && scrolled ? "#ffffff" : "#000000"
+    );
+  }, [menuOpen, whiteBackground, scrolled]);
 
   const navItems = [
     { title: "Inicio", path: "/" },
@@ -197,24 +202,28 @@ export const NavBar = ({ whiteBackground = false, disableInitialHidden = false, 
         }}
       />
 
-      {/* Franja fija que cubre el safe area superior (reloj/notch) aun cuando la
-          navbar se oculta al scrollear: la franja nunca queda "abierta" */}
-      {(whiteBackground || menuOpen) && (
-        <Box
-          sx={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100vw",
-            height: "env(safe-area-inset-top, 0px)",
-            backgroundColor: menuOpen ? "#000000" : "rgba(255, 255, 255, 0.96)",
-            backdropFilter: menuOpen ? "none" : "blur(10px)",
-            WebkitBackdropFilter: menuOpen ? "none" : "blur(10px)",
-            zIndex: 2202,
-            pointerEvents: "none",
-          }}
-        />
-      )}
+      {/* Franja opaca que cubre SIEMPRE el safe area superior (reloj/notch).
+          Sin esto el contenido de la página scrollea visible por detrás del
+          status bar en Safari iOS, tanto en vistas claras como oscuras. */}
+      <Box
+        sx={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100vw",
+          height: "env(safe-area-inset-top, 0px)",
+          backgroundColor: menuOpen
+            ? "#000000"
+            : whiteBackground
+              ? "#FFFFFF"
+              : scrolled
+                ? "#000000"
+                : "transparent",
+          transition: "background-color 0.3s ease-in-out",
+          zIndex: 2202,
+          pointerEvents: "none",
+        }}
+      />
 
       <Box
         sx={{
@@ -245,12 +254,13 @@ export const NavBar = ({ whiteBackground = false, disableInitialHidden = false, 
             backgroundColor: menuOpen
               ? "#000000"
               : whiteBackground
-                ? "rgba(255, 255, 255, 0.96)"
-                : "transparent",
+                ? "#FFFFFF"
+                : scrolled
+                  ? "#000000"
+                  : "transparent",
 
-            /* ✅ blur solo para fondos blancos */
-            backdropFilter: menuOpen ? "none" : whiteBackground ? "blur(10px)" : "none",
-            WebkitBackdropFilter: menuOpen ? "none" : whiteBackground ? "blur(10px)" : "none",
+            backdropFilter: "none",
+            WebkitBackdropFilter: "none",
 
             boxShadow: "none",
             borderBottom: whiteBackground && !menuOpen ? "1px solid rgba(11, 11, 11, 0.06)" : "none",
@@ -402,9 +412,9 @@ export const NavBar = ({ whiteBackground = false, disableInitialHidden = false, 
             BackdropProps: {
               sx: {
                 top: `${navHeight}px`,
-                backgroundColor: "rgba(0,0,0,0.35)",
-                backdropFilter: "blur(10px)",
-                WebkitBackdropFilter: "blur(10px)",
+                backgroundColor: "rgba(0,0,0,0.55)",
+                backdropFilter: "blur(16px)",
+                WebkitBackdropFilter: "blur(16px)",
               },
             },
           }}
@@ -412,12 +422,15 @@ export const NavBar = ({ whiteBackground = false, disableInitialHidden = false, 
           PaperProps={{
             sx: {
               width: "100%",
-              top: `${navHeight}px`,
+              /* -1px: solapa la navbar para que no quede una hendija con
+                 el contenido de la página asomando entre ambas */
+              top: `${navHeight - 1}px`,
               height: "auto",
               maxHeight: "52vh",
-              backgroundColor: "rgba(0,0,0,0.9)",
-              backdropFilter: "blur(14px)",
-              WebkitBackdropFilter: "blur(14px)",
+              /* negro sólido, igual que la navbar — sin transparencia */
+              backgroundColor: "#000000",
+              backdropFilter: "none",
+              WebkitBackdropFilter: "none",
               backgroundImage: "none",
               color: "white",
               overflow: "hidden",
@@ -426,7 +439,7 @@ export const NavBar = ({ whiteBackground = false, disableInitialHidden = false, 
               borderRadius: 0,
               boxShadow: "none",
               borderTop: "none",
-              borderBottom: "1px solid rgba(255,255,255,0.14)",
+              borderBottom: "none",
               margin: 0,
             },
           }}
@@ -438,10 +451,10 @@ export const NavBar = ({ whiteBackground = false, disableInitialHidden = false, 
               display: "flex",
               flexDirection: "column",
               width: "100%",
-              paddingLeft: "16px",
-              paddingRight: "16px",
-              paddingTop: "10px",
-              paddingBottom: "28px",
+              paddingLeft: "24px",
+              paddingRight: "24px",
+              paddingTop: "4px",
+              paddingBottom: "20px",
             }}
           >
             <List sx={{ width: "100%", padding: 0, margin: 0 }}>

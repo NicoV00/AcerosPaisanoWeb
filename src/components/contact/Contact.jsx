@@ -21,6 +21,84 @@ import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 import * as emailjs from "emailjs-com";
 
+const servicesList = [
+  "Estribos a Medida",
+  "Barras Lisas",
+  "Barras Conformadas",
+  "Mallas Electrosoldadas",
+  "Mallas Plegadas",
+  "Hierro Cortado y Doblado",
+  "Armaduras de Pilotes",
+  "Pasadores",
+  "Trelizas",
+  "Columnas y Vigas",
+  "Otros",
+];
+
+const labelStyle = {
+  fontFamily: "'Geist Mono', monospace",
+  color: "#8a8a8a",
+  fontSize: { xs: "0.62rem", md: "0.7rem" },
+  textTransform: "uppercase",
+  letterSpacing: "0.13em",
+  mb: 0.6,
+  display: "block",
+  lineHeight: 1.4,
+};
+
+const textFieldStyle = {
+  "& .MuiInput-underline:before": { borderColor: "#d9d9d9" },
+  "& .MuiInput-underline:hover:not(.Mui-disabled):before": {
+    borderColor: "#b5b5b5",
+  },
+  "& .MuiInput-underline:after": { borderColor: "#EE2737" },
+  "& input, & textarea": {
+    color: "#111",
+    fontSize: { xs: "0.92rem", md: "1rem" },
+    py: 0.6,
+    lineHeight: 1.5,
+  },
+  "& input::placeholder, & textarea::placeholder": {
+    color: "#9a9a9a",
+    opacity: 1,
+  },
+};
+
+const CARD_PAD_X = { xs: "22px", md: "40px" };
+
+const infoItems = [
+  {
+    icon: <MailOutlineIcon sx={{ fontSize: 20 }} />,
+    label: "EMAIL",
+    lines: [
+      {
+        text: "ventas@acerospaisano.com.uy",
+        href: "mailto:ventas@acerospaisano.com.uy",
+      },
+    ],
+  },
+  {
+    icon: <LocalPhoneOutlinedIcon sx={{ fontSize: 20 }} />,
+    label: "TELÉFONOS",
+    lines: [
+      {
+        text: "+598 99 914 939 / 2365 0000",
+        href: "https://wa.me/59899914939",
+      },
+    ],
+  },
+  {
+    icon: <PlaceOutlinedIcon sx={{ fontSize: 20 }} />,
+    label: "DIRECCIÓN",
+    lines: [{ text: "Ruta 5 Km 25.500, Las Piedras, Canelones, Uruguay" }],
+  },
+  {
+    icon: <AccessTimeOutlinedIcon sx={{ fontSize: 20 }} />,
+    label: "HORARIO",
+    lines: [{ text: "Oficina: Lun–Vie 8:00–17:00 hs" }],
+  },
+];
+
 const ContactComponent = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -31,14 +109,11 @@ const ContactComponent = () => {
   const fileInputRef = useRef(null);
   const [attachedFile, setAttachedFile] = useState(null);
 
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    company: "",
-    services: [],
-    message: "",
-    agree: false,
-  });
+  // Los campos de texto son no controlados: escribir no re-renderiza el
+  // componente (evita trabajo de MUI por tecla y mejora el INP). Solo el
+  // Select, el checkbox y los errores viven en estado de React.
+  const [services, setServices] = useState([]);
+  const [agree, setAgree] = useState(false);
 
   const [errors, setErrors] = useState({
     name: "",
@@ -49,63 +124,40 @@ const ContactComponent = () => {
 
   const [success, setSuccess] = useState(false);
 
-  const servicesList = [
-    "Estribos a Medida",
-    "Barras Lisas",
-    "Barras Conformadas",
-    "Mallas Electrosoldadas",
-    "Mallas Plegadas",
-    "Hierro Cortado y Doblado",
-    "Armaduras de Pilotes",
-    "Pasadores",
-    "Trelizas",
-    "Columnas y Vigas",
-    "Otros",
-  ];
-
   useEffect(() => {
     emailjs.init("mG1zb3WhQquVBDEy5");
   }, []);
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value,
-    }));
-  };
-
-  const validateForm = () => {
-    const newErrors = {
-      name: formData.name.trim() === "" ? "Requerido" : "",
-      email: !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)
-        ? "Email inválido"
-        : "",
-      services: formData.services.length === 0 ? "Seleccione uno" : "",
-      agree: !formData.agree ? "Debe aceptar" : "",
-    };
-
-    setErrors(newErrors);
-    return !Object.values(newErrors).some((x) => x !== "");
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!validateForm()) return;
+    const data = new FormData(formRef.current);
+    const name = (data.get("name") || "").toString();
+    const email = (data.get("email") || "").toString();
+    const company = (data.get("company") || "").toString();
+    const message = (data.get("message") || "").toString();
+
+    const newErrors = {
+      name: name.trim() === "" ? "Requerido" : "",
+      email: !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? "Email inválido" : "",
+      services: services.length === 0 ? "Seleccione uno" : "",
+      agree: !agree ? "Debe aceptar" : "",
+    };
+    setErrors(newErrors);
+    if (Object.values(newErrors).some((x) => x !== "")) return;
 
     const messageWithFile = attachedFile
-      ? `${formData.message || "Sin mensaje"}\n\n[Adjuntó archivo: ${attachedFile.name}]`
-      : formData.message || "Sin mensaje";
+      ? `${message || "Sin mensaje"}\n\n[Adjuntó archivo: ${attachedFile.name}]`
+      : message || "Sin mensaje";
 
     const templateParams = {
-      from_name: formData.name,
-      email: formData.email,
-      company: formData.company || "No especificada",
+      from_name: name,
+      email,
+      company: company || "No especificada",
       to_name: "Ventas Aceros Paisano",
-      services: formData.services.join(", "),
+      services: services.join(", "),
       message: messageWithFile,
-      agree: formData.agree ? "Sí" : "No",
+      agree: agree ? "Sí" : "No",
     };
 
     emailjs
@@ -117,84 +169,15 @@ const ContactComponent = () => {
       )
       .then(() => {
         setSuccess(true);
-        setFormData({
-          name: "",
-          email: "",
-          company: "",
-          services: [],
-          message: "",
-          agree: false,
-        });
+        formRef.current?.reset();
+        setServices([]);
+        setAgree(false);
         setErrors({ name: "", email: "", services: "", agree: "" });
         setAttachedFile(null);
         if (fileInputRef.current) fileInputRef.current.value = "";
       })
       .catch(() => alert("Error al enviar."));
   };
-
-  const labelStyle = {
-    fontFamily: "'Geist Mono', monospace",
-    color: "#8a8a8a",
-    fontSize: { xs: "0.62rem", md: "0.7rem" },
-    textTransform: "uppercase",
-    letterSpacing: "0.13em",
-    mb: 0.6,
-    display: "block",
-    lineHeight: 1.4,
-  };
-
-  const textFieldStyle = {
-    "& .MuiInput-underline:before": { borderColor: "#d9d9d9" },
-    "& .MuiInput-underline:hover:not(.Mui-disabled):before": {
-      borderColor: "#b5b5b5",
-    },
-    "& .MuiInput-underline:after": { borderColor: "#EE2737" },
-    "& input, & textarea": {
-      color: "#111",
-      fontSize: { xs: "0.92rem", md: "1rem" },
-      py: 0.6,
-      lineHeight: 1.5,
-    },
-    "& input::placeholder, & textarea::placeholder": {
-      color: "#9a9a9a",
-      opacity: 1,
-    },
-  };
-
-  const CARD_PAD_X = { xs: "22px", md: "40px" };
-
-  const infoItems = [
-    {
-      icon: <MailOutlineIcon sx={{ fontSize: 20 }} />,
-      label: "EMAIL",
-      lines: [
-        {
-          text: "ventas@acerospaisano.com.uy",
-          href: "mailto:ventas@acerospaisano.com.uy",
-        },
-      ],
-    },
-    {
-      icon: <LocalPhoneOutlinedIcon sx={{ fontSize: 20 }} />,
-      label: "TELÉFONOS",
-      lines: [
-        {
-          text: "+598 99 914 939 / 2365 0000",
-          href: "https://wa.me/59899914939",
-        },
-      ],
-    },
-    {
-      icon: <PlaceOutlinedIcon sx={{ fontSize: 20 }} />,
-      label: "DIRECCIÓN",
-      lines: [{ text: "Ruta 5 Km 25.500, Las Piedras, Canelones, Uruguay" }],
-    },
-    {
-      icon: <AccessTimeOutlinedIcon sx={{ fontSize: 20 }} />,
-      label: "HORARIO",
-      lines: [{ text: "Oficina: Lun–Vie 8:00–17:00 hs" }],
-    },
-  ];
 
   return (
     <Box
@@ -478,8 +461,7 @@ const ContactComponent = () => {
                   variant="standard"
                   placeholder="Nombre"
                   name="name"
-                  value={formData.name}
-                  onChange={handleChange}
+                  defaultValue=""
                   error={!!errors.name}
                   sx={textFieldStyle}
                 />
@@ -504,8 +486,7 @@ const ContactComponent = () => {
                   variant="standard"
                   placeholder="Email"
                   name="email"
-                  value={formData.email}
-                  onChange={handleChange}
+                  defaultValue=""
                   error={!!errors.email}
                   sx={textFieldStyle}
                 />
@@ -530,8 +511,7 @@ const ContactComponent = () => {
                   variant="standard"
                   placeholder="Opcional"
                   name="company"
-                  value={formData.company}
-                  onChange={handleChange}
+                  defaultValue=""
                   sx={textFieldStyle}
                 />
               </Grid>
@@ -544,8 +524,8 @@ const ContactComponent = () => {
                   displayEmpty
                   variant="standard"
                   name="services"
-                  value={formData.services}
-                  onChange={handleChange}
+                  value={services}
+                  onChange={(e) => setServices(e.target.value)}
                   error={!!errors.services}
                   IconComponent={KeyboardArrowDownRoundedIcon}
                   renderValue={(selected) =>
@@ -605,7 +585,7 @@ const ContactComponent = () => {
                   {servicesList.map((s) => (
                     <MenuItem key={s} value={s}>
                       <Checkbox
-                        checked={formData.services.includes(s)}
+                        checked={services.includes(s)}
                         size="small"
                         sx={{
                           p: 0.5,
@@ -641,8 +621,7 @@ const ContactComponent = () => {
                   name="message"
                   multiline
                   rows={2}
-                  value={formData.message}
-                  onChange={handleChange}
+                  defaultValue=""
                   sx={{ ...textFieldStyle, "& textarea": { resize: "none" } }}
                 />
               </Grid>
@@ -702,8 +681,8 @@ const ContactComponent = () => {
                         p: 0.5,
                         "&.Mui-checked": { color: "#EE2737" },
                       }}
-                      checked={formData.agree}
-                      onChange={handleChange}
+                      checked={agree}
+                      onChange={(e) => setAgree(e.target.checked)}
                       name="agree"
                     />
                   }
