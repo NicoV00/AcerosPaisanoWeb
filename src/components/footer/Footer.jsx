@@ -31,7 +31,8 @@ export const Footer = () => {
     productDetailSlugs.some((slug) => location.pathname.includes(slug));
 
   const COLORS = {
-    canvasBg: isLightView ? "#EBEBEB" : "#000000",
+    // En vistas claras el footer no pinta fondo propio: deja pasar el de la página
+    canvasBg: isLightView ? "transparent" : "#000000",
     cardBg: isLightView ? "#FFFFFF" : "#121212",
     textPrimary: isLightView ? "#000000" : "#FFFFFF",
     textSecondary: isLightView ? "#707070" : "rgba(255,255,255,0.5)",
