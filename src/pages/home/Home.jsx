@@ -767,7 +767,10 @@ export const Home = () => {
                   borderRadius: { xs: "8px", md: "12px" },
                   backgroundColor: "#000",
                   border: "1px solid rgba(255,255,255,0.12)",
+                  /* Solo en dispositivos con hover real (no touch) */
+                "@media (hover: hover) and (pointer: fine)": {
                   "&:hover .red-veil": { opacity: 1 },
+                },
                 }}
               >
                 <Box
@@ -892,7 +895,10 @@ export const Home = () => {
                 borderRadius: { xs: "8px", md: "12px" },
                 backgroundColor: "#000",
                 border: "1px solid rgba(255,255,255,0.12)",
-                "&:hover .red-veil": { opacity: 1 },
+                /* Solo en dispositivos con hover real (no touch) */
+                "@media (hover: hover) and (pointer: fine)": {
+                  "&:hover .red-veil": { opacity: 1 },
+                },
               }}
             >
               <Box
@@ -1260,7 +1266,10 @@ export const Home = () => {
                 backgroundImage: `url(${product.image})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
-                "&:hover .red-veil": { opacity: 1 },
+                /* Solo en dispositivos con hover real (no touch) */
+                "@media (hover: hover) and (pointer: fine)": {
+                  "&:hover .red-veil": { opacity: 1 },
+                },
               }}
             >
               <Box className="red-veil" sx={redVeilStyles} />
