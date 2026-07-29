@@ -919,17 +919,40 @@ export const Home = () => {
                   boxSizing: "border-box",
                 }}
               >
-                <Typography
+                <Box
                   sx={{
-                    color: "#fff",
-                    fontSize: { xs: "1.8rem", md: "2.6rem" },
-                    fontWeight: 400,
-                    fontFamily: "Inter, sans-serif",
-                    letterSpacing: "-0.03em",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
                   }}
                 >
-                  {product.title}
-                </Typography>
+                  <Typography
+                    sx={{
+                      color: "#fff",
+                      fontSize: { xs: "1.8rem", md: "2.6rem" },
+                      fontWeight: 400,
+                      fontFamily: "Inter, sans-serif",
+                      letterSpacing: "-0.03em",
+                    }}
+                  >
+                    {product.title}
+                  </Typography>
+
+                  <Box
+                    sx={{
+                      fontFamily: '"Geist Mono", monospace',
+                      fontSize: { xs: "11px", md: "12px" },
+                      letterSpacing: "0.08em",
+                      color: "#000",
+                      backgroundColor: "#fff",
+                      borderRadius: "999px",
+                      padding: "6px 14px",
+                      flexShrink: 0,
+                    }}
+                  >
+                    NUEVO
+                  </Box>
+                </Box>
 
                 <Typography
                   sx={{
@@ -1209,18 +1232,19 @@ export const Home = () => {
         >
           {[
             {
+              slug: "trelizas",
+              title: "Trelizas",
+              image: "/images/trelizasss.webp",
+              isNew: true,
+              description:
+                "Armaduras triangulares electrosoldadas de tres cordones de acero unidos por diagonales. Aportan rigidez a prelosas, viguetas y elementos premoldeados durante la manipulación, el transporte y el hormigonado.",
+            },
+            {
               slug: "hierro-cortado-y-doblado",
               title: "Hierro Cortado y Doblado",
               image: "/images/doblado2.jpg",
               description:
                 "Sistema Industrializado de corte y doblado de varillas que garantiza la precisión de sus armaduras y el cero desperdicio. Nuestro proceso automatizado reduce hasta un 60% los tiempos de obra, optimizando recursos y garantizando la calidad estructural de su proyecto.",
-            },
-            {
-              slug: "trelizas",
-              title: "Trelizas",
-              image: "/images/trelizasss.webp",
-              description:
-                "Armaduras triangulares electrosoldadas de tres cordones de acero unidos por diagonales. Aportan rigidez a prelosas, viguetas y elementos premoldeados durante la manipulación, el transporte y el hormigonado.",
             },
           ].map((product) => (
             <Box
@@ -1272,20 +1296,22 @@ export const Home = () => {
                     {product.title}
                   </Typography>
 
-                  <Box
-                    sx={{
-                      fontFamily: '"Geist Mono", monospace',
-                      fontSize: { xs: "11px", md: "12px" },
-                      letterSpacing: "0.08em",
-                      color: "#000",
-                      backgroundColor: "#fff",
-                      borderRadius: "999px",
-                      padding: "6px 14px",
-                      flexShrink: 0,
-                    }}
-                  >
-                    NUEVO
-                  </Box>
+                  {product.isNew && (
+                    <Box
+                      sx={{
+                        fontFamily: '"Geist Mono", monospace',
+                        fontSize: { xs: "11px", md: "12px" },
+                        letterSpacing: "0.08em",
+                        color: "#000",
+                        backgroundColor: "#fff",
+                        borderRadius: "999px",
+                        padding: "6px 14px",
+                        flexShrink: 0,
+                      }}
+                    >
+                      NUEVO
+                    </Box>
+                  )}
                 </Box>
 
                 <Typography
