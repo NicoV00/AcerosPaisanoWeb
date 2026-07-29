@@ -11,10 +11,24 @@ const mapUrl =
 export const Footer = () => {
   const location = useLocation();
 
+  // Rutas directas de detalle de producto (sin el prefijo /productos)
+  const productDetailSlugs = [
+    "mallas-electrosoldadas",
+    "mallas-plegadas",
+    "mallas-galvanizadas",
+    "hierro-cortado-y-doblado",
+    "barras-conformadas",
+    "barras-lisas",
+    "armaduras-de-pilotes",
+    "pasadores",
+    "trelizas",
+  ];
+
   const isLightView =
     location.pathname.includes("productos") ||
     location.pathname.includes("catalogo") ||
-    location.pathname.includes("detalle");
+    location.pathname.includes("detalle") ||
+    productDetailSlugs.some((slug) => location.pathname.includes(slug));
 
   const COLORS = {
     canvasBg: isLightView ? "#EBEBEB" : "#000000",
