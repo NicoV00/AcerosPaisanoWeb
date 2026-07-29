@@ -155,13 +155,17 @@
 .home-middle-row {
   color: white;
   height: 40vh;
-  width: 93%;
+  width: 100%;
+  padding-left: 3.5vw;
+  padding-right: 3.5vw;
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   text-align: end;
   align-items: end;
   position: relative;
-  top: calc(15vh - 200px);
+  top: calc(15vh - 180px);
+  padding-bottom: 20px;
 }
 
 .catalogue-section {
@@ -189,10 +193,13 @@
   border: 1px solid transparent;
   border-radius: 2px;
   cursor: pointer;
+  padding: 13px 20px;
 }
 
 .catalogue-button p {
-  font-size: 1rem;
+  font-size: 0.88rem;
+  margin: 0;
+  line-height: 1;
 }
 
 .catalogue-button:hover {

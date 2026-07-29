@@ -361,53 +361,57 @@ export const NavBar = ({ whiteBackground = false, disableInitialHidden = false, 
           </Toolbar>
         </AppBar>
 
-        {/* Drawer debajo de navbar */}
+        {/* Drawer debajo de navbar — panel compacto (~1/3 de la vista) con fondo blurred */}
         <Drawer
-          anchor="bottom"
+          anchor="top"
           open={menuOpen}
           onClose={toggleMenu}
-          hideBackdrop
           ModalProps={{
             keepMounted: true,
             disableScrollLock: true,
+            BackdropProps: {
+              sx: {
+                top: `${navHeight}px`,
+                backgroundColor: "rgba(0,0,0,0.35)",
+                backdropFilter: "blur(10px)",
+                WebkitBackdropFilter: "blur(10px)",
+              },
+            },
           }}
-          sx={{
-            zIndex: 2190,
-            pointerEvents: "none",
-            "& .MuiDrawer-paper": { pointerEvents: "auto" },
-          }}
+          sx={{ zIndex: 2190 }}
           PaperProps={{
             sx: {
               width: "100%",
               top: `${navHeight}px`,
-              height: `calc(100vh - ${navHeight}px)`,
-              backgroundColor: "#000000",
+              height: "auto",
+              maxHeight: "52vh",
+              backgroundColor: "rgba(0,0,0,0.9)",
+              backdropFilter: "blur(14px)",
+              WebkitBackdropFilter: "blur(14px)",
               backgroundImage: "none",
               color: "white",
               overflow: "hidden",
               overscrollBehavior: "none",
               WebkitTapHighlightColor: "transparent",
-              borderTopLeftRadius: "0",
-              borderTopRightRadius: "0",
+              borderRadius: 0,
               boxShadow: "none",
               borderTop: "none",
+              borderBottom: "1px solid rgba(255,255,255,0.14)",
               margin: 0,
             },
           }}
-          transitionDuration={{ enter: 500, exit: 500 }}
-          SlideProps={{ direction: "up" }}
+          transitionDuration={{ enter: 400, exit: 350 }}
+          SlideProps={{ direction: "down" }}
         >
           <Box
             sx={{
               display: "flex",
               flexDirection: "column",
-              height: "100%",
               width: "100%",
-              alignItems: "flex-start",
-              justifyContent: "flex-end",
               paddingLeft: "16px",
               paddingRight: "16px",
-              paddingBottom: "12vh",
+              paddingTop: "10px",
+              paddingBottom: "28px",
             }}
           >
             <List sx={{ width: "100%", padding: 0, margin: 0 }}>
@@ -415,12 +419,14 @@ export const NavBar = ({ whiteBackground = false, disableInitialHidden = false, 
                 <ListItem
                   key={index}
                   sx={{
-                    padding: "10px 0",
+                    padding: 0,
                     justifyContent: "flex-start",
-                    width: "auto",
+                    width: "100%",
+                    borderTop: index === 0 ? "none" : "1px solid rgba(255,255,255,0.12)",
                   }}
                 >
                   <ListItemText
+                    sx={{ margin: 0 }}
                     primary={
                       <Button
                         component={Link}
@@ -428,17 +434,33 @@ export const NavBar = ({ whiteBackground = false, disableInitialHidden = false, 
                         color="inherit"
                         onClick={handleNavClick}
                         sx={{
-                          padding: 0,
+                          padding: "18px 0",
                           minWidth: "auto",
+                          width: "100%",
                           justifyContent: "flex-start",
+                          alignItems: "center",
+                          gap: "14px",
                           "&:hover": { backgroundColor: "transparent" },
                         }}
                       >
                         <Typography
+                          component="span"
+                          sx={{
+                            fontFamily: navMono,
+                            fontWeight: 400,
+                            fontSize: "10px",
+                            letterSpacing: "0.1em",
+                            color: "rgba(255,255,255,0.4)",
+                            minWidth: "22px",
+                          }}
+                        >
+                          0{index + 1}
+                        </Typography>
+                        <Typography
                           sx={{
                             fontFamily: navMono, // ✅ Geist Mono
                             fontWeight: 500,
-                            fontSize: '24px',
+                            fontSize: '19px',
                             letterSpacing: "0.06em",
                             lineHeight: 0.98,
                             textTransform: "uppercase",
@@ -447,7 +469,7 @@ export const NavBar = ({ whiteBackground = false, disableInitialHidden = false, 
                         >
                           {item.title}
                           {item.title === "Productos" && (
-                            <sup style={{ fontSize: "14px", marginLeft: "6px" }}>9</sup>
+                            <sup style={{ fontSize: "11px", marginLeft: "6px" }}>11</sup>
                           )}
                         </Typography>
                       </Button>

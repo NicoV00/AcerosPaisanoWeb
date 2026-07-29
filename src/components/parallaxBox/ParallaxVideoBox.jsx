@@ -6,6 +6,15 @@ export default function ParallaxVideoBox({ videoSrc, title, titleColor, titleLef
   const containerRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
   const [gsapLoaded, setGsapLoaded] = useState(false);
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== "undefined" ? window.innerWidth <= 768 : false
+  );
+
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", onResize, { passive: true });
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
 
   // Lazy load video when visible
   useEffect(() => {
@@ -33,7 +42,8 @@ export default function ParallaxVideoBox({ videoSrc, title, titleColor, titleLef
 
   // Initialize parallax animation only when visible
   const initParallax = useCallback(async () => {
-    if (!isVisible || gsapLoaded) return;
+    // En móvil no hay parallax: el video queda fijo y bien encuadrado
+    if (!isVisible || gsapLoaded || isMobile) return;
 
     const { default: gsap } = await import("gsap");
     const { ScrollTrigger } = await import("gsap/ScrollTrigger");
@@ -69,7 +79,7 @@ export default function ParallaxVideoBox({ videoSrc, title, titleColor, titleLef
     });
 
     setGsapLoaded(true);
-  }, [isVisible, gsapLoaded]);
+  }, [isVisible, gsapLoaded, isMobile]);
 
   useEffect(() => {
     if (isVisible) {
@@ -101,14 +111,27 @@ export default function ParallaxVideoBox({ videoSrc, title, titleColor, titleLef
           playsInline
           preload="metadata"
           loading="lazy"
-          style={{
-            position: "absolute",
-            top: "-10%",
-            transform: "translate(-50%, -50%)",
-            width: "100vw",
-            height: "120vh",
-            objectFit: "cover",
-          }}
+          style={
+            isMobile
+              ? {
+                  // Móvil: video fijo que llena el contenedor, centrado y subido
+                  // para que se vea el chispazo
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  objectPosition: "center 25%",
+                }
+              : {
+                  position: "absolute",
+                  top: "-10%",
+                  transform: "translate(-50%, -50%)",
+                  width: "100vw",
+                  height: "120vh",
+                  objectFit: "cover",
+                }
+          }
         >
           <source src={videoSrc} type="video/mp4" />
         </video>

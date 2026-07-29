@@ -237,8 +237,9 @@
   .home-middle-row {
     flex-direction: column !important;
     height: auto !important;
-    width: 90vw !important;
-    padding: 20px 12px;
+    width: 100% !important;
+    box-sizing: border-box;
+    padding: 20px 24px;
     gap: 20px;
 
     /* ✅ FIX REAL del hueco:
@@ -331,10 +332,6 @@
 
   .interact-item-title {
     font-size: 20px !important;
-  }
-
-  .home-middle-row {
-    width: 85vw;
   }
 
   .catalogue-section {

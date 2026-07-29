@@ -204,6 +204,11 @@ const productsData = {
       Entrega: 'Programada',
     },
     availability: 'Entregas a todo el país',
+    cta: {
+      title: '¿Necesitás mallas para tu obra?',
+      description: 'Contanos las medidas y cantidades, y te cotizamos la solución más adecuada.',
+      button: 'Solicitar cotización',
+    },
     images: [
       { src: '/images/mallaElectrosoldada.jpg', alt: 'Mallas Electrosoldadas' },
       { src: '/images/mallas3.jpg', alt: 'Mallas Electrosoldadas proceso' },
@@ -247,6 +252,11 @@ const productsData = {
       Trazabilidad: 'Completa',
     },
     availability: 'Entregas a todo el país',
+    cta: {
+      title: '¿Tu proyecto tiene geometrías repetitivas?',
+      description: 'Envíanos los planos y diseñamos las mallas plegadas a medida de tu obra.',
+      button: 'Solicitar asesoramiento',
+    },
     images: [
       { src: '/images/plegada.webp', alt: 'Mallas Plegadas' },
       { src: '/images/plegada1.jpg', alt: 'Mallas Plegadas proceso' },
@@ -332,6 +342,11 @@ const productsData = {
       Identificación: 'Por colores',
     },
     availability: 'Entregas a todo el país',
+    cta: {
+      title: '¿Querés eliminar el corte y doblado en obra?',
+      description: 'Envíanos la planilla de hierros y te cotizamos el pedido listo para armar.',
+      button: 'Solicitar cotización',
+    },
     images: [
       { src: '/images/cortadoYdoblado.jpg', alt: 'Hierro Cortado y Doblado' },
       { src: '/images/doblado6.jpg', alt: 'Control de calidad' },
@@ -371,6 +386,11 @@ const productsData = {
       Stock: 'Permanente',
     },
     availability: 'Entregas a todo el país',
+    cta: {
+      title: '¿Necesitás barras conformadas para tu obra?',
+      description: 'Contanos diámetros y cantidades, y te cotizamos con entrega a todo el país.',
+      button: 'Solicitar cotización',
+    },
     images: [
       { src: '/images/barras3.webp', alt: 'Barras Conformadas' },
       { src: '/images/barras2.jpg', alt: 'Certificación garantizada' },
@@ -410,6 +430,11 @@ const productsData = {
       Stock: 'Permanente',
     },
     availability: 'Entregas a todo el país',
+    cta: {
+      title: '¿Necesitás barras lisas a medida?',
+      description: 'Contanos diámetros, largos y cantidades, y te cotizamos a la brevedad.',
+      button: 'Solicitar cotización',
+    },
     images: [
       { src: '/images/barras1.jpg', alt: 'Barras de calidad' },
       { src: '/images/barras5.png', alt: 'Medidas precisas' },
@@ -419,27 +444,32 @@ const productsData = {
   },
   'armaduras-de-pilotes': {
     id: '07',
-    title: 'Armaduras de Pilotes',
+    title: 'Armaduras de pilotes',
     subtitle: 'Armaduras prefabricadas para fundaciones profundas',
     description:
-      'Armaduras cilíndricas prefabricadas para pilotes de fundación, fabricadas según los planos del proyecto y entregadas listas para colocar. Eliminan el armado manual en obra y garantizan la geometría exacta de la jaula.',
+      'Armaduras cilíndricas fabricadas industrialmente, para cimentaciones de pilotes, listas para posicionar. Fabricadas según los requerimientos del proyecto, están diseñadas para absorber los esfuerzos de tracción, flexión y torsión en cimentaciones profundas. Eliminan el armado manual en obra garantizando la geometría de la jaula y reduciendo los tiempos de la cimentación.',
     datasheetPdf: null,
     specifications: [
       'Fabricación según planos y especificaciones del proyecto',
-      'Barras longitudinales en acero ADN 500',
-      'Zuncho helicoidal con paso uniforme y controlado',
+      'Acero certificado según norma UNIT 843:95',
       'Diámetros de jaula y largos a medida',
       'Rigidizadores internos que aseguran la geometría durante el izaje',
+      'Zuncho helicoidal con paso uniforme y controlado',
       'Empalmes y anclajes según requerimiento estructural',
     ],
     features: [
-      'Elimina el armado de jaulas en obra',
+      'Cero desperdicio',
+      'Optimización financiera',
       'Geometría exacta y paso de espiral uniforme',
-      'Reducción de tiempos en la etapa de fundación',
-      'Entrega según cronograma de obra',
+      'Reducción de tiempos y espacio de armado en obra',
       'Identificación de cada armadura según plano',
-      'Asistencia técnica permanente',
+      'Entrega según cronograma de obra',
     ],
+    cta: {
+      title: '¿Necesitás una armadura para tu proyecto?',
+      description: 'Envíanos los requerimientos y analizamos la solución más adecuada.',
+      button: 'Solicitar asesoramiento',
+    },
     technicalInfo: {
       Acero: 'ADN 500',
       Diámetros: '6-32mm',
@@ -462,7 +492,7 @@ const productsData = {
     title: 'Pasadores',
     subtitle: 'Transferencia de cargas en juntas de pavimentos',
     description:
-      'Los pasadores Aceros Paisano son barras de acero liso (AL 220), cilíndricas, diseñadas para transferir cargas entre losas de hormigón y permitir el movimiento por dilatación o contracción. Son producidos en equipos de alta precisión permitiendo obtener una calidad en el corte libre de defectos y tolerancias dimensionales estrictas. Se emplean principalmente en obras de infraestructura vial y transporte, arquitectura e industria y obras hidráulicas y especiales para la fabricación de pavimentos de carreteras, terminales de carga, puertos, pisos industriales, estacionamientos comerciales, canales de riego, diques industriales, entre otros usos.',
+      'Barras de acero liso cortadas a medida, diseñadas para transferir cargas entre losas de hormigón y permitir el movimiento por dilatación o contracción. Permiten la transferencia de cargas entre losas, evitando escalonamientos. Producidos en equipos de alta precisión permiten obtener una calidad en el corte libre de defectos y una tolerancia dimensional estricta.',
     datasheetPdf: null,
     specifications: [
       'Producido bajo los estándares de la norma UNIT 34:95',
@@ -488,6 +518,11 @@ const productsData = {
       Corte: 'A medida',
     },
     availability: 'Entregas a todo el país',
+    cta: {
+      title: '¿Necesitás pasadores para tu pavimento?',
+      description: 'Envíanos el plano o pliego técnico y te cotizamos el corte a medida.',
+      button: 'Solicitar cotización',
+    },
     images: [
       { src: '/images/pasadores3.webp', alt: 'Pasadores Aceros Paisano' },
       { src: '/images/pasadores.webp', alt: 'Pasadores para pavimentos' },
@@ -501,22 +536,14 @@ const productsData = {
     title: 'Trelizas',
     subtitle: 'Armaduras triangulares electrosoldadas',
     description:
-      'Armaduras triangulares formadas por tres cordones de acero unidos por diagonales electrosoldadas. Utilizadas en prelosas, viguetas y elementos premoldeados, aportan rigidez durante la manipulación, el transporte y el hormigonado.',
+      'Estructura de sección triangular fabricada con acero de 600Mpa nervurado, conformada por tres hilos de acero unidos por dos diagonales electrosoldadas. Poseen la capacidad de lograr grandes luces y soportar cargas elevadas con total seguridad.',
     datasheetPdf: null,
-    specifications: [
-      'Estructura triangular de tres cordones longitudinales',
-      'Diagonales electrosoldadas en proceso industrializado',
-      'Alturas y largos fabricados según proyecto',
-      'Combinación de diámetros según requerimiento estructural',
-      'Aptas para prelosas, viguetas y premoldeados',
-    ],
     features: [
-      'Rigidez del elemento prefabricado durante manipulación y transporte',
-      'Soldadura controlada en proceso industrializado',
-      'Reducción de armado manual en planta y obra',
-      'Fabricación a medida según proyecto',
-      'Entrega según cronograma de obra',
-      'Asistencia técnica permanente',
+      'Reducción del costo de mano de obra',
+      'Mejor productividad',
+      'Racionalización en la ejecución',
+      'Organización del cantero de obras',
+      'Mayor rapidez en el montaje',
     ],
     technicalInfo: {
       Proceso: 'Electrosoldado',
@@ -526,6 +553,11 @@ const productsData = {
       Entrega: 'Programada',
     },
     availability: 'Entregas a todo el país',
+    cta: {
+      title: '¿Necesitás trelizas para tus premoldeados?',
+      description: 'Contanos las medidas de tu proyecto y te asesoramos sobre la treliza adecuada.',
+      button: 'Solicitar asesoramiento',
+    },
     images: [
       { src: '/images/trelizas.webp', alt: 'Trelizas electrosoldadas' },
       { src: '/images/trelizasss.webp', alt: 'Trelizas en paquete' },
@@ -917,11 +949,11 @@ const ProductDetail = ({ serviceSlug }) => {
                     <thead>
                       <tr>
                         <th rowSpan={2}>Designación</th>
-                        <th rowSpan={2}>Peso (kg/pieza)</th>
-                        <th rowSpan={2}>Altura (cm)</th>
-                        <th rowSpan={2}>Largo (m)</th>
+                        <th rowSpan={2}>Peso <span className="road-th-unit">(kg/pieza)</span></th>
+                        <th rowSpan={2}>Altura <span className="road-th-unit">(cm)</span></th>
+                        <th rowSpan={2}>Largo <span className="road-th-unit">(m)</span></th>
                         <th rowSpan={2}>Un./paquete</th>
-                        <th colSpan={3} className="road-th-group">Diámetros (mm)</th>
+                        <th colSpan={3} className="road-th-group">Diámetros <span className="road-th-unit">(mm)</span></th>
                       </tr>
                       <tr>
                         <th>Barra superior</th>
@@ -990,13 +1022,14 @@ const ProductDetail = ({ serviceSlug }) => {
           {/* CTA Section */}
           <section className="cta-section">
             <div className="cta-content">
-              <h3 className="cta-title">¿Necesita más información?</h3>
+              <h3 className="cta-title">{product.cta?.title || '¿Necesita más información?'}</h3>
               <p className="cta-description">
-                Nuestro equipo técnico está disponible para asesorarlo sobre este producto
+                {product.cta?.description ||
+                  'Nuestro equipo técnico está disponible para asesorarlo sobre este producto'}
               </p>
               <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <button className="cta-button primary" style={{ maxWidth: '25%' }} onClick={() => navigate('/contacto')}>
-                  <span className="cta-text">Solicitar información</span>
+                  <span className="cta-text">{product.cta?.button || 'Solicitar información'}</span>
                   <span className="cta-arrow">↗</span>
                 </button>
               </div>

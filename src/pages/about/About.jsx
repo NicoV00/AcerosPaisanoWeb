@@ -10,39 +10,26 @@ gsap.registerPlugin(ScrollTrigger);
 
 const content = [
   {
-    title: "Misión",
+    title: "Nuestra forma de construir valor",
     paragraphs: [
-      "Nuestra misión es desarrollar una empresa sustentable, brindando productos metálicos de calidad certificada destinados a los sectores de la construcción, el agro y la industria.",
-      "La sustentabilidad se obtiene a través de mejorar en forma continua el Sistema de Gestión, el Sistema de Seguridad y el Sistema Ambiental.",
+      "Aceros Paisano nació en 2010 con una idea clara: aportar soluciones que generen valor en la construcción uruguaya.",
+      "Desde entonces, fuimos ampliando nuestra propuesta y desarrollando productos que permiten reducir tareas en obra, mejorar los tiempos de ejecución y brindar mayor previsibilidad a cada proyecto.",
+      "Esa búsqueda permanente de soluciones nos llevó a especializarnos en productos de acero con mayor grado de elaboración, adaptados a las exigencias de constructoras, industrias y profesionales de todo el país.",
     ],
   },
   {
-    title: "Política de Gestión",
+    title: "Soluciones pensadas para cada proyecto",
     paragraphs: [
-      "Nuestro Sistema de Gestión se controla con la obtención y el mantenimiento de la certificación ISO 9001.",
-      "Para mejorar continuamente se aplican los conceptos del Modelo de Mejora Continua del Instituto Nacional de Calidad.",
+      "Proveemos y elaboramos soluciones de acero para diferentes etapas de la construcción: mallas electrosoldadas, acero cortado y doblado, armaduras de pilotes, pasadores, barras de acero y otros productos destinados a mejorar la eficiencia y el desempeño de cada obra.",
+      "Trabajamos junto a constructoras, ingenieros, arquitectos e industrias, acompañando proyectos de distintas escalas y complejidades.",
     ],
   },
   {
-    title: "Política de Calidad",
+    title: "El valor del acero",
     paragraphs: [
-      "Nuestro Sistema de Calidad tiene como prioridades:",
-      "- La obtención y el mantenimiento de la certificación de calidad de producto.",
-      "- La venta de productos metálicos que cumplan los requisitos de las normas vigentes aplicables y las necesidades de nuestros clientes.",
-    ],
-  },
-  {
-    title: "Política de Seguridad",
-    paragraphs: [
-      "Nuestro Sistema de Seguridad se controla con la obtención y el mantenimiento de la certificación de la norma ISO 45001",
-      "Nuestra principal política es que el operador debe detener el proceso si no se encuentra dentro de las condiciones estándares de seguridad, hasta asegurarse de la erradicación de la condición insegura.",
-    ],
-  },
-  {
-    title: "Política Ambiental",
-    paragraphs: [
-      "Nuestro Sistema de Protección del Medio Ambiente se controla con la obtención y el mantenimiento de la certificación de la norma ISO 14001.",
-      "Nuestra política es realizar inversiones y orientar nuestras operaciones de acuerdo al concepto de tecnología limpia, de forma de prevenir y minimizar la generación de elementos contaminantes.",
+      "Creemos que el verdadero valor del acero no está solamente en su resistencia, sino en todo lo que permite construir.",
+      "Por eso seguimos incorporando tecnología, desarrollando nuevos productos y buscando formas más eficientes de acompañar a nuestros clientes.",
+      "Porque cuando una solución mejora la productividad de una obra, también ayuda a impulsar el crecimiento de toda la construcción.",
     ],
   },
 ];
@@ -51,8 +38,6 @@ const sections = [
   { content: content[0], video: "/videos/13.mp4", reverse: false },
   { content: content[1], video: "/videos/home3.mp4", reverse: true },
   { content: content[2], video: "/videos/9.mp4", reverse: false },
-  { content: content[3], video: "/videos/22.mp4", reverse: true },
-  { content: content[4], video: "/videos/1.mp4", reverse: false },
 ];
 
 export const About = () => {
@@ -163,12 +148,15 @@ export const About = () => {
 
         <div className="about-hero__top">
           <h1 ref={titleRef} className="about-hero__headline">
-            Acero certificado. Forjado para la industria que no puede fallar.
+            Acero que impulsa obras más eficientes
           </h1>
 
           <p ref={taglineRef} className="about-hero__subtext">
-            Forjamos acero de calidad certificada para impulsar
-            la construcción, la industria y el futuro en Uruguay.
+            Desde 2010 desarrollamos soluciones de acero de calidad certificada
+            que ayudan a optimizar procesos, mejorar la productividad y generar
+            más valor en cada proyecto. Trabajamos para entender las necesidades
+            de cada proyecto y ofrecer soluciones que permitan simplificar
+            procesos, optimizar recursos y mejorar la productividad en obra.
           </p>
         </div>
 

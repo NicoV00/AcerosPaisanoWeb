@@ -19,6 +19,19 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import ProductServicePage from "../ProductServicePage/ProductServicePage";
 
+// Velo rojo difuminado que aparece al hacer hover sobre las cards de producto.
+// Usa el rojo de marca (#EE2737) con un degradado radial suave.
+const redVeilStyles = {
+  position: "absolute",
+  inset: 0,
+  zIndex: 1,
+  pointerEvents: "none",
+  opacity: 0,
+  transition: "opacity 0.7s ease",
+  background:
+    "radial-gradient(130% 100% at 50% 100%, rgba(238,39,55,0.55) 0%, rgba(238,39,55,0.30) 45%, rgba(238,39,55,0) 100%)",
+};
+
 // Lazy load heavy components
 const SlidingContainers = lazy(() =>
   import("../../components/carousel/SlidingContainers")
@@ -59,6 +72,7 @@ export const Home = () => {
   const imageRef = useRef();
   const lineWrapperRef = useRef([]);
   const imageTitleRef = useRef();
+  const mallaParallaxRef = useRef();
   const welcomeRef = useRef();
   const heroVideoRef = useRef();
   const benefitsTitleLeftRef = useRef();
@@ -236,6 +250,26 @@ export const Home = () => {
             onComplete: () => {
               imageRef.current.style.willChange = "auto";
             },
+          },
+        }
+      );
+    }
+
+    // ✅ Parallax sutil en la imagen de malla
+    if (mallaParallaxRef.current) {
+      await yieldToMain();
+      mallaParallaxRef.current.style.willChange = "transform";
+      gsap.fromTo(
+        mallaParallaxRef.current,
+        { yPercent: -11 },
+        {
+          yPercent: 0,
+          ease: "none",
+          scrollTrigger: {
+            trigger: mallaParallaxRef.current.parentElement,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
           },
         }
       );
@@ -510,7 +544,7 @@ export const Home = () => {
                 alignItems: "center",
                 width: { xs: "95%", md: "100%" },
                 position: { xs: "absolute", md: "relative" },
-                top: { xs: "12vh", md: "auto" }
+                top: { xs: "4vh", md: "auto" }
               }}>
                 <Box
                   component="img"
@@ -521,8 +555,8 @@ export const Home = () => {
                     width: "auto",
                     height: { xs: "9vh", md: "10vh", xl: "20vh" },
                     marginTop: { xs: "0", md: "60px" },
-                    paddingLeft: { xs: "24px", md: "3.5vw" },
-                    paddingRight: { xs: "24px", md: "3.5vw" }
+                    paddingLeft: { xs: "24px", md: "0" },
+                    paddingRight: { xs: "24px", md: "0" }
                   }}
                 />
               </Box>
@@ -673,11 +707,12 @@ export const Home = () => {
             }}
           >
             <img
+              ref={mallaParallaxRef}
               src="/images/malla10.jpg"
               alt=""
               style={{
                 width: "100%",
-                height: "100%",
+                height: "106%",
                 objectFit: "cover",
                 display: "block",
               }}
@@ -685,7 +720,7 @@ export const Home = () => {
           </Box>
         </Box>
 
-        {/* First Product Row - Hierro Cortado y Doblado & Mallas Electrosoldadas */}
+        {/* First Product Row - Mallas Plegadas & Mallas Electrosoldadas */}
         <Box
           sx={{
             backgroundColor: "#000",
@@ -706,11 +741,11 @@ export const Home = () => {
           >
             {[
               {
-                slug: "hierro-cortado-y-doblado",
-                title: "Hierro Cortado y Doblado",
-                image: "/images/doblado2.jpg",
+                slug: "mallas-plegadas",
+                title: "Mallas Plegadas",
+                image: "/images/plegadasobra.webp",
                 description:
-                  "Sistema Industrializado de corte y doblado de varillas que garantiza la precisión de sus armaduras y el cero desperdicio. Nuestro proceso automatizado reduce hasta un 60% los tiempos de obra, optimizando recursos y garantizando la calidad estructural de su proyecto.",
+                  "Combina las ventajas del cortado y doblado + mallas. Tecnología de punta en plegado con plegadora automatizada para optimización total de su proyecto constructivo.",
               },
               {
                 slug: "mallas-electrosoldadas",
@@ -732,7 +767,7 @@ export const Home = () => {
                   borderRadius: { xs: "8px", md: "12px" },
                   backgroundColor: "#000",
                   border: "1px solid rgba(255,255,255,0.12)",
-                  "&:hover .hover-img": { opacity: 1 },
+                  "&:hover .red-veil": { opacity: 1 },
                 }}
               >
                 <Box
@@ -743,10 +778,9 @@ export const Home = () => {
                     backgroundImage: `url(${product.image})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
-                    opacity: 0,
-                    transition: "opacity 0.5s ease",
                   }}
                 />
+                <Box className="red-veil" sx={redVeilStyles} />
                 <Box
                   sx={{
                     position: "absolute",
@@ -798,19 +832,22 @@ export const Home = () => {
       {/* First Parallax Video — lazy: only mounts when scrolled into view */}
       <div className="Home" style={{ marginTop: "60px", marginBottom: "60px" }} ref={electroVideoRef}>
         {electroVideoVisible ? (
-          <Suspense fallback={<div style={{ height: "88vh", backgroundColor: "#000" }} />}>
+          <Suspense fallback={<Box sx={{ height: { xs: "60vh", md: "88vh" }, backgroundColor: "#000" }} />}>
             <ParallaxVideoBox
               videoSrc="/videos/Electro.mp4"
               height={{ xs: "60vh", md: "88vh" }}
-              clipPath="polygon(150px 0, 100% 0, 100% calc(100% - 70px), calc(100% - 150px) 100%, 0 100%, 0 70px)"
+              clipPath={{
+                xs: "polygon(60px 0, 100% 0, 100% calc(100% - 28px), calc(100% - 60px) 100%, 0 100%, 0 28px)",
+                md: "polygon(150px 0, 100% 0, 100% calc(100% - 70px), calc(100% - 150px) 100%, 0 100%, 0 70px)",
+              }}
             />
           </Suspense>
         ) : (
-          <div style={{ height: "88vh", backgroundColor: "#000" }} />
+          <Box sx={{ height: { xs: "60vh", md: "88vh" }, backgroundColor: "#000" }} />
         )}
       </div>
 
-      {/* Second Product Row - Mallas Plegadas & Barras Lisas */}
+      {/* Second Product Row - Armaduras de Pilotes & Pasadores */}
       <Box
         sx={{
           backgroundColor: "#000",
@@ -829,18 +866,18 @@ export const Home = () => {
         >
           {[
             {
-              slug: "mallas-plegadas",
-              title: "Mallas Plegadas",
-              image: "/images/plegadasobra.webp",
+              slug: "armaduras-de-pilotes",
+              title: "Armaduras de Pilotes",
+              image: "/images/Pilotes2.webp",
               description:
-                "Combina las ventajas del cortado y doblado + mallas. Tecnología de punta en plegado con plegadora automatizada para optimización total de su proyecto constructivo.",
+                "Jaulas de acero bajo norma UNIT 843:95, con fabricación automatizada de precisión milimétrica y cero desperdicio.",
             },
             {
-              slug: "barras-conformadas",
-              title: "Barras Lisas y Conformadas",
-              image: "/images/barras3.webp",
+              slug: "pasadores",
+              title: "Pasadores",
+              image: "/images/pasadores3.webp",
               description:
-                "Producido de acuerdo con las especificaciones de la norma UNIT 843:95 y UNIT 34:95. Procesos de calidad garantizada. Para mayor practicidad las barras pueden ir cortadas a medida para reducir el costo, generar economía de tiempo y eliminar desperdicios en obra.",
+                "Barras de acero liso AL 220 cortadas a medida para transferir cargas entre losas de hormigón, permitiendo el movimiento por dilatación o contracción.",
             },
           ].map((product) => (
             <Box
@@ -855,7 +892,7 @@ export const Home = () => {
                 borderRadius: { xs: "8px", md: "12px" },
                 backgroundColor: "#000",
                 border: "1px solid rgba(255,255,255,0.12)",
-                "&:hover .hover-img": { opacity: 1 },
+                "&:hover .red-veil": { opacity: 1 },
               }}
             >
               <Box
@@ -866,10 +903,9 @@ export const Home = () => {
                   backgroundImage: `url(${product.image})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
-                  opacity: 0,
-                  transition: "opacity 0.5s ease",
                 }}
               />
+              <Box className="red-veil" sx={redVeilStyles} />
               <Box
                 sx={{
                   position: "absolute",
@@ -1154,7 +1190,7 @@ export const Home = () => {
         </Box>
       </Box>
 
-      {/* Nuevos Productos - Armaduras de Pilotes & Pasadores */}
+      {/* Last Product Row - Hierro Cortado y Doblado & Trelizas */}
       <Box
         sx={{
           backgroundColor: "#000",
@@ -1173,18 +1209,18 @@ export const Home = () => {
         >
           {[
             {
-              slug: "armaduras-de-pilotes",
-              title: "Armaduras de Pilotes",
-              image: "/images/Pilotes2.webp",
+              slug: "hierro-cortado-y-doblado",
+              title: "Hierro Cortado y Doblado",
+              image: "/images/doblado2.jpg",
               description:
-                "Jaulas de acero bajo norma UNIT 843:95, con fabricación automatizada de precisión milimétrica y cero desperdicio.",
+                "Sistema Industrializado de corte y doblado de varillas que garantiza la precisión de sus armaduras y el cero desperdicio. Nuestro proceso automatizado reduce hasta un 60% los tiempos de obra, optimizando recursos y garantizando la calidad estructural de su proyecto.",
             },
             {
-              slug: "pasadores",
-              title: "Pasadores",
-              image: "/images/pasadores3.webp",
+              slug: "trelizas",
+              title: "Trelizas",
+              image: "/images/trelizasss.webp",
               description:
-                "Barras de acero liso AL 220 cortadas a medida para transferir cargas entre losas de hormigón, permitiendo el movimiento por dilatación o contracción.",
+                "Armaduras triangulares electrosoldadas de tres cordones de acero unidos por diagonales. Aportan rigidez a prelosas, viguetas y elementos premoldeados durante la manipulación, el transporte y el hormigonado.",
             },
           ].map((product) => (
             <Box
@@ -1200,8 +1236,10 @@ export const Home = () => {
                 backgroundImage: `url(${product.image})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
+                "&:hover .red-veil": { opacity: 1 },
               }}
             >
+              <Box className="red-veil" sx={redVeilStyles} />
               <Box
                 sx={{
                   position: "absolute",

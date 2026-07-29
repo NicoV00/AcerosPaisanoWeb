@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   TextField,
   Button,
@@ -27,6 +27,10 @@ const ContactComponent = () => {
 
   const navOffset = isMobile ? 68 : 88;
 
+  const formRef = useRef(null);
+  const fileInputRef = useRef(null);
+  const [attachedFile, setAttachedFile] = useState(null);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -52,6 +56,9 @@ const ContactComponent = () => {
     "Mallas Electrosoldadas",
     "Mallas Plegadas",
     "Hierro Cortado y Doblado",
+    "Armaduras de Pilotes",
+    "Pasadores",
+    "Trelizas",
     "Columnas y Vigas",
     "Otros",
   ];
@@ -87,13 +94,17 @@ const ContactComponent = () => {
 
     if (!validateForm()) return;
 
+    const messageWithFile = attachedFile
+      ? `${formData.message || "Sin mensaje"}\n\n[Adjuntó archivo: ${attachedFile.name}]`
+      : formData.message || "Sin mensaje";
+
     const templateParams = {
       from_name: formData.name,
       email: formData.email,
       company: formData.company || "No especificada",
       to_name: "Ventas Aceros Paisano",
       services: formData.services.join(", "),
-      message: formData.message || "Sin mensaje",
+      message: messageWithFile,
       agree: formData.agree ? "Sí" : "No",
     };
 
@@ -115,6 +126,8 @@ const ContactComponent = () => {
           agree: false,
         });
         setErrors({ name: "", email: "", services: "", agree: "" });
+        setAttachedFile(null);
+        if (fileInputRef.current) fileInputRef.current.value = "";
       })
       .catch(() => alert("Error al enviar."));
   };
@@ -244,14 +257,14 @@ const ContactComponent = () => {
             component="h1"
             sx={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: { xs: "2.1rem", sm: "2.6rem", md: "3.6rem", lg: "4.2rem" },
+              fontSize: { xs: "1.9rem", sm: "2.3rem", md: "3rem", lg: "3.5rem" },
               fontWeight: 400,
               lineHeight: 1.02,
               letterSpacing: "-0.04em",
               mb: { xs: 1.5, md: 2.2 },
             }}
           >
-            Contactá Aceros Paisano
+            ¿Qué necesita tu próxima obra?
           </Typography>
 
           <Typography
@@ -261,14 +274,52 @@ const ContactComponent = () => {
               lineHeight: 1.65,
               color: "rgba(255,255,255,0.82)",
               maxWidth: "500px",
+              mb: { xs: 2, md: 2.6 },
+            }}
+          >
+            Cada proyecto presenta desafíos diferentes. Contanos qué necesitas
+            y te ayudamos a encontrar una solución de acero que permita
+            optimizar tiempos, procesos y recursos.
+          </Typography>
+
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 1.5,
               mb: { xs: 2.5, md: 4 },
             }}
           >
-            Para consultas de venta, pedidos de cotización y consultas
-            generales, completá el formulario a la derecha o comunicate
-            directamente con nuestro equipo comercial. Te respondemos a la
-            brevedad.
-          </Typography>
+            {["Hablemos de tu proyecto", "Solicitar una cotización"].map(
+              (label) => (
+                <Button
+                  key={label}
+                  disableElevation
+                  onClick={() =>
+                    formRef.current?.scrollIntoView({
+                      behavior: "smooth",
+                      block: "center",
+                    })
+                  }
+                  sx={{
+                    bgcolor: "#fff",
+                    color: "#111",
+                    borderRadius: 0,
+                    px: 2.4,
+                    py: 1.1,
+                    fontFamily: "'Geist Mono', monospace",
+                    fontWeight: 700,
+                    fontSize: { xs: "0.62rem", md: "0.7rem" },
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                    "&:hover": { bgcolor: "#EE2737", color: "#fff" },
+                  }}
+                >
+                  {label}
+                </Button>
+              )
+            )}
+          </Box>
 
           <Box sx={{ display: "flex", flexDirection: "column", gap: { xs: 2, md: 2.6 } }}>
             {infoItems.map((item) => (
@@ -346,6 +397,7 @@ const ContactComponent = () => {
         <Grid item xs={12} md={6} sx={{ display: "flex", justifyContent: { md: "flex-end" } }}>
           <Box
             component="form"
+            ref={formRef}
             onSubmit={handleSubmit}
             noValidate
             sx={{
@@ -368,14 +420,29 @@ const ContactComponent = () => {
             <Typography
               sx={{
                 fontFamily: "'Inter', sans-serif",
-                fontSize: { xs: "1.3rem", md: "1.55rem" },
+                fontSize: { xs: "1.05rem", md: "1.22rem" },
                 fontWeight: 600,
+                whiteSpace: { md: "nowrap" },
                 letterSpacing: "-0.02em",
                 color: "#111",
+                mb: 0.8,
+              }}
+            >
+              Compartinos los principales datos de tu proyecto
+            </Typography>
+
+            <Typography
+              sx={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: { xs: "0.82rem", md: "0.9rem" },
+                lineHeight: 1.5,
+                color: "#666",
+                maxWidth: { md: "380px" },
                 mb: { xs: 2, md: 2.4 },
               }}
             >
-              Envianos un mensaje
+              Nuestro equipo se pondrá en contacto para orientarte sobre la
+              solución más adecuada.
             </Typography>
 
             {success && (
@@ -577,6 +644,50 @@ const ContactComponent = () => {
                   value={formData.message}
                   onChange={handleChange}
                   sx={{ ...textFieldStyle, "& textarea": { resize: "none" } }}
+                />
+              </Grid>
+
+              <Grid item xs={12}>
+                <Typography sx={labelStyle}>
+                  ADJUNTAR PLANO, LISTADO O ARCHIVO (OPCIONAL)
+                </Typography>
+                <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
+                  <Button
+                    disableElevation
+                    onClick={() => fileInputRef.current?.click()}
+                    sx={{
+                      border: "1px solid #d9d9d9",
+                      borderRadius: 0,
+                      color: "#111",
+                      px: 1.8,
+                      py: 0.6,
+                      fontFamily: "'Geist Mono', monospace",
+                      fontSize: "0.62rem",
+                      letterSpacing: "0.08em",
+                      "&:hover": { borderColor: "#EE2737", bgcolor: "transparent" },
+                    }}
+                  >
+                    SELECCIONAR ARCHIVO
+                  </Button>
+                  <Typography
+                    sx={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: "0.8rem",
+                      color: attachedFile ? "#111" : "#9a9a9a",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {attachedFile ? attachedFile.name : "Ningún archivo seleccionado"}
+                  </Typography>
+                </Box>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept=".pdf,.dwg,.dxf,.xls,.xlsx,.doc,.docx,.png,.jpg,.jpeg,.zip"
+                  style={{ display: "none" }}
+                  onChange={(e) => setAttachedFile(e.target.files?.[0] || null)}
                 />
               </Grid>
 

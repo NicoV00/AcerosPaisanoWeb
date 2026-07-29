@@ -85,7 +85,8 @@
   .home-middle-row {
     flex-direction: column;
     gap: 16px;
-    padding: 20px 12px;
+    padding: 20px 24px;
+    box-sizing: border-box;
     top: auto;
     bottom: 400px;
     margin-top: 0;
@@ -161,9 +162,12 @@
     padding: 40px 0;
   }
 
-  /* Videos parallax en móvil */
+  /* Videos parallax en móvil: altura real del contenido y misma
+     separación que la imagen de malla (32px padding + 40px margen del box) */
   .Home {
-    height: 50vh;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 32px 0;
   }
 }
 

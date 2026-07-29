@@ -13,7 +13,6 @@ const modalInfo = {
       { "title": "Cero Desperdicio", "content": "Trabajamos con rollos de alambrón que generan cero desperdicio.", "image": "/images/doblado4.jpg", "alt": "Manufactura Industrial" },
       { "title": "Ahorro", "content": "Economía de tiempo y mano de obra.", "image": "/images/doblado7.jpg", "alt": "Ahorro" },
       { "title": "Asistencia Técnica", "content": "Asesoramiento y seguimiento de obra por técnicos especializados.", "image": "/images/doblado5.jpg", "alt": "Industria Agropecuaria" },
-      { "title": "Trazabilidad", "content": "Identificación de los paquetes facilitando su uso y armado.", "image": "/images/ACEROSPAISANO-037.jpg", "alt": "Identificación de los paquetes" },
       { "title": "Logística", "content": "Entrega del material de acuerdo al cronograma de obra.", "image": "/images/plegadas-obra3.jpg", "alt": "Entrega del material" }
     ]
   },
@@ -65,6 +64,16 @@ const modalInfo = {
       { "title": "Cortes exactos", "content": "Corte a medida según plano o pliego técnico, con cero desperdicio.", "image": "/images/pasadores2.webp", "alt": "Corte de precisión" },
       { "title": "Menor costo financiero", "content": "Reducción del espacio en obra y menor costo financiero.", "image": "/images/pasadores3.webp", "alt": "Optimización en obra" },
       { "title": "Asistencia Técnica", "content": "Asesoramiento y seguimiento permanente de nuestros técnicos.", "image": "/images/pasadores.webp", "alt": "Soporte técnico" }
+    ]
+  },
+  "trelizas": {
+    name: "Trelizas",
+    items: [
+      { "title": "Rigidez estructural", "content": "Estructura triangular de tres cordones unidos por diagonales electrosoldadas.", "image": "/images/trelizas.webp", "alt": "Trelizas electrosoldadas" },
+      { "title": "Prefabricados", "content": "Ideales para prelosas, viguetas y elementos premoldeados.", "image": "/images/trelizasss.webp", "alt": "Trelizas en paquete" },
+      { "title": "Medidas a pedido", "content": "Alturas y largos fabricados según las necesidades del proyecto.", "image": "/images/trelizas5.webp", "alt": "Medidas a medida" },
+      { "title": "Manipulación segura", "content": "Aportan rigidez durante el transporte, la manipulación y el hormigonado.", "image": "/images/trelizas6.webp", "alt": "Transporte y montaje" },
+      { "title": "Asistencia Técnica", "content": "Asesoramiento y seguimiento permanente de nuestros técnicos.", "image": "/images/trelizas.webp", "alt": "Soporte técnico" }
     ]
   }
 };
@@ -225,7 +234,7 @@ const ProductServicePage = ({ serviceSlug, onClose }) => {
                     height: "auto",
                     maxHeight: "400px",
                     objectFit: "cover",
-                    borderRadius: "12px",
+                    borderRadius: 0,
                     marginBottom: "20px",
                     display: "block"
                   }}
@@ -257,19 +266,21 @@ const ProductServicePage = ({ serviceSlug, onClose }) => {
             paddingTop: "20px",
             paddingBottom: "40px"
           }}>
-            <Link to={`/${effectiveSlug}`} style={{ textDecoration: "none", width: "100%" }} >
+            <Link to={`/${effectiveSlug}`} style={{ textDecoration: "none", display: "block", width: "100%" }} >
               <Typography
                 sx={{
                   fontFamily: '"Geist Mono", monospace',
                   fontSize: "12px",
-                  fontWeight: 400,
+                  fontWeight: 500,
                   textTransform: "uppercase",
                   letterSpacing: "0.08em",
-                  color: "rgba(255, 255, 255, 0.75)",
-                  transition: "color 0.3s ease",
-                  "&:hover": {
-                    color: "white",
-                  },
+                  color: "#000",
+                  backgroundColor: "#fff",
+                  width: "100%",
+                  textAlign: "center",
+                  padding: "16px 20px",
+                  borderRadius: "2px",
+                  boxSizing: "border-box",
                   lineHeight: 1,
                 }}
               >

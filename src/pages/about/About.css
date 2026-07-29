@@ -176,7 +176,8 @@
   --img-w: calc(100% * var(--img-w-ratio));
   /* Corrida a la izquierda por --img-shift para quedar centrada entre líneas */
   --img-left: calc(100% - var(--img-w) - var(--img-shift));
-  --img-top: 22%;
+  /* Centrada verticalmente: misma distancia arriba y abajo */
+  --img-top: 33%;
   --img-h: calc(115% / 3);
   /* Cuánto se extienden las líneas horizontales hacia la derecha
      (llegan hasta el borde de la página compensando el "right" del contenedor) */
@@ -351,6 +352,11 @@
 
   .about-sub-section .subtitle::after {
     display: none;
+  }
+
+  /* Apenas más aire arriba de cada título de sección */
+  .about-sub-section .subtitle {
+    margin-top: 18px;
   }
 
   .about-footer-gap {

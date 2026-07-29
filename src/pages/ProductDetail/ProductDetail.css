@@ -267,8 +267,8 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--success);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--success) 18%, transparent);
+  background: var(--red);
+  box-shadow: 0 0 0 3px var(--red-glow);
   flex-shrink: 0;
 }
 
@@ -1191,6 +1191,17 @@
 .road-table-trelizas th:nth-child(6),
 .road-table-trelizas thead tr + tr th,
 .road-table-trelizas td:nth-child(n + 6) {
+  text-align: center;
+}
+
+/* Unidades en minúscula dentro de encabezados uppercase */
+.road-th-unit {
+  text-transform: none;
+}
+
+/* Números centrados respecto al título de su columna */
+.road-table-trelizas th:not(:first-child),
+.road-table-trelizas td:not(:first-child) {
   text-align: center;
 }
 

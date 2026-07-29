@@ -322,14 +322,22 @@ export const Footer = () => {
                       fontSize: "13px",
                       color: COLORS.textSecondary,
                       lineHeight: 1.35,
+                      mt: { xs: 1.5, md: 0 },
                       transition: "color 0.2s ease",
                       "&:hover": { color: COLORS.accentRed },
                     }}
                     variant="h1"
                   >
-                    Brigadier Gral. Fructuoso Rivera KM 25.500
-                    <br />
-                    15900 18 de Mayo, Departamento de Canelones
+                    <Box component="span" sx={{ display: { xs: "none", md: "inline" } }}>
+                      Brigadier Gral. Fructuoso Rivera KM 25.500
+                      <br />
+                      15900 18 de Mayo, Departamento de Canelones
+                    </Box>
+                    <Box component="span" sx={{ display: { xs: "inline", md: "none" } }}>
+                      Brig. Gral. F. Rivera KM 25.500
+                      <br />
+                      18 de Mayo, Canelones
+                    </Box>
                   </Typography>
 
                   <Box
