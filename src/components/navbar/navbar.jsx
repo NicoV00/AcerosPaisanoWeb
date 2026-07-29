@@ -14,6 +14,7 @@ import ListItemText from "@mui/material/ListItemText";
 import GlobalStyles from "@mui/material/GlobalStyles";
 
 import { Link } from "react-router-dom";
+import { setThemeColor } from "../../utils/themeColor";
 
 const AnimatedMenuIcon = ({ isOpen, isDark = false }) => (
   <Box
@@ -169,6 +170,11 @@ export const NavBar = ({ whiteBackground = false, disableInitialHidden = false, 
     }
   }, [menuOpen]);
 
+  // theme-color acompaña el fondo de la navbar (menú abierto = negro)
+  useEffect(() => {
+    setThemeColor(menuOpen ? "#000000" : whiteBackground ? "#ffffff" : "#000000");
+  }, [menuOpen, whiteBackground]);
+
   const navItems = [
     { title: "Inicio", path: "/" },
     { title: "Sobre nosotros", path: "/sobre-nosotros" },
@@ -191,6 +197,25 @@ export const NavBar = ({ whiteBackground = false, disableInitialHidden = false, 
         }}
       />
 
+      {/* Franja fija que cubre el safe area superior (reloj/notch) aun cuando la
+          navbar se oculta al scrollear: la franja nunca queda "abierta" */}
+      {(whiteBackground || menuOpen) && (
+        <Box
+          sx={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "env(safe-area-inset-top, 0px)",
+            backgroundColor: menuOpen ? "#000000" : "rgba(255, 255, 255, 0.96)",
+            backdropFilter: menuOpen ? "none" : "blur(10px)",
+            WebkitBackdropFilter: menuOpen ? "none" : "blur(10px)",
+            zIndex: 2202,
+            pointerEvents: "none",
+          }}
+        />
+      )}
+
       <Box
         sx={{
           position: "fixed",
@@ -207,6 +232,11 @@ export const NavBar = ({ whiteBackground = false, disableInitialHidden = false, 
             right: "auto",
             width: "100vw",
             padding: { xs: "6px 24px", md: "3px 3.5vw" },
+            /* La navbar cubre el safe area superior (notch/status bar) con su propio fondo */
+            paddingTop: {
+              xs: "calc(env(safe-area-inset-top, 0px) + 6px)",
+              md: "calc(env(safe-area-inset-top, 0px) + 3px)",
+            },
             transition: "transform 0.4s ease-in-out, background-color 0.3s ease-in-out",
             transform: hidden && !menuOpen ? "translateY(-100%)" : "translateY(0)",
 

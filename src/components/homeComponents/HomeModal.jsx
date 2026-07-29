@@ -100,13 +100,14 @@ export const HomeModal = ({ info, onClose }) => {
     return (
       <Box
         width={"100%"}
-        height={"100vh"}
         sx={{
           overflow: 'auto',
           backgroundColor: 'rgba(0, 0, 0, 0.98)',
           position: 'fixed',
-          top: 0,
-          left: 0,
+          inset: 0,
+          height: '100dvh',
+          paddingTop: 'env(safe-area-inset-top, 0px)',
+          boxSizing: 'border-box',
           zIndex: 9999
         }}
       >
@@ -115,7 +116,7 @@ export const HomeModal = ({ info, onClose }) => {
           onClick={onClose}
           sx={{
             position: "fixed",
-            top: "16px",
+            top: "calc(env(safe-area-inset-top, 0px) + 16px)",
             left: "16px",
             cursor: "pointer",
             color: "#999",

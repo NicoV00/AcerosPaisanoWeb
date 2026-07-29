@@ -11,6 +11,8 @@
   background: rgba(0, 0, 0, 0.98);
   box-sizing: border-box;
   padding: var(--pad);
+  /* cubrir hasta el borde físico (notch/status bar) */
+  padding-top: calc(env(safe-area-inset-top, 0px) + var(--pad));
 
   font-family: inherit;
   color: #fff;
@@ -31,7 +33,7 @@
 /* X: fija, alineada al margen del modal. NO se mueve al rotar */
 .homeModalClose {
   position: fixed;
-  top: var(--pad);
+  top: calc(env(safe-area-inset-top, 0px) + var(--pad));
   left: var(--pad);
 
   width: 44px;

@@ -3,6 +3,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
 import '../../components/homeComponents/HomeModal.css';
 import ButtonHoverBg from '../../components/CustomButton/ButtonHoverBg';
+import { setThemeColor } from '../../utils/themeColor';
 
 const modalInfo = {
   "hierro-cortado-y-doblado": {
@@ -149,8 +150,12 @@ const ProductServicePage = ({ serviceSlug, onClose }) => {
     // Manage body scroll
     document.body.classList.add('no-scroll');
 
+    // Overlay oscuro: la UI del navegador acompaña mientras está abierto
+    setThemeColor('#000000');
+
     return () => {
       document.body.classList.remove('no-scroll');
+      setThemeColor('#ffffff');
     };
   }, [effectiveSlug, navigate, productInfo, onClose, isMobile]);
 
@@ -169,14 +174,15 @@ const ProductServicePage = ({ serviceSlug, onClose }) => {
     return (
       <Box
         width={"100%"}
-        height={"100vh"}
         sx={{
           overflow: 'auto',
           overflowX: 'hidden',
           backgroundColor: 'rgba(0, 0, 0, 0.98)',
           position: 'fixed',
-          top: 0,
-          left: 0,
+          inset: 0,
+          height: '100dvh',
+          paddingTop: 'env(safe-area-inset-top, 0px)',
+          boxSizing: 'border-box',
           zIndex: 9999
         }}
       >
@@ -185,7 +191,7 @@ const ProductServicePage = ({ serviceSlug, onClose }) => {
           onClick={handleClose}
           sx={{
             position: "fixed",
-            top: "20px",
+            top: "calc(env(safe-area-inset-top, 0px) + 20px)",
             left: "20px",
             cursor: "pointer",
             color: "#fff",
@@ -295,7 +301,7 @@ const ProductServicePage = ({ serviceSlug, onClose }) => {
 
   // Desktop version
   return (
-    <Box width={"100%"} height={"100vh"} sx={{ overflow: 'hidden', backgroundColor: 'rgba(0, 0, 0, 1)', position: 'fixed', top: 0, left: 0, zIndex: 9999 }}>
+    <Box width={"100%"} sx={{ overflow: 'hidden', backgroundColor: 'rgba(0, 0, 0, 1)', position: 'fixed', inset: 0, height: '100dvh', paddingTop: 'env(safe-area-inset-top, 0px)', boxSizing: 'border-box', zIndex: 9999 }}>
       <div style={{ zIndex: 1000, position: 'relative', height: '100%' }}>
 
 
