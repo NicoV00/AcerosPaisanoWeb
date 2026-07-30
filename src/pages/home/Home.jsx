@@ -591,7 +591,7 @@ export const Home = () => {
             className="catalogue-section"
           >
             <Typography variant="h1" sx={{ maxWidth: "none", whiteSpace: "nowrap", fontFamily: '"Inter", "Helvetica Neue", Helvetica, Arial, sans-serif', fontSize: { xs: "14px", md: "20px" }, fontWeight: "400", letterSpacing: "0.01em", lineHeight: "1.3", marginBottom: "20px" }} className="catalogue-description">
-              Desde 2011 apoyando a la industria nacional
+              Desde 2010 apoyando a la industria nacional
             </Typography>
             <Box className="catalogue-button-wrapper" sx={{ paddingRight: { xs: "12px", md: "20px" } }}>
               <Link to={"/productos"}>
