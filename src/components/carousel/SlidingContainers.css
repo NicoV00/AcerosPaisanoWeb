@@ -1,12 +1,4 @@
 /* SlidingContainers.css */
-/* 
-  Move this <link> to your index.html <head> instead of @import here.
-  This way the font loads in parallel rather than in a chain.
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-*/
 
 @keyframes slider-scroll {
     to {
@@ -18,7 +10,7 @@
     width: 100vw;
     max-width: 100vw;
     overflow: hidden;
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Inter', sans-serif;
     margin-left: calc(-50vw + 50%);
     margin-right: calc(-50vw + 50%);
 }
@@ -64,7 +56,7 @@
 }
 
 .sliderItem h3 {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 1.4rem;
     line-height: 1.75rem;
     font-weight: 600;

@@ -55,7 +55,7 @@ export default function NotFound() {
         >
           <Typography
             sx={{
-              fontFamily: "Poppins, Inter, sans-serif",
+              fontFamily: "Inter, sans-serif",
               fontSize: { xs: "12px", md: "14px", lg: "16px" },
               fontWeight: 500,
               lineHeight: 1.35,
@@ -76,7 +76,7 @@ export default function NotFound() {
             sx={{
               color: "#fff",
               textTransform: "none",
-              fontFamily: "Poppins, Inter, sans-serif",
+              fontFamily: "Inter, sans-serif",
               fontSize: { xs: "12px", md: "12px", lg: "13px" },
               fontWeight: 400,
               p: 0,
@@ -121,7 +121,7 @@ export default function NotFound() {
             top: { xs: "44%", sm: "44%", md: "46%" },
             transform: "translate(-50%, -50%)",
 
-            fontFamily: "Poppins, Inter, sans-serif",
+            fontFamily: "Inter, sans-serif",
             fontWeight: 600,
 
             // ✅ Más chico que antes (más parecido a la 2da imagen)
@@ -155,7 +155,7 @@ export default function NotFound() {
         >
           <Typography
             sx={{
-              fontFamily: "Poppins, Inter, sans-serif",
+              fontFamily: "Inter, sans-serif",
               fontWeight: 400,
 
               // ✅ Reducido respecto a tu versión anterior (que estaba muy grande)
@@ -183,7 +183,7 @@ export default function NotFound() {
               mt: { xs: 1.6, md: 2.0 },
               color: "rgba(255,255,255,0.95)",
               textTransform: "none",
-              fontFamily: "Poppins, Inter, sans-serif",
+              fontFamily: "Inter, sans-serif",
               fontSize: { xs: "12px", md: "12px", lg: "13px" },
               fontWeight: 400,
               p: 0,

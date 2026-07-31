@@ -62,7 +62,7 @@ const modalInfo = {
     items: [
       { "title": "Rapidez y productividad", "content": "Mayor rapidez y productividad con reducción de tiempos de obra.", "image": "/images/pasadores3.webp", "alt": "Pasadores Aceros Paisano" },
       { "title": "Calidad de su armadura", "content": "Acero liso AL-220 producido bajo la norma UNIT 34:95.", "image": "/images/pasadores.webp", "alt": "Barras lisas AL-220" },
-      { "title": "Cortes exactos", "content": "Corte a medida según plano o pliego técnico, con cero desperdicio.", "image": "/images/pasadores2.webp", "alt": "Corte de precisión" },
+      { "title": "Medidas exactas", "content": "Corte a medida según plano o pliego técnico, con extremos de corte limpio, sin rebabas.", "image": "/images/pasadores2.webp", "alt": "Corte de precisión" },
       { "title": "Menor costo financiero", "content": "Reducción del espacio en obra y menor costo financiero.", "image": "/images/pasadores3.webp", "alt": "Optimización en obra" },
       { "title": "Asistencia Técnica", "content": "Asesoramiento y seguimiento permanente de nuestros técnicos.", "image": "/images/pasadores.webp", "alt": "Soporte técnico" }
     ]
@@ -72,9 +72,9 @@ const modalInfo = {
     items: [
       { "title": "Rigidez estructural", "content": "Estructura triangular de tres cordones unidos por diagonales electrosoldadas.", "image": "/images/trelizas.webp", "alt": "Trelizas electrosoldadas" },
       { "title": "Prefabricados", "content": "Ideales para prelosas, viguetas y elementos premoldeados.", "image": "/images/trelizasss.webp", "alt": "Trelizas en paquete" },
-      { "title": "Medidas a pedido", "content": "Alturas y largos fabricados según las necesidades del proyecto.", "image": "/images/trelizas5.webp", "alt": "Medidas a medida" },
-      { "title": "Manipulación segura", "content": "Aportan rigidez durante el transporte, la manipulación y el hormigonado.", "image": "/images/trelizas6.webp", "alt": "Transporte y montaje" },
-      { "title": "Asistencia Técnica", "content": "Asesoramiento y seguimiento permanente de nuestros técnicos.", "image": "/images/trelizas.webp", "alt": "Soporte técnico" }
+      { "title": "Medidas estándar", "content": "Altura y largos estándar de acuerdo a designación de origen.", "image": "/images/trelizas5.webp", "alt": "Medidas estándar" },
+      { "title": "Racionalización", "content": "Racionalización en la ejecución.", "image": "/images/trelizas6.webp", "alt": "Racionalización en obra" },
+      { "title": "Rapidez de montaje", "content": "Mayor rapidez de montaje.", "image": "/images/trelizas.webp", "alt": "Montaje rápido" }
     ]
   }
 };

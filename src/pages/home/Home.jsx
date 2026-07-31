@@ -590,7 +590,7 @@ export const Home = () => {
             }}
             className="catalogue-section"
           >
-            <Typography variant="h1" sx={{ maxWidth: "none", whiteSpace: "nowrap", fontFamily: '"Inter", "Helvetica Neue", Helvetica, Arial, sans-serif', fontSize: { xs: "14px", md: "20px" }, fontWeight: "400", letterSpacing: "0.01em", lineHeight: "1.3", marginBottom: "20px" }} className="catalogue-description">
+            <Typography variant="h1" sx={{ maxWidth: "none", whiteSpace: "nowrap", fontFamily: '"Inter", sans-serif', fontSize: { xs: "14px", md: "20px" }, fontWeight: "400", letterSpacing: "0.01em", lineHeight: "1.3", marginBottom: "20px" }} className="catalogue-description">
               Desde 2010 apoyando a la industria nacional
             </Typography>
             <Box className="catalogue-button-wrapper" sx={{ paddingRight: { xs: "12px", md: "20px" } }}>
@@ -873,7 +873,7 @@ export const Home = () => {
               title: "Armaduras de Pilotes",
               image: "/images/Pilotes2.webp",
               description:
-                "Jaulas de acero bajo norma UNIT 843:95, con fabricación automatizada de precisión milimétrica y cero desperdicio.",
+                "Jaulas de acero fabricadas industrialmente que garantizan la precisión milimétrica y eliminan el desperdicio en la obra.",
             },
             {
               slug: "pasadores",
@@ -1243,7 +1243,7 @@ export const Home = () => {
               image: "/images/trelizasss.webp",
               isNew: true,
               description:
-                "Armaduras triangulares electrosoldadas de tres cordones de acero unidos por diagonales. Aportan rigidez a prelosas, viguetas y elementos premoldeados durante la manipulación, el transporte y el hormigonado.",
+                "Armaduras de sección triangular, electrosoldadas, para uso en prelosas, viguetas y elementos premoldeados.",
             },
             {
               slug: "hierro-cortado-y-doblado",

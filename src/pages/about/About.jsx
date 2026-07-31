@@ -211,8 +211,7 @@ export const About = () => {
                 <Box
                   display={"flex"}
                   flexDirection={"column"}
-                  justifyContent={{ xs: "flex-start", md: "space-between" }}
-                  height={{ sm: "60%", md: "70%", xl: "80%" }}
+                  justifyContent="flex-start"
                   // Menos espacio arriba para que el título quede más centrado
                   paddingTop={{ xs: "16px", sm: "24px", md: "28px", xl: "36px" }}
                   paddingBottom={{ xs: "25px", sm: "50px", md: "60px", xl: "80px" }}
@@ -222,20 +221,20 @@ export const About = () => {
                     className="subtitle"
                     variant="h2"
                     fontSize={{ xs: "22px", md: "27px", xl: "36px" }}
-                    sx={{ fontFamily: "Inter, sans-serif", fontWeight: 400 }}
+                    sx={{ fontFamily: "Inter, sans-serif", fontWeight: 500 }}
                   >
                     {section.content.title}
                   </Typography>
 
-                  <Box sx={{ mt: 3 }}>
+                  <Box sx={{ mt: 5 }}>
                     {section.content.paragraphs.map((item, i) => (
                       <Typography
                         key={i}
                         component="p"
-                        fontSize={{ xs: "18px", md: "24px", xl: "28px" }}
+                        fontSize={{ xs: "16px", md: "19px", xl: "22px" }}
                         sx={{
                           color: "#fff",
-                          lineHeight: 1.2,
+                          lineHeight: 1.45,
                           marginBottom: "16px",
                           fontWeight: 300,
                           opacity: 0.9,
@@ -272,8 +271,7 @@ export const About = () => {
                 <Box
                   display={"flex"}
                   flexDirection={"column"}
-                  justifyContent={{ xs: "flex-start", md: "space-between" }}
-                  height={{ md: "70%", xl: "80%" }}
+                  justifyContent="flex-start"
                   // Menos espacio arriba para que el título quede más centrado
                   paddingTop={{ xs: "16px", sm: "24px", md: "28px", xl: "36px" }}
                   paddingBottom={{ xs: "25px", sm: "50px", md: "60px", xl: "80px" }}
@@ -283,20 +281,20 @@ export const About = () => {
                     className="subtitle"
                     variant="h2"
                     fontSize={{ xs: "22px", md: "27px", xl: "36px" }}
-                    sx={{ fontFamily: "Inter, sans-serif", fontWeight: 400 }}
+                    sx={{ fontFamily: "Inter, sans-serif", fontWeight: 500 }}
                   >
                     {section.content.title}
                   </Typography>
 
-                  <Box sx={{ mt: 3 }}>
+                  <Box sx={{ mt: 5 }}>
                     {section.content.paragraphs.map((item, i) => (
                       <Typography
                         key={i}
                         component="p"
-                        fontSize={{ xs: "18px", md: "24px", xl: "28px" }}
+                        fontSize={{ xs: "16px", md: "19px", xl: "22px" }}
                         sx={{
                           color: "#fff",
-                          lineHeight: 1.2,
+                          lineHeight: 1.45,
                           marginBottom: "16px",
                           fontWeight: 300,
                           opacity: 0.9,

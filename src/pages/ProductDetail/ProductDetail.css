@@ -3,10 +3,9 @@
    ============================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
 .product-detail-wrapper {
-  --font-sans: 'Roboto', -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'Geist Mono', 'SF Mono', 'Courier New', monospace;
   --page-bg: #E9E5E6;
   --panel: #f6f2ef;

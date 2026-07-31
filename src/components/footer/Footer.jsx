@@ -43,7 +43,7 @@ export const Footer = () => {
 
   // ✅ Inter para todos los textos normales (reemplaza Roboto)
   const sansFontFamily =
-    '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif';
+    '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
 
   // ✅ Geist Mono se mantiene SOLO para labels / monospace
   const monoFontFamily =
