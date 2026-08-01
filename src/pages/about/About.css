@@ -122,7 +122,10 @@
 /* ---------- Bloque superior: título + texto ---------- */
 .about-hero__top {
   max-width: 900px;
-  padding: 0 var(--headline-pad);
+  /* El texto sube (colgadura de 40px, igual que las secciones) pero el bloque
+     conserva su alto: si no, la divisoria trepa y la imagen decorativa de la
+     derecha termina montada sobre la foto grande. */
+  padding: 0 var(--headline-pad) calc(clamp(110px, 18vh, 190px) - 40px);
 }
 
 .about-hero__headline {
@@ -136,7 +139,8 @@
 }
 
 .about-hero__subtext {
-  margin: clamp(110px, 18vh, 190px) 0 0;
+  /* misma colgadura que el resto de las secciones (40px bajo el título) */
+  margin: 40px 0 0;
   max-width: 620px;
   font-family: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
   font-weight: 400;

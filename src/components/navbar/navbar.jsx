@@ -293,78 +293,41 @@ export const NavBar = ({ whiteBackground = false, disableInitialHidden = false, 
 
             {/* WEB NAV */}
             {!isMobile && (
+              /* Los 4 links en un solo contenedor: space-between reparte el mismo
+                 espacio entre todos. Antes Contacto vivía fuera de este Box y
+                 quedaba separado del resto (y en tablet ni se mostraba). */
               <Box
                 sx={{
                   display: "flex",
                   justifyContent: "space-between",
+                  alignItems: "center",
                   width: isTablet ? "65%" : "45%",
-                  flexWrap: isTablet ? "wrap" : "nowrap",
+                  flexWrap: "nowrap",
                 }}
               >
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: isTablet ? "space-around" : "space-between",
-                    width: isTablet ? "100%" : "70%",
-                    mb: isTablet ? 1 : 0,
-                  }}
-                >
-                  {navItems.slice(0, 3).map((item, index) => (
-                    <Button
-                      key={index}
-                      component={Link}
-                      to={item.path}
-                      onClick={handleNavClick}
-                      color="inherit"
-                      sx={{
-                        textTransform: "none",
-                        padding: "6px 10px",
-                        minWidth: "auto",
-                      }}
-                    >
-                      <Typography
-                        sx={{
-                          fontFamily: navMono, // ✅ Geist Mono
-                          fontSize: webNavFontSize,
-                          fontWeight: 400,
-                          textTransform: "uppercase",
-                          letterSpacing: "0.08em",
-                          color: whiteBackground
-                            ? "rgba(11, 11, 11, 0.7)"
-                            : "rgba(255, 255, 255, 0.75)",
-                          transition: "color 0.3s ease",
-                          "&:hover": {
-                            color: whiteBackground ? "rgba(11, 11, 11, 0.95)" : "white",
-                          },
-                          lineHeight: 1,
-                        }}
-                      >
-                        {item.title}
-                      </Typography>
-                    </Button>
-                  ))}
-                </Box>
-
-                {!isTablet && (
+                {navItems.map((item, index) => (
                   <Button
+                    key={index}
                     component={Link}
-                    to="/contacto"
+                    to={item.path}
                     onClick={handleNavClick}
                     color="inherit"
                     sx={{
                       textTransform: "none",
                       padding: "6px 10px",
                       minWidth: "auto",
-                      marginRight: "-10px",
+                      // el último se alinea con el borde derecho de la navbar
+                      marginRight: index === navItems.length - 1 ? "-10px" : 0,
                     }}
                   >
                     <Typography
                       sx={{
                         fontFamily: navMono, // ✅ Geist Mono
                         fontSize: webNavFontSize,
-                        fontWeight: 500,
+                        fontWeight: 400,
                         textTransform: "uppercase",
                         letterSpacing: "0.08em",
+                        whiteSpace: "nowrap",
                         color: whiteBackground
                           ? "rgba(11, 11, 11, 0.7)"
                           : "rgba(255, 255, 255, 0.75)",
@@ -375,10 +338,10 @@ export const NavBar = ({ whiteBackground = false, disableInitialHidden = false, 
                         lineHeight: 1,
                       }}
                     >
-                      Contacto
+                      {item.title}
                     </Typography>
                   </Button>
-                )}
+                ))}
               </Box>
             )}
 

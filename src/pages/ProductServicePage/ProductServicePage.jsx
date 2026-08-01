@@ -52,7 +52,7 @@ const modalInfo = {
     items: [
       { "title": "Geometría exacta", "content": "Paso de espiral uniforme y controlado en toda la armadura.", "image": "/images/Pilotes2.webp", "alt": "Fundaciones profundas" },
       { "title": "Prefabricación", "content": "Armaduras cilíndricas fabricadas según los planos del proyecto.", "image": "/images/pilotes 1.webp", "alt": "Fabricación a medida" },
-      { "title": "Menos tiempo en obra", "content": "Elimina el armado manual de jaulas, reduciendo tiempos de fundación.", "image": "/images/Pilotes3.webp", "alt": "Proceso industrializado" },
+      { "title": "Menos tiempo en obra", "content": "Elimina el armado manual de jaulas, reduciendo tiempos de fundación.", "image": "/images/Pilotes.webp", "alt": "Proceso industrializado" },
       { "title": "Entrega programada", "content": "Entregas según cronograma de obra, identificadas según plano.", "image": "/images/doblado5.jpg", "alt": "Logística de obra" },
       { "title": "Asistencia Técnica", "content": "Asesoramiento y seguimiento permanente de nuestros técnicos.", "image": "/images/Pilotes2.webp", "alt": "Soporte técnico" }
     ]

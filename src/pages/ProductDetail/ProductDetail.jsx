@@ -481,7 +481,6 @@ const productsData = {
     images: [
       { src: '/images/pilotes 1.webp', alt: 'Armaduras de Pilotes' },
       { src: '/images/Pilotes2.webp', alt: 'Armaduras de Pilotes fabricación' },
-      { src: '/images/Pilotes3.webp', alt: 'Armaduras de Pilotes proceso' },
       { src: '/images/Pilotes.webp', alt: 'Armaduras de Pilotes detalle' },
     ],
     threeDImage: null,
