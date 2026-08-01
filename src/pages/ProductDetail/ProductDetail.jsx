@@ -450,10 +450,10 @@ const productsData = {
       'Armaduras cilíndricas fabricadas industrialmente, para cimentaciones de pilotes, listas para posicionar. Fabricadas según los requerimientos del proyecto, están diseñadas para absorber los esfuerzos de tracción, flexión y torsión en cimentaciones profundas. Eliminan el armado manual en obra garantizando la geometría de la jaula y reduciendo los tiempos de la cimentación.',
     datasheetPdf: null,
     specifications: [
-      'Fabricación según planos y especificaciones del proyecto',
+      'Fabricación según planos y especificaciones',
       'Acero certificado según norma UNIT 843:95',
       'Diámetros de jaula y largos a medida',
-      'Rigidizadores internos que aseguran la geometría durante el izaje',
+      'Rigidizadores internos para un izaje sin deformación',
       'Zuncho helicoidal con paso uniforme y controlado',
       'Empalmes y anclajes según requerimiento estructural',
     ],
